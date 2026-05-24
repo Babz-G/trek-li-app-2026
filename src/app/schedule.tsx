@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View } from "react-native";
 
-export default function ExploreScreen() {
+export default function ScheduleScreen() {
   return (
     <View style={styles.container}>
-      <Text>Explore</Text>
+      <Text style={styles.text}>Schedule</Text>
     </View>
   );
 }
@@ -13,5 +13,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: "#000000",
+  },
+  text: {
+    color: "#f652a0",
+    fontSize: 24,
   },
 });
