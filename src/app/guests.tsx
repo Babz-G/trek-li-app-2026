@@ -1,6 +1,6 @@
 import ScreenHeader from "@/components/ScreenHeader";
+import { useTheme } from "@/hooks/use-theme";
 import { useState } from "react";
-
 import {
   Image,
   Linking,
@@ -280,6 +280,7 @@ function GuestCard({
   photo?: string;
 }) {
   const [hovered, setHovered] = useState(false);
+  const theme = useTheme();
 
   return (
     <Pressable
@@ -294,6 +295,7 @@ function GuestCard({
       }}
       style={({ pressed }) => [
         styles.card,
+        { backgroundColor: theme.card },
         pressed && { transform: [{ scale: 0.97 }], borderColor: "#ff8cc8" },
         !pressed &&
           hovered &&
@@ -317,8 +319,10 @@ function GuestCard({
         </View>
       )}
       <View style={styles.cardDetails}>
-        <Text style={styles.name}>{name}</Text>
-        <Text style={styles.subtitle}>{subtitle}</Text>
+        <Text style={[styles.name, { color: theme.text }]}>{name}</Text>
+        <Text style={[styles.subtitle, { color: theme.subtext }]}>
+          {subtitle}
+        </Text>
       </View>
       {imdb ? <Text style={styles.imdbLink}>IMDb ›</Text> : null}
     </Pressable>
@@ -326,8 +330,12 @@ function GuestCard({
 }
 
 export default function GuestsScreen() {
+  const theme = useTheme();
+
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView
+      style={[styles.container, { backgroundColor: theme.background }]}
+    >
       <ScreenHeader />
       <View style={styles.content}>
         <SectionHeader title="⭐ Celebrity Guests" />
@@ -340,7 +348,6 @@ export default function GuestsScreen() {
             photo={g.photo}
           />
         ))}
-
         <SectionHeader title="🎨 Artists & Industry" />
         {ARTISTS.map((g) => (
           <GuestCard
@@ -350,7 +357,6 @@ export default function GuestsScreen() {
             photo={g.photo}
           />
         ))}
-
         <SectionHeader title="📚 Authors" />
         {AUTHORS.map((g) => (
           <GuestCard
@@ -360,7 +366,6 @@ export default function GuestsScreen() {
             photo={g.photo}
           />
         ))}
-
         <SectionHeader title="🎭 Entertainment" />
         {ENTERTAINMENT.map((g) => (
           <GuestCard
@@ -378,7 +383,6 @@ export default function GuestsScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#000000",
   },
   content: {
     paddingHorizontal: 16,
@@ -393,7 +397,6 @@ const styles = StyleSheet.create({
   },
   card: {
     flexDirection: "row",
-    backgroundColor: "#111111",
     borderRadius: 10,
     padding: 12,
     marginBottom: 10,
@@ -424,13 +427,11 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   name: {
-    color: "#ffffff",
     fontSize: 15,
     fontFamily: "LeagueSpartan_700Bold",
     marginBottom: 2,
   },
   subtitle: {
-    color: "#888888",
     fontSize: 13,
     fontFamily: "NotoSans_400Regular",
   },

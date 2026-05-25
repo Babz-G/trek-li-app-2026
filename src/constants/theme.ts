@@ -21,6 +21,8 @@ export const Colors = {
   light: {
     text: "#000000",
     textSecondary: "#3f7590",
+    subtext: "#555555",
+    divider: "#e0e0e0",
     background: "#f7f7f7",
     backgroundElement: "#ffffff",
     backgroundSelected: "#36c3de22",
@@ -37,6 +39,8 @@ export const Colors = {
   dark: {
     text: "#ffffff",
     textSecondary: "#36c3de",
+    subtext: "#888888",
+    divider: "#222222",
     background: "#000000",
     backgroundElement: "#111111",
     backgroundSelected: "#009d9a33",

@@ -1,4 +1,7 @@
 import ScreenHeader from "@/components/ScreenHeader";
+import { useThemeContext } from "@/context/ThemeContext";
+import { useTheme } from "@/hooks/use-theme";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import {
   Linking,
   ScrollView,
@@ -92,24 +95,63 @@ const TICKETED_EVENTS = [
 ];
 
 export default function InfoScreen() {
+  const theme = useTheme();
+  const { isDark, toggleTheme } = useThemeContext();
+
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView
+      style={[styles.container, { backgroundColor: theme.background }]}
+    >
       <ScreenHeader />
       <View style={styles.content}>
+        {/* ── Theme Toggle ── */}
+        <TouchableOpacity
+          style={[
+            styles.themeToggle,
+            { backgroundColor: theme.card, borderColor: theme.border },
+          ]}
+          onPress={toggleTheme}
+          accessibilityLabel={
+            isDark ? "Switch to light mode" : "Switch to dark mode"
+          }
+          accessibilityRole="button"
+        >
+          <MaterialCommunityIcons
+            name={isDark ? "weather-sunny" : "weather-night"}
+            size={20}
+            color={isDark ? "#f3ba48" : "#3f64f0"}
+          />
+          <Text style={[styles.themeToggleText, { color: theme.text }]}>
+            {isDark ? "Light Mode" : "Dark Mode"}
+          </Text>
+          <MaterialCommunityIcons
+            name="chevron-right"
+            size={20}
+            color={theme.subtext}
+          />
+        </TouchableOpacity>
+
         <Text style={styles.sectionHeader} accessibilityRole="header">
           🎭 Special Ticketed Events
         </Text>
         {TICKETED_EVENTS.map((event, index) => (
-          <View key={index} style={styles.card}>
+          <View
+            key={index}
+            style={[styles.card, { backgroundColor: theme.card }]}
+          >
             <View style={styles.cardTitleRow}>
-              <Text style={[styles.cardTitle, { flex: 1 }]}>{event.title}</Text>
+              <Text style={[styles.cardTitle, { color: theme.text, flex: 1 }]}>
+                {event.title}
+              </Text>
               {event.soldOut && (
                 <Text style={styles.soldOut} accessibilityLabel="Sold out">
                   SOLD OUT
                 </Text>
               )}
             </View>
-            <Text style={styles.cardText}>{event.details}</Text>
+            <Text style={[styles.cardText, { color: theme.subtext }]}>
+              {event.details}
+            </Text>
             {event.note && <Text style={styles.cardNote}>{event.note}</Text>}
             {event.price ? (
               <Text
@@ -136,9 +178,13 @@ export default function InfoScreen() {
         <Text style={styles.sectionHeader} accessibilityRole="header">
           📍 Venue
         </Text>
-        <View style={styles.card}>
-          <Text style={styles.cardTitle}>Hyatt Regency Long Island</Text>
-          <Text style={styles.cardText}>1717 Motor Pkwy, Hauppauge, NY</Text>
+        <View style={[styles.card, { backgroundColor: theme.card }]}>
+          <Text style={[styles.cardTitle, { color: theme.text }]}>
+            Hyatt Regency Long Island
+          </Text>
+          <Text style={[styles.cardText, { color: theme.subtext }]}>
+            1717 Motor Pkwy, Hauppauge, NY
+          </Text>
           <TouchableOpacity
             style={styles.button}
             onPress={() =>
@@ -157,8 +203,8 @@ export default function InfoScreen() {
         <Text style={styles.sectionHeader} accessibilityRole="header">
           🎟️ General Tickets
         </Text>
-        <View style={styles.card}>
-          <Text style={styles.cardText}>
+        <View style={[styles.card, { backgroundColor: theme.card }]}>
+          <Text style={[styles.cardText, { color: theme.subtext }]}>
             Purchase tickets for general admission and special ticketed events.
           </Text>
           <TouchableOpacity
@@ -177,8 +223,8 @@ export default function InfoScreen() {
         <Text style={styles.sectionHeader} accessibilityRole="header">
           🛍️ Official Swag
         </Text>
-        <View style={styles.card}>
-          <Text style={styles.cardText}>
+        <View style={[styles.card, { backgroundColor: theme.card }]}>
+          <Text style={[styles.cardText, { color: theme.subtext }]}>
             Get your official Trek Long Island merchandise!
           </Text>
           <TouchableOpacity
@@ -197,9 +243,9 @@ export default function InfoScreen() {
         <Text style={styles.sectionHeader} accessibilityRole="header">
           📱 Follow Us
         </Text>
-        <View style={styles.card}>
+        <View style={[styles.card, { backgroundColor: theme.card }]}>
           <TouchableOpacity
-            style={styles.socialRow}
+            style={[styles.socialRow, { borderBottomColor: theme.divider }]}
             onPress={() =>
               Linking.openURL("https://www.facebook.com/TrekLongIsland")
             }
@@ -207,11 +253,13 @@ export default function InfoScreen() {
             accessibilityRole="link"
             accessibilityHint="Opens Facebook page"
           >
-            <Text style={styles.socialText}>Facebook</Text>
+            <Text style={[styles.socialText, { color: theme.text }]}>
+              Facebook
+            </Text>
             <Text style={styles.socialLink}>›</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={styles.socialRow}
+            style={[styles.socialRow, { borderBottomColor: theme.divider }]}
             onPress={() =>
               Linking.openURL("https://www.instagram.com/treklongisland/")
             }
@@ -219,11 +267,13 @@ export default function InfoScreen() {
             accessibilityRole="link"
             accessibilityHint="Opens Instagram page"
           >
-            <Text style={styles.socialText}>Instagram</Text>
+            <Text style={[styles.socialText, { color: theme.text }]}>
+              Instagram
+            </Text>
             <Text style={styles.socialLink}>›</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={styles.socialRow}
+            style={[styles.socialRow, { borderBottomColor: theme.divider }]}
             onPress={() =>
               Linking.openURL("https://mastodon.world/@TrekLongIsland")
             }
@@ -231,7 +281,9 @@ export default function InfoScreen() {
             accessibilityRole="link"
             accessibilityHint="Opens Mastodon page"
           >
-            <Text style={styles.socialText}>Mastodon</Text>
+            <Text style={[styles.socialText, { color: theme.text }]}>
+              Mastodon
+            </Text>
             <Text style={styles.socialLink}>›</Text>
           </TouchableOpacity>
         </View>
@@ -239,7 +291,7 @@ export default function InfoScreen() {
         <Text style={styles.sectionHeader} accessibilityRole="header">
           ✉️ Contact
         </Text>
-        <View style={styles.card}>
+        <View style={[styles.card, { backgroundColor: theme.card }]}>
           <TouchableOpacity
             onPress={() => Linking.openURL("mailto:treklongisland@gmail.com")}
             accessibilityLabel="Email Trek Long Island at treklongisland@gmail.com"
@@ -252,7 +304,7 @@ export default function InfoScreen() {
         <Text style={styles.sectionHeader} accessibilityRole="header">
           🌐 Website
         </Text>
-        <View style={styles.card}>
+        <View style={[styles.card, { backgroundColor: theme.card }]}>
           <TouchableOpacity
             onPress={() => Linking.openURL("https://treklongisland.com")}
             accessibilityLabel="Trek Long Island official website"
@@ -270,11 +322,24 @@ export default function InfoScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#000000",
   },
   content: {
     paddingHorizontal: 16,
     paddingBottom: 30,
+  },
+  themeToggle: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 12,
+    padding: 14,
+    borderRadius: 12,
+    marginTop: 16,
+    borderWidth: 1,
+  },
+  themeToggleText: {
+    flex: 1,
+    fontSize: 15,
+    fontFamily: "LeagueSpartan_700Bold",
   },
   sectionHeader: {
     color: "#f652a0",
@@ -284,7 +349,6 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   card: {
-    backgroundColor: "#111111",
     borderRadius: 10,
     padding: 16,
     marginBottom: 10,
@@ -298,12 +362,10 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   cardTitle: {
-    color: "#ffffff",
     fontSize: 15,
     fontFamily: "LeagueSpartan_700Bold",
   },
   cardText: {
-    color: "#888888",
     fontSize: 14,
     fontFamily: "NotoSans_400Regular",
     lineHeight: 20,
@@ -362,10 +424,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingVertical: 8,
     borderBottomWidth: 1,
-    borderBottomColor: "#222222",
   },
   socialText: {
-    color: "#ffffff",
     fontSize: 15,
     fontFamily: "LeagueSpartan_700Bold",
   },

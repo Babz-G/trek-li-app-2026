@@ -1,5 +1,6 @@
 import ScreenHeader from "@/components/ScreenHeader";
 import { scheduleData, ScheduleEvent } from "@/data/scheduleData";
+import { useTheme } from "@/hooks/use-theme";
 import { useSavedEvents } from "@/hooks/useSavedEvents";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useState } from "react";
@@ -25,6 +26,7 @@ const TAB_COLORS: Record<Tab, string> = {
 export default function ScheduleScreen() {
   const [activeTab, setActiveTab] = useState<Tab>("Friday");
   const { toggleSave, isSaved } = useSavedEvents();
+  const theme = useTheme();
 
   const filtered =
     activeTab === "Photo Ops"
@@ -34,13 +36,17 @@ export default function ScheduleScreen() {
   const renderEvent = ({ item }: { item: ScheduleEvent }) => {
     const saved = isSaved(item.id);
     return (
-      <View style={styles.card}>
+      <View style={[styles.card, { backgroundColor: theme.card }]}>
         <Text style={[styles.time, { color: TAB_COLORS[activeTab] }]}>
           {item.time}
         </Text>
         <View style={styles.cardDetails}>
-          <Text style={styles.title}>{item.title}</Text>
-          <Text style={styles.location}>{item.location}</Text>
+          <Text style={[styles.title, { color: theme.text }]}>
+            {item.title}
+          </Text>
+          <Text style={[styles.location, { color: theme.subtext }]}>
+            {item.location}
+          </Text>
         </View>
         <TouchableOpacity
           onPress={() => toggleSave(item.id)}
@@ -56,7 +62,7 @@ export default function ScheduleScreen() {
           <MaterialCommunityIcons
             name={saved ? "bookmark" : "bookmark-outline"}
             size={22}
-            color={saved ? "#f652a0" : "#555555"}
+            color={saved ? "#f652a0" : theme.subtext}
           />
           <Text
             style={[styles.bookmarkLabel, saved && styles.bookmarkLabelSaved]}
@@ -69,7 +75,7 @@ export default function ScheduleScreen() {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: theme.background }]}>
       <ScreenHeader />
       <View style={styles.tabWrapper}>
         <ScrollView
@@ -117,7 +123,6 @@ export default function ScheduleScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#000000",
   },
   tabWrapper: {
     height: 56,
@@ -150,7 +155,6 @@ const styles = StyleSheet.create({
   card: {
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "#111111",
     borderRadius: 10,
     padding: 12,
     marginBottom: 10,
@@ -168,13 +172,11 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   title: {
-    color: "#ffffff",
     fontSize: 14,
     fontFamily: "LeagueSpartan_700Bold",
     marginBottom: 4,
   },
   location: {
-    color: "#888888",
     fontSize: 12,
     fontFamily: "NotoSans_400Regular",
   },

@@ -1,5 +1,6 @@
 import ScreenHeader from "@/components/ScreenHeader";
 import { scheduleData } from "@/data/scheduleData";
+import { useTheme } from "@/hooks/use-theme";
 import { useSavedEvents } from "@/hooks/useSavedEvents";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import {
@@ -20,6 +21,7 @@ const DAY_ORDER = ["Friday", "Saturday", "Sunday"];
 
 export default function MyScheduleScreen() {
   const { savedIds, toggleSave } = useSavedEvents();
+  const theme = useTheme();
 
   const savedEvents = scheduleData.filter((e) => savedIds.has(e.id));
 
@@ -38,7 +40,7 @@ export default function MyScheduleScreen() {
 
   if (savedEvents.length === 0) {
     return (
-      <View style={styles.container}>
+      <View style={[styles.container, { backgroundColor: theme.background }]}>
         <ScreenHeader />
         <View
           style={styles.emptyContainer}
@@ -48,11 +50,13 @@ export default function MyScheduleScreen() {
           <MaterialCommunityIcons
             name="bookmark-outline"
             size={64}
-            color="#333333"
+            color={theme.subtext}
             accessibilityElementsHidden={true}
           />
-          <Text style={styles.emptyTitle}>No events saved yet</Text>
-          <Text style={styles.emptySubtitle}>
+          <Text style={[styles.emptyTitle, { color: theme.text }]}>
+            No events saved yet
+          </Text>
+          <Text style={[styles.emptySubtitle, { color: theme.subtext }]}>
             Tap the bookmark icon on any event in the Schedule tab to add it
             here.
           </Text>
@@ -73,7 +77,7 @@ export default function MyScheduleScreen() {
   const sections = Object.entries(grouped);
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: theme.background }]}>
       <ScreenHeader />
       <FlatList
         data={sections}
@@ -92,7 +96,11 @@ export default function MyScheduleScreen() {
               return (
                 <View
                   key={event.id}
-                  style={[styles.card, hasConflict && styles.cardConflict]}
+                  style={[
+                    styles.card,
+                    { backgroundColor: theme.card },
+                    hasConflict && styles.cardConflict,
+                  ]}
                   accessible={true}
                   accessibilityLabel={
                     `${event.time}, ${event.title}, ${event.location}` +
@@ -105,8 +113,12 @@ export default function MyScheduleScreen() {
                     {event.time}
                   </Text>
                   <View style={styles.cardDetails}>
-                    <Text style={styles.title}>{event.title}</Text>
-                    <Text style={styles.location}>{event.location}</Text>
+                    <Text style={[styles.title, { color: theme.text }]}>
+                      {event.title}
+                    </Text>
+                    <Text style={[styles.location, { color: theme.subtext }]}>
+                      {event.location}
+                    </Text>
                     {hasConflict && (
                       <View style={styles.conflictRow}>
                         <MaterialCommunityIcons
@@ -129,10 +141,14 @@ export default function MyScheduleScreen() {
                     <MaterialCommunityIcons
                       name="bookmark-remove"
                       size={22}
-                      color="#555555"
+                      color={theme.subtext}
                       accessibilityElementsHidden={true}
                     />
-                    <Text style={styles.unsaveLabel}>Remove</Text>
+                    <Text
+                      style={[styles.unsaveLabel, { color: theme.subtext }]}
+                    >
+                      Remove
+                    </Text>
                   </TouchableOpacity>
                 </View>
               );
@@ -147,7 +163,6 @@ export default function MyScheduleScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#000000",
   },
   emptyContainer: {
     flex: 1,
@@ -157,13 +172,11 @@ const styles = StyleSheet.create({
     gap: 16,
   },
   emptyTitle: {
-    color: "#ffffff",
     fontSize: 20,
     fontFamily: "LeagueSpartan_700Bold",
     textAlign: "center",
   },
   emptySubtitle: {
-    color: "#666666",
     fontSize: 14,
     fontFamily: "NotoSans_400Regular",
     textAlign: "center",
@@ -182,7 +195,6 @@ const styles = StyleSheet.create({
   card: {
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "#111111",
     borderRadius: 10,
     padding: 12,
     marginBottom: 10,
@@ -203,13 +215,11 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   title: {
-    color: "#ffffff",
     fontSize: 14,
     fontFamily: "LeagueSpartan_700Bold",
     marginBottom: 4,
   },
   location: {
-    color: "#888888",
     fontSize: 12,
     fontFamily: "NotoSans_400Regular",
   },
@@ -230,7 +240,6 @@ const styles = StyleSheet.create({
   },
   unsaveLabel: {
     fontSize: 9,
-    color: "#555555",
     fontFamily: "NotoSans_400Regular",
   },
 });
