@@ -8,7 +8,6 @@
     "scheme": "trekliapp",
     "userInterfaceStyle": "automatic",
     "ios": {
-      "icon": "./assets/expo.icon",
       "bundleIdentifier": "com.babzg.treklongisland",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
