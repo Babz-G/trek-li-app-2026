@@ -46,6 +46,12 @@ export default function ScheduleScreen() {
           onPress={() => toggleSave(item.id)}
           style={styles.bookmarkButton}
           hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+          accessibilityLabel={
+            saved
+              ? `Remove ${item.title} from my schedule`
+              : `Save ${item.title} to my schedule`
+          }
+          accessibilityRole="button"
         >
           <MaterialCommunityIcons
             name={saved ? "bookmark" : "bookmark-outline"}
@@ -80,6 +86,9 @@ export default function ScheduleScreen() {
                 activeTab === tab && { backgroundColor: TAB_COLORS[tab] },
               ]}
               onPress={() => setActiveTab(tab)}
+              accessibilityLabel={`${tab} schedule`}
+              accessibilityRole="tab"
+              accessibilityState={{ selected: activeTab === tab }}
             >
               <Text
                 style={[
