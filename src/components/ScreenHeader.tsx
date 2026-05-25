@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   },
   banner: {
     width: "100%",
-    height: 200,
+    height: 215,
   },
   pill: {
     position: "absolute",
