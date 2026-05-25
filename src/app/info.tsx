@@ -96,6 +96,29 @@ export default function InfoScreen() {
     <ScrollView style={styles.container}>
       <ScreenHeader />
       <View style={styles.content}>
+        <Text style={styles.sectionHeader}>🎭 Special Ticketed Events</Text>
+        {TICKETED_EVENTS.map((event, index) => (
+          <View key={index} style={styles.card}>
+            <View style={styles.cardTitleRow}>
+              <Text style={[styles.cardTitle, { flex: 1 }]}>{event.title}</Text>
+              {event.soldOut && <Text style={styles.soldOut}>SOLD OUT</Text>}
+            </View>
+            <Text style={styles.cardText}>{event.details}</Text>
+            {event.note && <Text style={styles.cardNote}>{event.note}</Text>}
+            {event.price ? (
+              <Text style={styles.price}>{event.price}</Text>
+            ) : null}
+            {event.url && !event.soldOut && (
+              <TouchableOpacity
+                style={styles.buttonOutline}
+                onPress={() => Linking.openURL(event.url!)}
+              >
+                <Text style={styles.buttonOutlineText}>Get Tickets</Text>
+              </TouchableOpacity>
+            )}
+          </View>
+        ))}
+
         <Text style={styles.sectionHeader}>📍 Venue</Text>
         <View style={styles.card}>
           <Text style={styles.cardTitle}>Hyatt Regency Long Island</Text>
@@ -126,29 +149,6 @@ export default function InfoScreen() {
             <Text style={styles.buttonText}>Purchase Tickets</Text>
           </TouchableOpacity>
         </View>
-
-        <Text style={styles.sectionHeader}>🎭 Special Ticketed Events</Text>
-        {TICKETED_EVENTS.map((event, index) => (
-          <View key={index} style={styles.card}>
-            <View style={styles.cardTitleRow}>
-              <Text style={[styles.cardTitle, { flex: 1 }]}>{event.title}</Text>
-              {event.soldOut && <Text style={styles.soldOut}>SOLD OUT</Text>}
-            </View>
-            <Text style={styles.cardText}>{event.details}</Text>
-            {event.note && <Text style={styles.cardNote}>{event.note}</Text>}
-            {event.price ? (
-              <Text style={styles.price}>{event.price}</Text>
-            ) : null}
-            {event.url && !event.soldOut && (
-              <TouchableOpacity
-                style={styles.buttonOutline}
-                onPress={() => Linking.openURL(event.url!)}
-              >
-                <Text style={styles.buttonOutlineText}>Get Tickets</Text>
-              </TouchableOpacity>
-            )}
-          </View>
-        ))}
 
         <Text style={styles.sectionHeader}>🛍️ Official Swag</Text>
         <View style={styles.card}>
@@ -240,6 +240,8 @@ const styles = StyleSheet.create({
     padding: 16,
     marginBottom: 10,
     gap: 8,
+    borderWidth: 1,
+    borderColor: "#f652a0",
   },
   cardTitleRow: {
     flexDirection: "row",

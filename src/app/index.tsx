@@ -9,14 +9,39 @@ import {
   View,
 } from "react-native";
 
+// ── Stardate Calculator ───────────────────────────────────────
+function getStardate(): string {
+  const now = new Date();
+  const year = now.getFullYear();
+  const startOfYear = new Date(year, 0, 1);
+  const dayOfYear = Math.ceil(
+    (now.getTime() - startOfYear.getTime()) / (1000 * 60 * 60 * 24)
+  );
+  const daysInYear = year % 4 === 0 ? 366 : 365;
+  const hourFraction = Math.floor((now.getHours() / 24) * 10);
+  const base =
+    (year - 2000) * 1000 + Math.round((dayOfYear / daysInYear) * 1000);
+  return `${base}.${hourFraction}`;
+}
+
 export default function HomeScreen() {
+  const stardate = getStardate();
+
   return (
     <ScrollView style={styles.container} bounces={false}>
       <Image
         source={require("@/assets/images/welcome-to-risa-banner.png")}
         style={styles.banner}
-        resizeMode="cover"
+        resizeMode="contain"
       />
+
+      {/* ── Stardate + Slogan ── */}
+      <View style={styles.stardateRow}>
+        <Text style={styles.stardateText}>🖖 Stardate {stardate}</Text>
+        <Text style={styles.sloganText}>
+          Boldly going where no con has gone before
+        </Text>
+      </View>
 
       <View style={styles.infoCard}>
         <View style={styles.infoRow}>
@@ -105,31 +130,38 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#000000",
   },
-  // banner: {
-  //   width: "100%",
-  //   height: 150,
-  // },
-  // banner: {
-  //   width: "100%",
-  //   height: 200,
-  //   resizeMode: "cover",
-  // },
   banner: {
     width: "100%",
     height: 200,
-    resizeMode: "contain",
-    backgroundColor: "#0bbfbf",
+    backgroundColor: "#000000",
   },
-
+  stardateRow: {
+    alignItems: "center",
+    paddingVertical: 10,
+    paddingHorizontal: 16,
+    gap: 4,
+  },
+  stardateText: {
+    color: "#009d9a",
+    fontSize: 13,
+    fontFamily: "LeagueSpartan_700Bold",
+    letterSpacing: 1.5,
+  },
+  sloganText: {
+    color: "#777777",
+    fontSize: 12,
+    fontFamily: "NotoSans_400Regular",
+    textAlign: "center",
+  },
   infoCard: {
     backgroundColor: "#111111",
     borderRadius: 16,
     marginHorizontal: 16,
-    marginTop: 16,
+    marginTop: 8,
     padding: 16,
     gap: 12,
     borderWidth: 1,
-    borderColor: "#222222",
+    borderColor: "#f652a0",
   },
   infoRow: {
     flexDirection: "row",
@@ -181,7 +213,7 @@ const styles = StyleSheet.create({
     padding: 16,
     gap: 12,
     borderWidth: 1,
-    borderColor: "#222222",
+    borderColor: "#f652a0",
   },
   cardHeader: {
     flexDirection: "row",

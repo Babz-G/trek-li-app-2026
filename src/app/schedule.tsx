@@ -33,14 +33,35 @@ export default function ScheduleScreen() {
 
   const renderEvent = ({ item }: { item: ScheduleEvent }) => {
     const saved = isSaved(item.id);
+
+    // A conflict exists if there's a DIFFERENT already-saved event
+    // on the same day at the same time
+    const wouldConflict =
+      !saved &&
+      scheduleData.some(
+        (e) =>
+          e.id !== item.id &&
+          e.day === item.day &&
+          e.time === item.time &&
+          isSaved(e.id)
+      );
+
     return (
-      <View style={styles.card}>
+      <View style={[styles.card, wouldConflict && styles.cardConflict]}>
         <Text style={[styles.time, { color: TAB_COLORS[activeTab] }]}>
           {item.time}
         </Text>
         <View style={styles.cardDetails}>
           <Text style={styles.title}>{item.title}</Text>
           <Text style={styles.location}>{item.location}</Text>
+          {wouldConflict && (
+            <View style={styles.conflictRow}>
+              <MaterialCommunityIcons name="alert" size={11} color="#ff9500" />
+              <Text style={styles.conflictText}>
+                Conflicts with a saved event
+              </Text>
+            </View>
+          )}
         </View>
         <TouchableOpacity
           onPress={() => toggleSave(item.id)}
@@ -50,12 +71,16 @@ export default function ScheduleScreen() {
           <MaterialCommunityIcons
             name={saved ? "bookmark" : "bookmark-outline"}
             size={22}
-            color={saved ? "#f652a0" : "#555555"}
+            color={saved ? "#f652a0" : wouldConflict ? "#ff9500" : "#555555"}
           />
           <Text
-            style={[styles.bookmarkLabel, saved && styles.bookmarkLabelSaved]}
+            style={[
+              styles.bookmarkLabel,
+              saved && styles.bookmarkLabelSaved,
+              wouldConflict && styles.bookmarkLabelConflict,
+            ]}
           >
-            {saved ? "Saved" : "Save"}
+            {saved ? "Saved" : wouldConflict ? "Conflict" : "Save"}
           </Text>
         </TouchableOpacity>
       </View>
@@ -146,6 +171,11 @@ const styles = StyleSheet.create({
     padding: 12,
     marginBottom: 10,
     gap: 12,
+    borderWidth: 1,
+    borderColor: "#f652a0",
+  },
+  cardConflict: {
+    borderColor: "#ff9500",
   },
   time: {
     fontSize: 13,
@@ -167,6 +197,17 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontFamily: "NotoSans_400Regular",
   },
+  conflictRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 3,
+    marginTop: 5,
+  },
+  conflictText: {
+    color: "#ff9500",
+    fontSize: 11,
+    fontFamily: "NotoSans_400Regular",
+  },
   bookmarkButton: {
     alignItems: "center",
     gap: 2,
@@ -178,5 +219,8 @@ const styles = StyleSheet.create({
   },
   bookmarkLabelSaved: {
     color: "#f652a0",
+  },
+  bookmarkLabelConflict: {
+    color: "#ff9500",
   },
 });
