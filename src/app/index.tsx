@@ -1,3 +1,4 @@
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import {
   Image,
   Linking,
@@ -17,24 +18,43 @@ export default function HomeScreen() {
         resizeMode="cover"
       />
 
-      <View style={styles.infoSection}>
-        <Text style={styles.dates}>June 12 – 14, 2026</Text>
-        <View style={styles.divider} />
-        <Text style={styles.venue}>Hyatt Regency Long Island</Text>
-        <Text style={styles.venueAddress}>1717 Motor Pkwy, Hauppauge, NY</Text>
-        <TouchableOpacity
-          style={styles.ticketBtn}
-          onPress={() =>
-            Linking.openURL("http://treklongislandtickets.square.site/")
-          }
-          activeOpacity={0.8}
-        >
-          <Text style={styles.ticketBtnText}>🎟 Purchase Tickets</Text>
-        </TouchableOpacity>
+      <View style={styles.infoCard}>
+        <View style={styles.infoRow}>
+          <MaterialCommunityIcons name="calendar" size={20} color="#f652a0" />
+          <Text style={styles.infoText}>June 12 – 14, 2026</Text>
+        </View>
+        <View style={styles.infoDivider} />
+        <View style={styles.infoRow}>
+          <MaterialCommunityIcons name="map-marker" size={20} color="#f652a0" />
+          <View>
+            <Text style={styles.infoText}>Hyatt Regency Long Island</Text>
+            <Text style={styles.infoSubText}>
+              1717 Motor Pkwy, Hauppauge, NY
+            </Text>
+          </View>
+        </View>
       </View>
 
+      <TouchableOpacity
+        style={styles.ticketBtn}
+        onPress={() =>
+          Linking.openURL("http://treklongislandtickets.square.site/")
+        }
+        activeOpacity={0.8}
+      >
+        <MaterialCommunityIcons name="ticket" size={22} color="#ffffff" />
+        <Text style={styles.ticketBtnText}>Purchase Tickets</Text>
+      </TouchableOpacity>
+
       <View style={styles.card}>
-        <Text style={styles.cardTitle}>Convention Hours</Text>
+        <View style={styles.cardHeader}>
+          <MaterialCommunityIcons
+            name="clock-outline"
+            size={18}
+            color="#009d9a"
+          />
+          <Text style={styles.cardTitle}>Convention Hours</Text>
+        </View>
         <View style={styles.hoursRow}>
           <Text style={styles.hoursDay}>Friday</Text>
           <Text style={styles.hoursTime}>5:00 PM – 11:00 PM</Text>
@@ -50,18 +70,28 @@ export default function HomeScreen() {
       </View>
 
       <View style={styles.card}>
-        <Text style={styles.sponsorLabel}>App Sponsored By</Text>
-        <Image
-          source={require("@/assets/images/transporter-room-logo.jpeg")}
-          style={styles.sponsorLogo}
-          resizeMode="contain"
-        />
-        <Text style={styles.sponsorName}>The Transporter Room Podcast</Text>
+        <View style={styles.cardHeader}>
+          <MaterialCommunityIcons
+            name="star-circle"
+            size={18}
+            color="#009d9a"
+          />
+          <Text style={styles.cardTitle}>App Sponsored By</Text>
+        </View>
         <TouchableOpacity
+          style={styles.sponsorRow}
           onPress={() => Linking.openURL("https://thetransporterroom.net")}
           activeOpacity={0.7}
         >
-          <Text style={styles.sponsorLink}>thetransporterroom.net</Text>
+          <Image
+            source={require("@/assets/images/transporter-room-logo.jpeg")}
+            style={styles.sponsorLogo}
+            resizeMode="contain"
+          />
+          <View style={styles.sponsorInfo}>
+            <Text style={styles.sponsorName}>The Transporter Room Podcast</Text>
+            <Text style={styles.sponsorLink}>thetransporterroom.net ›</Text>
+          </View>
         </TouchableOpacity>
       </View>
 
@@ -77,47 +107,48 @@ const styles = StyleSheet.create({
   },
   banner: {
     width: "100%",
-    aspectRatio: 2.7,
+    height: 200,
   },
-  infoSection: {
-    alignItems: "center",
-    paddingHorizontal: 24,
-    paddingTop: 28,
-    paddingBottom: 8,
-    gap: 8,
+  infoCard: {
+    backgroundColor: "#111111",
+    borderRadius: 16,
+    marginHorizontal: 16,
+    marginTop: 16,
+    padding: 16,
+    gap: 12,
+    borderWidth: 1,
+    borderColor: "#222222",
   },
-  dates: {
-    color: "#f3ba48",
-    fontSize: 28,
-    fontFamily: "LeagueSpartan_700Bold",
-    textAlign: "center",
-    letterSpacing: 1,
+  infoRow: {
+    flexDirection: "row",
+    alignItems: "flex-start",
+    gap: 12,
   },
-  divider: {
-    width: 60,
-    height: 2,
-    backgroundColor: "#f652a0",
-    borderRadius: 2,
-    marginVertical: 4,
+  infoDivider: {
+    height: 1,
+    backgroundColor: "#222222",
   },
-  venue: {
+  infoText: {
     color: "#ffffff",
-    fontSize: 16,
+    fontSize: 15,
     fontFamily: "LeagueSpartan_700Bold",
-    textAlign: "center",
   },
-  venueAddress: {
+  infoSubText: {
     color: "#888888",
     fontSize: 13,
     fontFamily: "NotoSans_400Regular",
-    textAlign: "center",
+    marginTop: 2,
   },
   ticketBtn: {
     backgroundColor: "#f652a0",
-    paddingVertical: 14,
-    paddingHorizontal: 40,
-    borderRadius: 30,
+    marginHorizontal: 16,
     marginTop: 12,
+    paddingVertical: 16,
+    borderRadius: 14,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 10,
     shadowColor: "#f652a0",
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.4,
@@ -126,7 +157,7 @@ const styles = StyleSheet.create({
   },
   ticketBtnText: {
     color: "#ffffff",
-    fontSize: 16,
+    fontSize: 17,
     fontFamily: "LeagueSpartan_700Bold",
     letterSpacing: 0.5,
   },
@@ -134,28 +165,30 @@ const styles = StyleSheet.create({
     backgroundColor: "#111111",
     borderRadius: 16,
     marginHorizontal: 16,
-    marginTop: 16,
-    padding: 20,
-    alignItems: "center",
-    gap: 10,
+    marginTop: 12,
+    padding: 16,
+    gap: 12,
     borderWidth: 1,
     borderColor: "#222222",
-    maxWidth: 500,
-    alignSelf: "center",
-    width: "100%",
+  },
+  cardHeader: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
+    marginBottom: 4,
   },
   cardTitle: {
     color: "#009d9a",
-    fontSize: 18,
+    fontSize: 16,
     fontFamily: "LeagueSpartan_700Bold",
-    letterSpacing: 0.5,
-    marginBottom: 4,
   },
   hoursRow: {
     flexDirection: "row",
     justifyContent: "space-between",
-    width: "100%",
-    paddingHorizontal: 8,
+    alignItems: "center",
+    paddingVertical: 4,
+    borderBottomWidth: 1,
+    borderBottomColor: "#1e1e1e",
   },
   hoursDay: {
     color: "#f652a0",
@@ -167,23 +200,24 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: "NotoSans_400Regular",
   },
-  sponsorLabel: {
-    color: "#888888",
-    fontSize: 11,
-    fontFamily: "NotoSans_400Regular",
-    letterSpacing: 1.5,
-    textTransform: "uppercase",
+  sponsorRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 14,
   },
   sponsorLogo: {
-    width: 80,
-    height: 80,
-    borderRadius: 40,
+    width: 56,
+    height: 56,
+    borderRadius: 28,
+  },
+  sponsorInfo: {
+    flex: 1,
   },
   sponsorName: {
     color: "#ffffff",
-    fontSize: 15,
+    fontSize: 14,
     fontFamily: "LeagueSpartan_700Bold",
-    textAlign: "center",
+    marginBottom: 4,
   },
   sponsorLink: {
     color: "#009d9a",
