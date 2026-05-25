@@ -1,3 +1,4 @@
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Tabs } from "expo-router";
 
 export default function TabLayout() {
@@ -14,11 +15,59 @@ export default function TabLayout() {
         tabBarInactiveTintColor: "#888888",
       }}
     >
-      <Tabs.Screen name="index" options={{ title: "Home" }} />
-      <Tabs.Screen name="schedule" options={{ title: "Schedule" }} />
-      <Tabs.Screen name="my-schedule" options={{ title: "My Schedule" }} />
-      <Tabs.Screen name="guests" options={{ title: "Guests" }} />
-      <Tabs.Screen name="info" options={{ title: "Info" }} />
+      <Tabs.Screen
+        name="index"
+        options={{
+          title: "Home",
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="home" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="schedule"
+        options={{
+          title: "Schedule",
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="calendar" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="my-schedule"
+        options={{
+          title: "My Schedule",
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons
+              name="calendar-star"
+              color={color}
+              size={size}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="guests"
+        options={{
+          title: "Guests",
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="star" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="info"
+        options={{
+          title: "Info",
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons
+              name="information"
+              color={color}
+              size={size}
+            />
+          ),
+        }}
+      />
     </Tabs>
   );
 }
