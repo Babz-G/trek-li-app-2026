@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
   },
   banner: {
     width: "100%",
-    height: 200,
+    height: 150,
   },
   infoCard: {
     backgroundColor: "#111111",

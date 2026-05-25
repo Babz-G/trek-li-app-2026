@@ -1,11 +1,13 @@
 import ScreenHeader from "@/components/ScreenHeader";
+import { useState } from "react";
+
 import {
   Image,
   Linking,
+  Pressable,
   ScrollView,
   StyleSheet,
   Text,
-  TouchableOpacity,
   View,
 } from "react-native";
 
@@ -273,11 +275,36 @@ function GuestCard({
   imdb?: string;
   photo?: string;
 }) {
+  const [hovered, setHovered] = useState(false);
+
   return (
-    <TouchableOpacity
-      style={styles.card}
+    <Pressable
       onPress={() => imdb && Linking.openURL(imdb)}
       disabled={!imdb}
+      {...{
+        onHoverIn: () => setHovered(true),
+        onHoverOut: () => setHovered(false),
+      }}
+      //   style={[
+      //     styles.card,
+      //     hovered &&
+      //       ({
+      //         transform: [{ translateY: -6 }],
+      //         boxShadow: "0 0 20px rgba(246, 82, 160, 0.6)",
+      //         borderColor: "#ff8cc8",
+      //       } as any),
+      //   ]}
+      style={({ pressed }) => [
+        styles.card,
+        pressed && { transform: [{ scale: 0.97 }], borderColor: "#ff8cc8" },
+        !pressed &&
+          hovered &&
+          ({
+            transform: [{ translateY: -6 }],
+            boxShadow: "0 0 20px rgba(246, 82, 160, 0.6)",
+            borderColor: "#ff8cc8",
+          } as any),
+      ]}
     >
       {photo ? (
         <Image source={{ uri: photo }} style={styles.photo} />
@@ -291,7 +318,7 @@ function GuestCard({
         <Text style={styles.subtitle}>{subtitle}</Text>
       </View>
       {imdb ? <Text style={styles.imdbLink}>IMDb ›</Text> : null}
-    </TouchableOpacity>
+    </Pressable>
   );
 }
 
@@ -369,6 +396,8 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     alignItems: "center",
     gap: 12,
+    borderWidth: 1,
+    borderColor: "#f652a0",
   },
   photo: {
     width: 50,
