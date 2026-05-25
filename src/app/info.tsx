@@ -96,22 +96,36 @@ export default function InfoScreen() {
     <ScrollView style={styles.container}>
       <ScreenHeader />
       <View style={styles.content}>
-        <Text style={styles.sectionHeader}>🎭 Special Ticketed Events</Text>
+        <Text style={styles.sectionHeader} accessibilityRole="header">
+          🎭 Special Ticketed Events
+        </Text>
         {TICKETED_EVENTS.map((event, index) => (
           <View key={index} style={styles.card}>
             <View style={styles.cardTitleRow}>
               <Text style={[styles.cardTitle, { flex: 1 }]}>{event.title}</Text>
-              {event.soldOut && <Text style={styles.soldOut}>SOLD OUT</Text>}
+              {event.soldOut && (
+                <Text style={styles.soldOut} accessibilityLabel="Sold out">
+                  SOLD OUT
+                </Text>
+              )}
             </View>
             <Text style={styles.cardText}>{event.details}</Text>
             {event.note && <Text style={styles.cardNote}>{event.note}</Text>}
             {event.price ? (
-              <Text style={styles.price}>{event.price}</Text>
+              <Text
+                style={styles.price}
+                accessibilityLabel={`Price: ${event.price}`}
+              >
+                {event.price}
+              </Text>
             ) : null}
             {event.url && !event.soldOut && (
               <TouchableOpacity
                 style={styles.buttonOutline}
                 onPress={() => Linking.openURL(event.url!)}
+                accessibilityLabel={`Get tickets for ${event.title}`}
+                accessibilityRole="button"
+                accessibilityHint="Opens the ticketing website"
               >
                 <Text style={styles.buttonOutlineText}>Get Tickets</Text>
               </TouchableOpacity>
@@ -119,7 +133,9 @@ export default function InfoScreen() {
           </View>
         ))}
 
-        <Text style={styles.sectionHeader}>📍 Venue</Text>
+        <Text style={styles.sectionHeader} accessibilityRole="header">
+          📍 Venue
+        </Text>
         <View style={styles.card}>
           <Text style={styles.cardTitle}>Hyatt Regency Long Island</Text>
           <Text style={styles.cardText}>1717 Motor Pkwy, Hauppauge, NY</Text>
@@ -130,12 +146,17 @@ export default function InfoScreen() {
                 "https://maps.apple.com/?address=1717+Motor+Pkwy,+Hauppauge,+NY"
               )
             }
+            accessibilityLabel="Get directions to Hyatt Regency Long Island"
+            accessibilityRole="button"
+            accessibilityHint="Opens Maps app"
           >
             <Text style={styles.buttonText}>Get Directions</Text>
           </TouchableOpacity>
         </View>
 
-        <Text style={styles.sectionHeader}>🎟️ General Tickets</Text>
+        <Text style={styles.sectionHeader} accessibilityRole="header">
+          🎟️ General Tickets
+        </Text>
         <View style={styles.card}>
           <Text style={styles.cardText}>
             Purchase tickets for general admission and special ticketed events.
@@ -145,12 +166,17 @@ export default function InfoScreen() {
             onPress={() =>
               Linking.openURL("http://treklongislandtickets.square.site/")
             }
+            accessibilityLabel="Purchase general admission tickets for Trek Long Island"
+            accessibilityRole="button"
+            accessibilityHint="Opens the ticket purchasing website"
           >
             <Text style={styles.buttonText}>Purchase Tickets</Text>
           </TouchableOpacity>
         </View>
 
-        <Text style={styles.sectionHeader}>🛍️ Official Swag</Text>
+        <Text style={styles.sectionHeader} accessibilityRole="header">
+          🛍️ Official Swag
+        </Text>
         <View style={styles.card}>
           <Text style={styles.cardText}>
             Get your official Trek Long Island merchandise!
@@ -160,18 +186,26 @@ export default function InfoScreen() {
             onPress={() =>
               Linking.openURL("https://www.etsy.com/shop/TrekLongIsland")
             }
+            accessibilityLabel="Shop Trek Long Island merchandise on Etsy"
+            accessibilityRole="link"
+            accessibilityHint="Opens Etsy shop"
           >
             <Text style={styles.buttonText}>Shop on Etsy</Text>
           </TouchableOpacity>
         </View>
 
-        <Text style={styles.sectionHeader}>📱 Follow Us</Text>
+        <Text style={styles.sectionHeader} accessibilityRole="header">
+          📱 Follow Us
+        </Text>
         <View style={styles.card}>
           <TouchableOpacity
             style={styles.socialRow}
             onPress={() =>
               Linking.openURL("https://www.facebook.com/TrekLongIsland")
             }
+            accessibilityLabel="Trek Long Island on Facebook"
+            accessibilityRole="link"
+            accessibilityHint="Opens Facebook page"
           >
             <Text style={styles.socialText}>Facebook</Text>
             <Text style={styles.socialLink}>›</Text>
@@ -181,6 +215,9 @@ export default function InfoScreen() {
             onPress={() =>
               Linking.openURL("https://www.instagram.com/treklongisland/")
             }
+            accessibilityLabel="Trek Long Island on Instagram"
+            accessibilityRole="link"
+            accessibilityHint="Opens Instagram page"
           >
             <Text style={styles.socialText}>Instagram</Text>
             <Text style={styles.socialLink}>›</Text>
@@ -190,25 +227,37 @@ export default function InfoScreen() {
             onPress={() =>
               Linking.openURL("https://mastodon.world/@TrekLongIsland")
             }
+            accessibilityLabel="Trek Long Island on Mastodon"
+            accessibilityRole="link"
+            accessibilityHint="Opens Mastodon page"
           >
             <Text style={styles.socialText}>Mastodon</Text>
             <Text style={styles.socialLink}>›</Text>
           </TouchableOpacity>
         </View>
 
-        <Text style={styles.sectionHeader}>✉️ Contact</Text>
+        <Text style={styles.sectionHeader} accessibilityRole="header">
+          ✉️ Contact
+        </Text>
         <View style={styles.card}>
           <TouchableOpacity
             onPress={() => Linking.openURL("mailto:treklongisland@gmail.com")}
+            accessibilityLabel="Email Trek Long Island at treklongisland@gmail.com"
+            accessibilityRole="link"
           >
             <Text style={styles.emailLink}>treklongisland@gmail.com</Text>
           </TouchableOpacity>
         </View>
 
-        <Text style={styles.sectionHeader}>🌐 Website</Text>
+        <Text style={styles.sectionHeader} accessibilityRole="header">
+          🌐 Website
+        </Text>
         <View style={styles.card}>
           <TouchableOpacity
             onPress={() => Linking.openURL("https://treklongisland.com")}
+            accessibilityLabel="Trek Long Island official website"
+            accessibilityRole="link"
+            accessibilityHint="Opens treklongisland.com"
           >
             <Text style={styles.emailLink}>treklongisland.com</Text>
           </TouchableOpacity>

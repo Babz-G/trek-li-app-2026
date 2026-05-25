@@ -6,6 +6,8 @@ export default function ScreenHeader() {
       source={require("@/assets/images/welcome-to-risa-banner.png")}
       style={styles.banner}
       resizeMode="contain"
+      accessibilityLabel="Welcome to Risa, Trek Long Island 2026 banner"
+      accessibilityRole="image"
     />
   );
 }

@@ -1,794 +1,193 @@
-export type ScheduleEvent = {
-  id: string;
-  time: string;
-  title: string;
-  location: string;
-  day: "Friday" | "Saturday" | "Sunday";
+import ScreenHeader from "@/components/ScreenHeader";
+import { scheduleData, ScheduleEvent } from "@/data/scheduleData";
+import { useSavedEvents } from "@/hooks/useSavedEvents";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { useState } from "react";
+import {
+  FlatList,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+
+const TABS = ["Friday", "Saturday", "Sunday", "Photo Ops"] as const;
+type Tab = (typeof TABS)[number];
+
+const TAB_COLORS: Record<Tab, string> = {
+  Friday: "#f652a0",
+  Saturday: "#009d9a",
+  Sunday: "#3f64f0",
+  "Photo Ops": "#63fb64",
 };
 
-export const scheduleData: ScheduleEvent[] = [
-  // FRIDAY
-  {
-    id: "f1",
-    time: "5:00 PM",
-    title: "Vendor Room Open",
-    location: "Vendor Room",
-    day: "Friday",
-  },
-  {
-    id: "f2",
-    time: "6:00 PM",
-    title: "Welcome to Trek Long Island 2026!",
-    location: "Main Stage",
-    day: "Friday",
-  },
-  {
-    id: "f3",
-    time: "6:00 PM",
-    title: "The Future of Trek?",
-    location: "Panel C",
-    day: "Friday",
-  },
-  {
-    id: "f4",
-    time: "6:00 PM",
-    title: "What it's like to be a Starfleet Cadet",
-    location: "Panel D",
-    day: "Friday",
-  },
-  {
-    id: "f5",
-    time: "7:00 PM",
-    title: "Khan The Musical - A Glimpse with Cast",
-    location: "Main Stage",
-    day: "Friday",
-  },
-  {
-    id: "f6",
-    time: "7:00 PM",
-    title: "The De-Evolution of Guinan",
-    location: "Panel C",
-    day: "Friday",
-  },
-  {
-    id: "f7",
-    time: "7:00 PM",
-    title: "Star Trek Scouts: The Cat's Meow",
-    location: "Panel D",
-    day: "Friday",
-  },
-  {
-    id: "f8",
-    time: "8:00 PM",
-    title: "Khan The Musical (continued)",
-    location: "Main Stage",
-    day: "Friday",
-  },
-  {
-    id: "f9",
-    time: "8:00 PM",
-    title: "Building a World in Writing",
-    location: "Panel D",
-    day: "Friday",
-  },
-  {
-    id: "f10",
-    time: "8:00 PM",
-    title: "GAMING: Away Mission (Dread)",
-    location: "Trustees Board Room",
-    day: "Friday",
-  },
-  {
-    id: "f11",
-    time: "9:00 PM",
-    title: "Cosplay Cabaret",
-    location: "Main Stage",
-    day: "Friday",
-  },
-  {
-    id: "f12",
-    time: "9:00 PM",
-    title: "GAMING: Away Mission (Dread) Continued",
-    location: "Trustees Board Room",
-    day: "Friday",
-  },
-  {
-    id: "f13",
-    time: "10:00 PM",
-    title: "Cosplay Cabaret (continued)",
-    location: "Main Stage",
-    day: "Friday",
-  },
-  {
-    id: "f14",
-    time: "10:30 PM",
-    title: "Subspace Karaoke",
-    location: "Main Stage",
-    day: "Friday",
-  },
-  {
-    id: "f15",
-    time: "11:00 PM",
-    title: "Subspace Karaoke (continued)",
-    location: "Main Stage",
-    day: "Friday",
-  },
+export default function ScheduleScreen() {
+  const [activeTab, setActiveTab] = useState<Tab>("Friday");
+  const { toggleSave, isSaved } = useSavedEvents();
 
-  // SATURDAY
-  {
-    id: "s1",
-    time: "9:00 AM",
-    title: "Qigong Healing Method with Musetta Vander (Ticketed)",
-    location: "Windwatch",
-    day: "Saturday",
-  },
-  {
-    id: "s2",
-    time: "10:00 AM",
-    title: "Lots of Authors Drinking Lots of Coffee on Stage",
-    location: "Main Stage",
-    day: "Saturday",
-  },
-  {
-    id: "s3",
-    time: "10:00 AM",
-    title: "Voices of the Queer Community with Tracee Cocco",
-    location: "Panel B",
-    day: "Saturday",
-  },
-  {
-    id: "s4",
-    time: "10:00 AM",
-    title: "DS9: Turning 33!",
-    location: "Panel C",
-    day: "Saturday",
-  },
-  {
-    id: "s5",
-    time: "10:00 AM",
-    title: "Vendor Hall Opens!",
-    location: "Vendor Room",
-    day: "Saturday",
-  },
-  {
-    id: "s6",
-    time: "11:00 AM",
-    title: "A Trip to Risa with Deirdre Imershein and Jennifer Hetrick",
-    location: "Main Stage",
-    day: "Saturday",
-  },
-  {
-    id: "s7",
-    time: "11:00 AM",
-    title: "Lesbian Voices Unheard with Tracee Cocco and Jessica Crouse",
-    location: "Panel B",
-    day: "Saturday",
-  },
-  {
-    id: "s8",
-    time: "11:00 AM",
-    title: "Where Are All The Trek Fans?",
-    location: "Panel C",
-    day: "Saturday",
-  },
-  {
-    id: "s9",
-    time: "11:00 AM",
-    title: "Stunt Action Workshop with Avaah Blackwell (Ticketed)",
-    location: "Windwatch",
-    day: "Saturday",
-  },
-  {
-    id: "s10",
-    time: "11:30 AM",
-    title: "Photo Op: Stephanie Czajkowski",
-    location: "Photo Studio",
-    day: "Saturday",
-  },
-  {
-    id: "s11",
-    time: "11:45 AM",
-    title: "Photo Op: Risa Group Photo",
-    location: "Photo Studio",
-    day: "Saturday",
-  },
-  {
-    id: "s12",
-    time: "12:00 PM",
-    title: "Deep Space Stories: Nana Visitor, Jeffrey Combs & Nicole de Boer",
-    location: "Main Stage",
-    day: "Saturday",
-  },
-  {
-    id: "s13",
-    time: "12:00 PM",
-    title: "Boldly Going where Anyone Can Go: Accessibility Panel",
-    location: "Panel B",
-    day: "Saturday",
-  },
-  {
-    id: "s14",
-    time: "12:00 PM",
-    title: "Star Trek and Modern Day Technology",
-    location: "Panel C",
-    day: "Saturday",
-  },
-  {
-    id: "s15",
-    time: "12:00 PM",
-    title: "Starfleet Fusion Flow with Stephanie Czajkowski (Ticketed)",
-    location: "Windwatch",
-    day: "Saturday",
-  },
-  {
-    id: "s16",
-    time: "12:00 PM",
-    title: "Photo Op: Deirdre Imershein",
-    location: "Photo Studio",
-    day: "Saturday",
-  },
-  {
-    id: "s17",
-    time: "12:15 PM",
-    title: "Photo Op: Jennifer Hetrick",
-    location: "Photo Studio",
-    day: "Saturday",
-  },
-  {
-    id: "s18",
-    time: "12:30 PM",
-    title: "Photo Op: Karim Diane",
-    location: "Photo Studio",
-    day: "Saturday",
-  },
-  {
-    id: "s19",
-    time: "1:00 PM",
-    title:
-      "Beyond the Bridge: Strange New Worlds - Celia Rose Gooding, Dan Jeannotte, Chris Myers",
-    location: "Main Stage",
-    day: "Saturday",
-  },
-  {
-    id: "s20",
-    time: "1:00 PM",
-    title: '"Get Me Doug Jones" with Derek Maki',
-    location: "Panel B",
-    day: "Saturday",
-  },
-  {
-    id: "s21",
-    time: "1:00 PM",
-    title: "O Captain, My Captain",
-    location: "Panel C",
-    day: "Saturday",
-  },
-  {
-    id: "s22",
-    time: "1:00 PM",
-    title: "Golden Key: Qigong with Musetta Vander (Ticketed)",
-    location: "Windwatch",
-    day: "Saturday",
-  },
-  {
-    id: "s23",
-    time: "1:00 PM",
-    title: "Photo Op: DS9 Group",
-    location: "Photo Studio",
-    day: "Saturday",
-  },
-  {
-    id: "s24",
-    time: "1:15 PM",
-    title: "Photo Op: Nicole de Boer",
-    location: "Photo Studio",
-    day: "Saturday",
-  },
-  {
-    id: "s25",
-    time: "1:30 PM",
-    title: "Photo Op: Nana Visitor",
-    location: "Photo Studio",
-    day: "Saturday",
-  },
-  {
-    id: "s26",
-    time: "1:45 PM",
-    title: "Photo Op: Jeffrey Combs",
-    location: "Photo Studio",
-    day: "Saturday",
-  },
-  {
-    id: "s27",
-    time: "2:00 PM",
-    title: "Finally Made it to Risa! Karim Diane with Matthew Jennings",
-    location: "Main Stage",
-    day: "Saturday",
-  },
-  {
-    id: "s28",
-    time: "2:00 PM",
-    title: "Queer Representation in Media with D'Manda Martini",
-    location: "Panel B",
-    day: "Saturday",
-  },
-  {
-    id: "s29",
-    time: "2:00 PM",
-    title: "Glass Etching with Nicole de Boer (Ticketed)",
-    location: "Windwatch",
-    day: "Saturday",
-  },
-  {
-    id: "s30",
-    time: "2:30 PM",
-    title: "Photo Op: Avaah Blackwell",
-    location: "Photo Studio",
-    day: "Saturday",
-  },
-  {
-    id: "s31",
-    time: "2:45 PM",
-    title: "Photo Op: Bonnie Gordon",
-    location: "Photo Studio",
-    day: "Saturday",
-  },
-  {
-    id: "s32",
-    time: "3:00 PM",
-    title: "Women of Trek: The Many Generations",
-    location: "Main Stage",
-    day: "Saturday",
-  },
-  {
-    id: "s33",
-    time: "3:00 PM",
-    title: "The Rainbow Pen: Exploring Gay Literature and Identity",
-    location: "Panel B",
-    day: "Saturday",
-  },
-  {
-    id: "s34",
-    time: "3:00 PM",
-    title: "Stupid Star Trek Questions",
-    location: "Panel C",
-    day: "Saturday",
-  },
-  {
-    id: "s35",
-    time: "3:00 PM",
-    title: "Photo Op: SNW Group",
-    location: "Photo Studio",
-    day: "Saturday",
-  },
-  {
-    id: "s36",
-    time: "3:15 PM",
-    title: "Photo Op: Celia Rose Gooding",
-    location: "Photo Studio",
-    day: "Saturday",
-  },
-  {
-    id: "s37",
-    time: "3:30 PM",
-    title: "Photo Op: Dan Jeannotte",
-    location: "Photo Studio",
-    day: "Saturday",
-  },
-  {
-    id: "s38",
-    time: "3:45 PM",
-    title: "Photo Op: Chris Myers",
-    location: "Photo Studio",
-    day: "Saturday",
-  },
-  {
-    id: "s39",
-    time: "4:00 PM",
-    title: "Khan The Musical: Q&A Panel",
-    location: "Main Stage",
-    day: "Saturday",
-  },
-  {
-    id: "s40",
-    time: "4:00 PM",
-    title: "Tracy Martinson Spotlight",
-    location: "Panel B",
-    day: "Saturday",
-  },
-  {
-    id: "s41",
-    time: "4:00 PM",
-    title: "Wine and Cheese Tasting with Jeffrey Combs (Ticketed)",
-    location: "Windwatch",
-    day: "Saturday",
-  },
-  {
-    id: "s42",
-    time: "4:00 PM",
-    title: "Photo Op: Musetta Vander",
-    location: "Photo Studio",
-    day: "Saturday",
-  },
-  {
-    id: "s43",
-    time: "4:15 PM",
-    title: "Photo Op: Louise Sorel",
-    location: "Photo Studio",
-    day: "Saturday",
-  },
-  {
-    id: "s44",
-    time: "4:30 PM",
-    title: "Photo Op: Carolyn McCormick",
-    location: "Photo Studio",
-    day: "Saturday",
-  },
-  {
-    id: "s45",
-    time: "4:45 PM",
-    title: "Photo Op: Sachi Parker",
-    location: "Photo Studio",
-    day: "Saturday",
-  },
-  {
-    id: "s46",
-    time: "5:00 PM",
-    title: "Toys Panel",
-    location: "Main Stage",
-    day: "Saturday",
-  },
-  {
-    id: "s47",
-    time: "5:00 PM",
-    title: "Trektivism: Fostering Community & Social Change",
-    location: "Panel B",
-    day: "Saturday",
-  },
-  {
-    id: "s48",
-    time: "6:00 PM",
-    title: "The RedShirts: Musical Improv Show",
-    location: "Main Stage",
-    day: "Saturday",
-  },
-  {
-    id: "s49",
-    time: "6:00 PM",
-    title: "Beam Me Up, Sulu Viewing and Discussion",
-    location: "Panel B",
-    day: "Saturday",
-  },
-  {
-    id: "s50",
-    time: "6:00 PM",
-    title: "Luau With the Stars (Ticketed)",
-    location: "Terrace Ballroom",
-    day: "Saturday",
-  },
-  {
-    id: "s51",
-    time: "6:30 PM",
-    title: "SyFy Sistas Meet-up",
-    location: "Panel D",
-    day: "Saturday",
-  },
-  {
-    id: "s52",
-    time: "7:30 PM",
-    title: "Live Proud and Prosper Drag Show with To Proudly Go",
-    location: "Main Stage",
-    day: "Saturday",
-  },
-  {
-    id: "s53",
-    time: "8:00 PM",
-    title: "Star Trek Voyager After the Voyage?",
-    location: "Panel B",
-    day: "Saturday",
-  },
-  {
-    id: "s54",
-    time: "8:00 PM",
-    title: "Classic Trek 60th Anniversary",
-    location: "Panel D",
-    day: "Saturday",
-  },
-  {
-    id: "s55",
-    time: "8:30 PM",
-    title: "Slut Trek Burlesque Show - 21+ (Ticketed)",
-    location: "Windwatch",
-    day: "Saturday",
-  },
-  {
-    id: "s56",
-    time: "9:00 PM",
-    title: "Cosplay Masquerade",
-    location: "Main Stage",
-    day: "Saturday",
-  },
-  {
-    id: "s57",
-    time: "9:00 PM",
-    title: "SNW: The End Is Nigh!",
-    location: "Panel B",
-    day: "Saturday",
-  },
-  {
-    id: "s58",
-    time: "10:00 PM",
-    title: "Warped Drive Comedy Show",
-    location: "Main Stage",
-    day: "Saturday",
-  },
-  {
-    id: "s59",
-    time: "10:00 PM",
-    title: "C*Rave (Cosplay Rave)",
-    location: "Windwatch",
-    day: "Saturday",
-  },
+  const filtered =
+    activeTab === "Photo Ops"
+      ? scheduleData.filter((e) => e.location === "Photo Studio")
+      : scheduleData.filter((e) => e.day === activeTab);
 
-  // SUNDAY
-  {
-    id: "su1",
-    time: "9:00 AM",
-    title: "Qigong Healing Method with Musetta Vander (Ticketed)",
-    location: "Windwatch",
-    day: "Sunday",
+  const renderEvent = ({ item }: { item: ScheduleEvent }) => {
+    const saved = isSaved(item.id);
+    return (
+      <View style={styles.card} accessible={false}>
+        <Text style={[styles.time, { color: TAB_COLORS[activeTab] }]}>
+          {item.time}
+        </Text>
+        <View style={styles.cardDetails}>
+          <Text style={styles.title}>{item.title}</Text>
+          <Text style={styles.location}>{item.location}</Text>
+        </View>
+        <TouchableOpacity
+          onPress={() => toggleSave(item.id)}
+          style={styles.bookmarkButton}
+          hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+          accessibilityLabel={
+            saved
+              ? `Remove ${item.title} from my schedule`
+              : `Save ${item.title} to my schedule`
+          }
+          accessibilityRole="button"
+        >
+          <MaterialCommunityIcons
+            name={saved ? "bookmark" : "bookmark-outline"}
+            size={22}
+            color={saved ? "#f652a0" : "#555555"}
+          />
+          <Text
+            style={[styles.bookmarkLabel, saved && styles.bookmarkLabelSaved]}
+          >
+            {saved ? "Saved" : "Save"}
+          </Text>
+        </TouchableOpacity>
+      </View>
+    );
+  };
+
+  return (
+    <View style={styles.container}>
+      <ScreenHeader />
+      <View style={styles.tabWrapper}>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.tabRow}
+        >
+          {TABS.map((tab) => (
+            <TouchableOpacity
+              key={tab}
+              style={[
+                styles.tab,
+                { borderColor: TAB_COLORS[tab] },
+                activeTab === tab && { backgroundColor: TAB_COLORS[tab] },
+              ]}
+              onPress={() => setActiveTab(tab)}
+              accessibilityLabel={`${tab} schedule`}
+              accessibilityRole="tab"
+              accessibilityState={{ selected: activeTab === tab }}
+            >
+              <Text
+                style={[
+                  styles.tabText,
+                  { color: TAB_COLORS[tab] },
+                  activeTab === tab && styles.tabTextActive,
+                ]}
+              >
+                {tab}
+              </Text>
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
+      </View>
+
+      <FlatList
+        data={filtered}
+        keyExtractor={(item) => item.id}
+        renderItem={renderEvent}
+        contentContainerStyle={styles.list}
+      />
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#000000",
   },
-  {
-    id: "su2",
-    time: "10:00 AM",
-    title:
-      "Changing the Game: Trans Talent in Film and TV with Jesse James Keitel",
-    location: "Panel B",
-    day: "Sunday",
+  tabWrapper: {
+    height: 56,
+    justifyContent: "center",
+    marginBottom: 8,
   },
-  {
-    id: "su3",
-    time: "10:00 AM",
-    title: '"Let\'s name him Jim"',
-    location: "Panel C",
-    day: "Sunday",
+  tabRow: {
+    flexDirection: "row",
+    gap: 8,
+    paddingHorizontal: 12,
+    alignItems: "center",
   },
-  {
-    id: "su4",
-    time: "10:00 AM",
-    title: "Once upon a Trek",
-    location: "Panel D",
-    day: "Sunday",
+  tab: {
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    borderRadius: 20,
+    borderWidth: 1.5,
   },
-  {
-    id: "su5",
-    time: "11:00 AM",
-    title: "Becoming Uhura with Celia Rose Gooding",
-    location: "Main Stage",
-    day: "Sunday",
+  tabText: {
+    fontSize: 13,
+    fontFamily: "LeagueSpartan_700Bold",
   },
-  {
-    id: "su6",
-    time: "11:00 AM",
-    title: "DRAG Story Hour with Beau Dacious",
-    location: "Panel B",
-    day: "Sunday",
+  tabTextActive: {
+    color: "#000000",
   },
-  {
-    id: "su7",
-    time: "11:00 AM",
-    title: "Chaos, Curiosity, and Vash with Jennifer Hetrick",
-    location: "Panel C",
-    day: "Sunday",
+  list: {
+    paddingHorizontal: 16,
+    paddingBottom: 20,
   },
-  {
-    id: "su8",
-    time: "11:00 AM",
-    title: "Photo Op: DS9 Group",
-    location: "Photo Studio",
-    day: "Sunday",
+  card: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#111111",
+    borderRadius: 10,
+    padding: 12,
+    marginBottom: 10,
+    gap: 12,
+    borderWidth: 1,
+    borderColor: "#f652a0",
   },
-  {
-    id: "su9",
-    time: "11:15 AM",
-    title: "Photo Op: Nana Visitor",
-    location: "Photo Studio",
-    day: "Sunday",
+  time: {
+    fontSize: 13,
+    fontFamily: "LeagueSpartan_700Bold",
+    width: 70,
+    paddingTop: 2,
   },
-  {
-    id: "su10",
-    time: "11:30 AM",
-    title: "Photo Op: Jeffrey Combs",
-    location: "Photo Studio",
-    day: "Sunday",
+  cardDetails: {
+    flex: 1,
   },
-  {
-    id: "su11",
-    time: "11:45 AM",
-    title: "Photo Op: Nicole de Boer",
-    location: "Photo Studio",
-    day: "Sunday",
+  title: {
+    color: "#ffffff",
+    fontSize: 14,
+    fontFamily: "LeagueSpartan_700Bold",
+    marginBottom: 4,
   },
-  {
-    id: "su12",
-    time: "12:00 PM",
-    title: "Stories from the Promenade with Nana Visitor",
-    location: "Main Stage",
-    day: "Sunday",
+  location: {
+    color: "#888888",
+    fontSize: 12,
+    fontFamily: "NotoSans_400Regular",
   },
-  {
-    id: "su13",
-    time: "12:00 PM",
-    title: "Mind Melds and Missions with Stephanie Czajkowski",
-    location: "Panel C",
-    day: "Sunday",
+  bookmarkButton: {
+    alignItems: "center",
+    gap: 2,
   },
-  {
-    id: "su14",
-    time: "12:00 PM",
-    title: "Glass Etching with Jennifer Hetrick (Ticketed)",
-    location: "Windwatch",
-    day: "Sunday",
+  bookmarkLabel: {
+    fontSize: 9,
+    color: "#555555",
+    fontFamily: "NotoSans_400Regular",
   },
-  {
-    id: "su15",
-    time: "12:00 PM",
-    title: "Photo Op: SNW Group",
-    location: "Photo Studio",
-    day: "Sunday",
+  bookmarkLabelSaved: {
+    color: "#f652a0",
   },
-  {
-    id: "su16",
-    time: "12:15 PM",
-    title: "Photo Op: Chris Myers",
-    location: "Photo Studio",
-    day: "Sunday",
-  },
-  {
-    id: "su17",
-    time: "12:30 PM",
-    title: "Photo Op: Dan Jeannotte",
-    location: "Photo Studio",
-    day: "Sunday",
-  },
-  {
-    id: "su18",
-    time: "12:45 PM",
-    title: "Photo Op: Celia Rose Gooding",
-    location: "Photo Studio",
-    day: "Sunday",
-  },
-  {
-    id: "su19",
-    time: "1:00 PM",
-    title: "Combs Across the Galaxy with Jeffrey Combs",
-    location: "Main Stage",
-    day: "Sunday",
-  },
-  {
-    id: "su20",
-    time: "1:00 PM",
-    title: "Red Alert: Stunt Work Ahead with Avaah Blackwell",
-    location: "Panel C",
-    day: "Sunday",
-  },
-  {
-    id: "su21",
-    time: "1:00 PM",
-    title: "Photo Op: Risa Group",
-    location: "Photo Studio",
-    day: "Sunday",
-  },
-  {
-    id: "su22",
-    time: "1:15 PM",
-    title: "Photo Op: Deirdre Imershein",
-    location: "Photo Studio",
-    day: "Sunday",
-  },
-  {
-    id: "su23",
-    time: "1:30 PM",
-    title: "Photo Op: Jennifer Hetrick",
-    location: "Photo Studio",
-    day: "Sunday",
-  },
-  {
-    id: "su24",
-    time: "1:45 PM",
-    title: "Photo Op: Louise Sorel",
-    location: "Photo Studio",
-    day: "Sunday",
-  },
-  {
-    id: "su25",
-    time: "2:00 PM",
-    title: "Spots, Symbionts, and Starfleet with Nicole de Boer",
-    location: "Main Stage",
-    day: "Sunday",
-  },
-  {
-    id: "su26",
-    time: "2:00 PM",
-    title: "Pride in Full Drag: Queens, Kings & Community with Jackie Cox",
-    location: "Panel B",
-    day: "Sunday",
-  },
-  {
-    id: "su27",
-    time: "2:00 PM",
-    title: "The Art of Resistance with Nana Visitor (Ticketed - SOLD OUT)",
-    location: "Windwatch",
-    day: "Sunday",
-  },
-  {
-    id: "su28",
-    time: "2:30 PM",
-    title: "Photo Op: Bonnie Gordon",
-    location: "Photo Studio",
-    day: "Sunday",
-  },
-  {
-    id: "su29",
-    time: "2:45 PM",
-    title: "Photo Op: Stephanie Czajkowski",
-    location: "Photo Studio",
-    day: "Sunday",
-  },
-  {
-    id: "su30",
-    time: "3:00 PM",
-    title: "Liquid Nitrogen Discovery with Crazy Science NYC",
-    location: "Main Stage",
-    day: "Sunday",
-  },
-  {
-    id: "su31",
-    time: "3:00 PM",
-    title: "What Star Trek Gets Right About Humanity",
-    location: "Panel C",
-    day: "Sunday",
-  },
-  {
-    id: "su32",
-    time: "3:00 PM",
-    title: "Photo Op: Carolyn McCormick",
-    location: "Photo Studio",
-    day: "Sunday",
-  },
-  {
-    id: "su33",
-    time: "3:15 PM",
-    title: "Photo Op: Avaah Blackwell",
-    location: "Photo Studio",
-    day: "Sunday",
-  },
-  {
-    id: "su34",
-    time: "3:30 PM",
-    title: "Photo Op: Karim Diane",
-    location: "Photo Studio",
-    day: "Sunday",
-  },
-  {
-    id: "su35",
-    time: "4:00 PM",
-    title: "All-Quadrants Auction to Benefit PanCAN",
-    location: "Main Stage",
-    day: "Sunday",
-  },
-  {
-    id: "su36",
-    time: "5:00 PM",
-    title: "All-Quadrants Auction (continued)",
-    location: "Main Stage",
-    day: "Sunday",
-  },
-  {
-    id: "su37",
-    time: "5:00 PM",
-    title: "Until We Beam Again! Trek Long Island Farewell",
-    location: "Main Stage",
-    day: "Sunday",
-  },
-];
+});

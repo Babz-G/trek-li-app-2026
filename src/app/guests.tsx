@@ -261,7 +261,11 @@ const ENTERTAINMENT = [
 ];
 
 function SectionHeader({ title }: { title: string }) {
-  return <Text style={styles.sectionHeader}>{title}</Text>;
+  return (
+    <Text style={styles.sectionHeader} accessibilityRole="header">
+      {title}
+    </Text>
+  );
 }
 
 function GuestCard({
@@ -281,19 +285,13 @@ function GuestCard({
     <Pressable
       onPress={() => imdb && Linking.openURL(imdb)}
       disabled={!imdb}
+      accessibilityLabel={`${name}, ${subtitle}`}
+      accessibilityRole={imdb ? "link" : "text"}
+      accessibilityHint={imdb ? "Opens IMDb profile" : undefined}
       {...{
         onHoverIn: () => setHovered(true),
         onHoverOut: () => setHovered(false),
       }}
-      //   style={[
-      //     styles.card,
-      //     hovered &&
-      //       ({
-      //         transform: [{ translateY: -6 }],
-      //         boxShadow: "0 0 20px rgba(246, 82, 160, 0.6)",
-      //         borderColor: "#ff8cc8",
-      //       } as any),
-      //   ]}
       style={({ pressed }) => [
         styles.card,
         pressed && { transform: [{ scale: 0.97 }], borderColor: "#ff8cc8" },
@@ -307,7 +305,12 @@ function GuestCard({
       ]}
     >
       {photo ? (
-        <Image source={{ uri: photo }} style={styles.photo} />
+        <Image
+          source={{ uri: photo }}
+          style={styles.photo}
+          accessibilityLabel={`Photo of ${name}`}
+          accessibilityRole="image"
+        />
       ) : (
         <View style={styles.avatar}>
           <Text style={styles.avatarText}>{name.charAt(0)}</Text>

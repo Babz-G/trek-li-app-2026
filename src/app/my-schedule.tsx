@@ -23,7 +23,6 @@ export default function MyScheduleScreen() {
 
   const savedEvents = scheduleData.filter((e) => savedIds.has(e.id));
 
-  // Find all saved event IDs that share a day+time with another saved event
   const conflictingIds = new Set<string>();
   for (let i = 0; i < savedEvents.length; i++) {
     for (let j = i + 1; j < savedEvents.length; j++) {
@@ -41,11 +40,16 @@ export default function MyScheduleScreen() {
     return (
       <View style={styles.container}>
         <ScreenHeader />
-        <View style={styles.emptyContainer}>
+        <View
+          style={styles.emptyContainer}
+          accessible={true}
+          accessibilityLabel="No events saved yet. Tap the bookmark icon on any event in the Schedule tab to add it here."
+        >
           <MaterialCommunityIcons
             name="bookmark-outline"
             size={64}
             color="#333333"
+            accessibilityElementsHidden={true}
           />
           <Text style={styles.emptyTitle}>No events saved yet</Text>
           <Text style={styles.emptySubtitle}>
@@ -77,7 +81,10 @@ export default function MyScheduleScreen() {
         contentContainerStyle={styles.list}
         renderItem={({ item: [day, events] }) => (
           <View>
-            <Text style={[styles.dayHeader, { color: DAY_COLORS[day] }]}>
+            <Text
+              style={[styles.dayHeader, { color: DAY_COLORS[day] }]}
+              accessibilityRole="header"
+            >
               {day}
             </Text>
             {events.map((event) => {
@@ -86,6 +93,13 @@ export default function MyScheduleScreen() {
                 <View
                   key={event.id}
                   style={[styles.card, hasConflict && styles.cardConflict]}
+                  accessible={true}
+                  accessibilityLabel={
+                    `${event.time}, ${event.title}, ${event.location}` +
+                    (hasConflict
+                      ? ", warning: time conflict with another saved event"
+                      : "")
+                  }
                 >
                   <Text style={[styles.time, { color: DAY_COLORS[event.day] }]}>
                     {event.time}
@@ -99,6 +113,7 @@ export default function MyScheduleScreen() {
                           name="alert"
                           size={11}
                           color="#ff9500"
+                          accessibilityElementsHidden={true}
                         />
                         <Text style={styles.conflictText}>Time conflict</Text>
                       </View>
@@ -108,11 +123,14 @@ export default function MyScheduleScreen() {
                     onPress={() => toggleSave(event.id)}
                     style={styles.unsaveButton}
                     hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                    accessibilityLabel={`Remove ${event.title} from my schedule`}
+                    accessibilityRole="button"
                   >
                     <MaterialCommunityIcons
                       name="bookmark-remove"
                       size={22}
                       color="#555555"
+                      accessibilityElementsHidden={true}
                     />
                     <Text style={styles.unsaveLabel}>Remove</Text>
                   </TouchableOpacity>
