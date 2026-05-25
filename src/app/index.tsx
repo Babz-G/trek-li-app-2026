@@ -105,9 +105,13 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#000000",
   },
+  // banner: {
+  //   width: "100%",
+  //   height: 150,
+  // },
   banner: {
     width: "100%",
-    height: 150,
+    aspectRatio: 2.6,
   },
   infoCard: {
     backgroundColor: "#111111",
