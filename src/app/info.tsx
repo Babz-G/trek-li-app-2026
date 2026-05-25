@@ -1,7 +1,5 @@
 import ScreenHeader from "@/components/ScreenHeader";
-import { useThemeContext } from "@/context/ThemeContext";
 import { useTheme } from "@/hooks/use-theme";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import {
   Linking,
   ScrollView,
@@ -96,7 +94,6 @@ const TICKETED_EVENTS = [
 
 export default function InfoScreen() {
   const theme = useTheme();
-  const { isDark, toggleTheme } = useThemeContext();
 
   return (
     <ScrollView
@@ -104,33 +101,6 @@ export default function InfoScreen() {
     >
       <ScreenHeader />
       <View style={styles.content}>
-        {/* ── Theme Toggle ── */}
-        <TouchableOpacity
-          style={[
-            styles.themeToggle,
-            { backgroundColor: theme.card, borderColor: theme.border },
-          ]}
-          onPress={toggleTheme}
-          accessibilityLabel={
-            isDark ? "Switch to light mode" : "Switch to dark mode"
-          }
-          accessibilityRole="button"
-        >
-          <MaterialCommunityIcons
-            name={isDark ? "weather-sunny" : "weather-night"}
-            size={20}
-            color={isDark ? "#f3ba48" : "#3f64f0"}
-          />
-          <Text style={[styles.themeToggleText, { color: theme.text }]}>
-            {isDark ? "Light Mode" : "Dark Mode"}
-          </Text>
-          <MaterialCommunityIcons
-            name="chevron-right"
-            size={20}
-            color={theme.subtext}
-          />
-        </TouchableOpacity>
-
         <Text style={styles.sectionHeader} accessibilityRole="header">
           🎭 Special Ticketed Events
         </Text>
@@ -326,20 +296,6 @@ const styles = StyleSheet.create({
   content: {
     paddingHorizontal: 16,
     paddingBottom: 30,
-  },
-  themeToggle: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 12,
-    padding: 14,
-    borderRadius: 12,
-    marginTop: 16,
-    borderWidth: 1,
-  },
-  themeToggleText: {
-    flex: 1,
-    fontSize: 15,
-    fontFamily: "LeagueSpartan_700Bold",
   },
   sectionHeader: {
     color: "#f652a0",

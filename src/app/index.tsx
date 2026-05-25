@@ -1,3 +1,4 @@
+import ScreenHeader from "@/components/ScreenHeader";
 import { useTheme } from "@/hooks/use-theme";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import {
@@ -34,14 +35,7 @@ export default function HomeScreen() {
       style={[styles.container, { backgroundColor: theme.background }]}
       bounces={false}
     >
-      <Image
-        source={require("@/assets/images/welcome-to-risa-banner.png")}
-        style={[styles.banner, { backgroundColor: theme.background }]}
-        resizeMode="contain"
-        accessibilityLabel="Welcome to Risa, Trek Long Island 2026 banner"
-        accessibilityRole="image"
-      />
-
+      <ScreenHeader />
       <View style={styles.stardateRow}>
         <Text
           style={styles.stardateText}
@@ -196,10 +190,6 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  banner: {
-    width: "100%",
-    height: 200,
   },
   stardateRow: {
     alignItems: "center",
