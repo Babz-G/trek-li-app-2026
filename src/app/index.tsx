@@ -111,8 +111,10 @@ const styles = StyleSheet.create({
   // },
   banner: {
     width: "100%",
-    aspectRatio: 2.6,
+    height: 200,
+    resizeMode: "cover",
   },
+
   infoCard: {
     backgroundColor: "#111111",
     borderRadius: 16,
