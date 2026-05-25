@@ -1,3 +1,4 @@
+import ScreenHeader from "@/components/ScreenHeader";
 import { scheduleData, ScheduleEvent } from "@/data/scheduleData";
 import { useSavedEvents } from "@/hooks/useSavedEvents";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -63,6 +64,7 @@ export default function ScheduleScreen() {
 
   return (
     <View style={styles.container}>
+      <ScreenHeader />
       <View style={styles.tabWrapper}>
         <ScrollView
           horizontal
@@ -107,7 +109,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#000000",
-    paddingTop: 50,
   },
   tabWrapper: {
     height: 56,
@@ -128,7 +129,7 @@ const styles = StyleSheet.create({
   },
   tabText: {
     fontSize: 13,
-    fontWeight: "bold",
+    fontFamily: "LeagueSpartan_700Bold",
   },
   tabTextActive: {
     color: "#000000",
@@ -148,7 +149,7 @@ const styles = StyleSheet.create({
   },
   time: {
     fontSize: 13,
-    fontWeight: "bold",
+    fontFamily: "LeagueSpartan_700Bold",
     width: 70,
     paddingTop: 2,
   },
@@ -158,12 +159,13 @@ const styles = StyleSheet.create({
   title: {
     color: "#ffffff",
     fontSize: 14,
-    fontWeight: "600",
+    fontFamily: "LeagueSpartan_700Bold",
     marginBottom: 4,
   },
   location: {
     color: "#888888",
     fontSize: 12,
+    fontFamily: "NotoSans_400Regular",
   },
   bookmarkButton: {
     alignItems: "center",
@@ -172,6 +174,7 @@ const styles = StyleSheet.create({
   bookmarkLabel: {
     fontSize: 9,
     color: "#555555",
+    fontFamily: "NotoSans_400Regular",
   },
   bookmarkLabelSaved: {
     color: "#f652a0",

@@ -1,3 +1,4 @@
+import ScreenHeader from "@/components/ScreenHeader";
 import {
   Image,
   Linking,
@@ -296,47 +297,50 @@ function GuestCard({
 
 export default function GuestsScreen() {
   return (
-    <ScrollView style={styles.container} contentContainerStyle={styles.content}>
-      <SectionHeader title="⭐ Celebrity Guests" />
-      {CELEBRITY_GUESTS.map((g) => (
-        <GuestCard
-          key={g.name}
-          name={g.name}
-          subtitle={g.show}
-          imdb={g.imdb}
-          photo={g.photo}
-        />
-      ))}
+    <ScrollView style={styles.container}>
+      <ScreenHeader />
+      <View style={styles.content}>
+        <SectionHeader title="⭐ Celebrity Guests" />
+        {CELEBRITY_GUESTS.map((g) => (
+          <GuestCard
+            key={g.name}
+            name={g.name}
+            subtitle={g.show}
+            imdb={g.imdb}
+            photo={g.photo}
+          />
+        ))}
 
-      <SectionHeader title="🎨 Artists & Industry" />
-      {ARTISTS.map((g) => (
-        <GuestCard
-          key={g.name}
-          name={g.name}
-          subtitle={g.role}
-          photo={g.photo}
-        />
-      ))}
+        <SectionHeader title="🎨 Artists & Industry" />
+        {ARTISTS.map((g) => (
+          <GuestCard
+            key={g.name}
+            name={g.name}
+            subtitle={g.role}
+            photo={g.photo}
+          />
+        ))}
 
-      <SectionHeader title="📚 Authors" />
-      {AUTHORS.map((g) => (
-        <GuestCard
-          key={g.name}
-          name={g.name}
-          subtitle={g.role}
-          photo={g.photo}
-        />
-      ))}
+        <SectionHeader title="📚 Authors" />
+        {AUTHORS.map((g) => (
+          <GuestCard
+            key={g.name}
+            name={g.name}
+            subtitle={g.role}
+            photo={g.photo}
+          />
+        ))}
 
-      <SectionHeader title="🎭 Entertainment" />
-      {ENTERTAINMENT.map((g) => (
-        <GuestCard
-          key={g.name}
-          name={g.name}
-          subtitle={g.role}
-          photo={g.photo}
-        />
-      ))}
+        <SectionHeader title="🎭 Entertainment" />
+        {ENTERTAINMENT.map((g) => (
+          <GuestCard
+            key={g.name}
+            name={g.name}
+            subtitle={g.role}
+            photo={g.photo}
+          />
+        ))}
+      </View>
     </ScrollView>
   );
 }
@@ -348,13 +352,12 @@ const styles = StyleSheet.create({
   },
   content: {
     paddingHorizontal: 16,
-    paddingTop: 50,
     paddingBottom: 30,
   },
   sectionHeader: {
     color: "#f652a0",
     fontSize: 18,
-    fontWeight: "bold",
+    fontFamily: "LeagueSpartan_700Bold",
     marginTop: 24,
     marginBottom: 12,
   },
@@ -383,7 +386,7 @@ const styles = StyleSheet.create({
   avatarText: {
     color: "#000000",
     fontSize: 18,
-    fontWeight: "bold",
+    fontFamily: "LeagueSpartan_700Bold",
   },
   cardDetails: {
     flex: 1,
@@ -391,16 +394,17 @@ const styles = StyleSheet.create({
   name: {
     color: "#ffffff",
     fontSize: 15,
-    fontWeight: "600",
+    fontFamily: "LeagueSpartan_700Bold",
     marginBottom: 2,
   },
   subtitle: {
     color: "#888888",
     fontSize: 13,
+    fontFamily: "NotoSans_400Regular",
   },
   imdbLink: {
     color: "#f3ba48",
     fontSize: 12,
-    fontWeight: "bold",
+    fontFamily: "LeagueSpartan_700Bold",
   },
 });

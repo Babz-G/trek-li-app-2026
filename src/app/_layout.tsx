@@ -1,8 +1,49 @@
 import { SavedEventsProvider } from "@/context/SavedEventsContext";
+import {
+  Bangers_400Regular,
+  useFonts as useBangers,
+} from "@expo-google-fonts/bangers";
+import {
+  Candal_400Regular,
+  useFonts as useCandal,
+} from "@expo-google-fonts/candal";
+import {
+  LeagueSpartan_400Regular,
+  LeagueSpartan_700Bold,
+  useFonts as useLeagueSpartan,
+} from "@expo-google-fonts/league-spartan";
+import {
+  NotoSans_400Regular,
+  NotoSans_700Bold,
+  useFonts as useNotoSans,
+} from "@expo-google-fonts/noto-sans";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Tabs } from "expo-router";
+import * as SplashScreen from "expo-splash-screen";
+import { useEffect } from "react";
+
+SplashScreen.preventAutoHideAsync();
 
 export default function TabLayout() {
+  const [bangersLoaded] = useBangers({ Bangers_400Regular });
+  const [candalLoaded] = useCandal({ Candal_400Regular });
+  const [notoLoaded] = useNotoSans({ NotoSans_400Regular, NotoSans_700Bold });
+  const [spartanLoaded] = useLeagueSpartan({
+    LeagueSpartan_400Regular,
+    LeagueSpartan_700Bold,
+  });
+
+  const fontsLoaded =
+    bangersLoaded && candalLoaded && notoLoaded && spartanLoaded;
+
+  useEffect(() => {
+    if (fontsLoaded) {
+      SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+
+  if (!fontsLoaded) return null;
+
   return (
     <SavedEventsProvider>
       <Tabs

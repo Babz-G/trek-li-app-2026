@@ -1,3 +1,4 @@
+import ScreenHeader from "@/components/ScreenHeader";
 import { scheduleData } from "@/data/scheduleData";
 import { useSavedEvents } from "@/hooks/useSavedEvents";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -24,16 +25,20 @@ export default function MyScheduleScreen() {
 
   if (savedEvents.length === 0) {
     return (
-      <View style={styles.emptyContainer}>
-        <MaterialCommunityIcons
-          name="bookmark-outline"
-          size={64}
-          color="#333333"
-        />
-        <Text style={styles.emptyTitle}>No events saved yet</Text>
-        <Text style={styles.emptySubtitle}>
-          Tap the bookmark icon on any event in the Schedule tab to add it here.
-        </Text>
+      <View style={styles.container}>
+        <ScreenHeader />
+        <View style={styles.emptyContainer}>
+          <MaterialCommunityIcons
+            name="bookmark-outline"
+            size={64}
+            color="#333333"
+          />
+          <Text style={styles.emptyTitle}>No events saved yet</Text>
+          <Text style={styles.emptySubtitle}>
+            Tap the bookmark icon on any event in the Schedule tab to add it
+            here.
+          </Text>
+        </View>
       </View>
     );
   }
@@ -51,6 +56,7 @@ export default function MyScheduleScreen() {
 
   return (
     <View style={styles.container}>
+      <ScreenHeader />
       <FlatList
         data={sections}
         keyExtractor={([day]) => day}
@@ -94,11 +100,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#000000",
-    paddingTop: 50,
   },
   emptyContainer: {
     flex: 1,
-    backgroundColor: "#000000",
     justifyContent: "center",
     alignItems: "center",
     paddingHorizontal: 40,
@@ -107,12 +111,13 @@ const styles = StyleSheet.create({
   emptyTitle: {
     color: "#ffffff",
     fontSize: 20,
-    fontWeight: "bold",
+    fontFamily: "LeagueSpartan_700Bold",
     textAlign: "center",
   },
   emptySubtitle: {
     color: "#666666",
     fontSize: 14,
+    fontFamily: "NotoSans_400Regular",
     textAlign: "center",
     lineHeight: 22,
   },
@@ -122,7 +127,7 @@ const styles = StyleSheet.create({
   },
   dayHeader: {
     fontSize: 18,
-    fontWeight: "bold",
+    fontFamily: "LeagueSpartan_700Bold",
     marginTop: 20,
     marginBottom: 10,
   },
@@ -137,7 +142,7 @@ const styles = StyleSheet.create({
   },
   time: {
     fontSize: 13,
-    fontWeight: "bold",
+    fontFamily: "LeagueSpartan_700Bold",
     width: 70,
     paddingTop: 2,
   },
@@ -147,12 +152,13 @@ const styles = StyleSheet.create({
   title: {
     color: "#ffffff",
     fontSize: 14,
-    fontWeight: "600",
+    fontFamily: "LeagueSpartan_700Bold",
     marginBottom: 4,
   },
   location: {
     color: "#888888",
     fontSize: 12,
+    fontFamily: "NotoSans_400Regular",
   },
   unsaveButton: {
     alignItems: "center",
@@ -161,5 +167,6 @@ const styles = StyleSheet.create({
   unsaveLabel: {
     fontSize: 9,
     color: "#555555",
+    fontFamily: "NotoSans_400Regular",
   },
 });
