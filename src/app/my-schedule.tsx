@@ -1,9 +1,91 @@
-import { StyleSheet, Text, View } from "react-native";
+import { scheduleData } from "@/data/scheduleData";
+import { useSavedEvents } from "@/hooks/useSavedEvents";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import {
+  FlatList,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+
+const DAY_COLORS: Record<string, string> = {
+  Friday: "#f652a0",
+  Saturday: "#009d9a",
+  Sunday: "#3f64f0",
+};
+
+const DAY_ORDER = ["Friday", "Saturday", "Sunday"];
 
 export default function MyScheduleScreen() {
+  const { savedIds, toggleSave } = useSavedEvents();
+
+  const savedEvents = scheduleData.filter((e) => savedIds.has(e.id));
+
+  if (savedEvents.length === 0) {
+    return (
+      <View style={styles.emptyContainer}>
+        <MaterialCommunityIcons
+          name="bookmark-outline"
+          size={64}
+          color="#333333"
+        />
+        <Text style={styles.emptyTitle}>No events saved yet</Text>
+        <Text style={styles.emptySubtitle}>
+          Tap the bookmark icon on any event in the Schedule tab to add it here.
+        </Text>
+      </View>
+    );
+  }
+
+  const grouped = DAY_ORDER.reduce<Record<string, typeof savedEvents>>(
+    (acc, day) => {
+      const events = savedEvents.filter((e) => e.day === day);
+      if (events.length > 0) acc[day] = events;
+      return acc;
+    },
+    {}
+  );
+
+  const sections = Object.entries(grouped);
+
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>My Schedule</Text>
+      <FlatList
+        data={sections}
+        keyExtractor={([day]) => day}
+        contentContainerStyle={styles.list}
+        renderItem={({ item: [day, events] }) => (
+          <View>
+            <Text style={[styles.dayHeader, { color: DAY_COLORS[day] }]}>
+              {day}
+            </Text>
+            {events.map((event) => (
+              <View key={event.id} style={styles.card}>
+                <Text style={[styles.time, { color: DAY_COLORS[event.day] }]}>
+                  {event.time}
+                </Text>
+                <View style={styles.cardDetails}>
+                  <Text style={styles.title}>{event.title}</Text>
+                  <Text style={styles.location}>{event.location}</Text>
+                </View>
+                <TouchableOpacity
+                  onPress={() => toggleSave(event.id)}
+                  style={styles.unsaveButton}
+                  hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                >
+                  <MaterialCommunityIcons
+                    name="bookmark-remove"
+                    size={22}
+                    color="#555555"
+                  />
+                  <Text style={styles.unsaveLabel}>Remove</Text>
+                </TouchableOpacity>
+              </View>
+            ))}
+          </View>
+        )}
+      />
     </View>
   );
 }
@@ -11,12 +93,73 @@ export default function MyScheduleScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "#000000",
+    paddingTop: 50,
+  },
+  emptyContainer: {
+    flex: 1,
+    backgroundColor: "#000000",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#000000",
+    paddingHorizontal: 40,
+    gap: 16,
   },
-  text: {
-    color: "#f652a0",
-    fontSize: 24,
+  emptyTitle: {
+    color: "#ffffff",
+    fontSize: 20,
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+  emptySubtitle: {
+    color: "#666666",
+    fontSize: 14,
+    textAlign: "center",
+    lineHeight: 22,
+  },
+  list: {
+    paddingHorizontal: 16,
+    paddingBottom: 20,
+  },
+  dayHeader: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginTop: 20,
+    marginBottom: 10,
+  },
+  card: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#111111",
+    borderRadius: 10,
+    padding: 12,
+    marginBottom: 10,
+    gap: 12,
+  },
+  time: {
+    fontSize: 13,
+    fontWeight: "bold",
+    width: 70,
+    paddingTop: 2,
+  },
+  cardDetails: {
+    flex: 1,
+  },
+  title: {
+    color: "#ffffff",
+    fontSize: 14,
+    fontWeight: "600",
+    marginBottom: 4,
+  },
+  location: {
+    color: "#888888",
+    fontSize: 12,
+  },
+  unsaveButton: {
+    alignItems: "center",
+    gap: 2,
+  },
+  unsaveLabel: {
+    fontSize: 9,
+    color: "#555555",
   },
 });

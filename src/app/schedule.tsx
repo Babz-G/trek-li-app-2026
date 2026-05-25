@@ -1,4 +1,6 @@
 import { scheduleData, ScheduleEvent } from "@/data/scheduleData";
+import { useSavedEvents } from "@/hooks/useSavedEvents";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useState } from "react";
 import {
   FlatList,
@@ -21,23 +23,43 @@ const TAB_COLORS: Record<Tab, string> = {
 
 export default function ScheduleScreen() {
   const [activeTab, setActiveTab] = useState<Tab>("Friday");
+  const { toggleSave, isSaved } = useSavedEvents();
 
   const filtered =
     activeTab === "Photo Ops"
       ? scheduleData.filter((e) => e.location === "Photo Studio")
       : scheduleData.filter((e) => e.day === activeTab);
 
-  const renderEvent = ({ item }: { item: ScheduleEvent }) => (
-    <View style={styles.card}>
-      <Text style={[styles.time, { color: TAB_COLORS[activeTab] }]}>
-        {item.time}
-      </Text>
-      <View style={styles.cardDetails}>
-        <Text style={styles.title}>{item.title}</Text>
-        <Text style={styles.location}>{item.location}</Text>
+  const renderEvent = ({ item }: { item: ScheduleEvent }) => {
+    const saved = isSaved(item.id);
+    return (
+      <View style={styles.card}>
+        <Text style={[styles.time, { color: TAB_COLORS[activeTab] }]}>
+          {item.time}
+        </Text>
+        <View style={styles.cardDetails}>
+          <Text style={styles.title}>{item.title}</Text>
+          <Text style={styles.location}>{item.location}</Text>
+        </View>
+        <TouchableOpacity
+          onPress={() => toggleSave(item.id)}
+          style={styles.bookmarkButton}
+          hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+        >
+          <MaterialCommunityIcons
+            name={saved ? "bookmark" : "bookmark-outline"}
+            size={22}
+            color={saved ? "#f652a0" : "#555555"}
+          />
+          <Text
+            style={[styles.bookmarkLabel, saved && styles.bookmarkLabelSaved]}
+          >
+            {saved ? "Saved" : "Save"}
+          </Text>
+        </TouchableOpacity>
       </View>
-    </View>
-  );
+    );
+  };
 
   return (
     <View style={styles.container}>
@@ -117,6 +139,7 @@ const styles = StyleSheet.create({
   },
   card: {
     flexDirection: "row",
+    alignItems: "center",
     backgroundColor: "#111111",
     borderRadius: 10,
     padding: 12,
@@ -141,5 +164,16 @@ const styles = StyleSheet.create({
   location: {
     color: "#888888",
     fontSize: 12,
+  },
+  bookmarkButton: {
+    alignItems: "center",
+    gap: 2,
+  },
+  bookmarkLabel: {
+    fontSize: 9,
+    color: "#555555",
+  },
+  bookmarkLabelSaved: {
+    color: "#f652a0",
   },
 });
