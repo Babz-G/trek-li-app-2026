@@ -1,0 +1,3 @@
+[build]
+  command = "npx expo export --platform web --clear && cp privacy.html dist/privacy.html"
+  publish = "dist"
