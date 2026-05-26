@@ -2,22 +2,30 @@ import { useThemeContext } from "@/context/ThemeContext";
 import { useTheme } from "@/hooks/use-theme";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function ScreenHeader() {
   const theme = useTheme();
   const { isDark, toggleTheme } = useThemeContext();
+  const insets = useSafeAreaInsets();
 
   return (
-    <View style={styles.wrapper}>
+    <View style={[styles.wrapper, { marginTop: -insets.top }]}>
       <Image
         source={require("@/assets/images/welcome-to-risa-banner.png")}
-        style={[styles.banner, { backgroundColor: theme.background }]}
+        style={[
+          styles.banner,
+          {
+            backgroundColor: theme.background,
+            height: 215 + insets.top,
+          },
+        ]}
         resizeMode="contain"
         accessibilityLabel="Welcome to Risa, Trek Long Island 2026 banner"
         accessibilityRole="image"
       />
       <TouchableOpacity
-        style={styles.pill}
+        style={[styles.pill, { top: insets.top + 10 }]}
         onPress={toggleTheme}
         accessibilityLabel={
           isDark ? "Switch to light mode" : "Switch to dark mode"
@@ -45,11 +53,9 @@ const styles = StyleSheet.create({
   },
   banner: {
     width: "100%",
-    height: 215,
   },
   pill: {
     position: "absolute",
-    top: 10,
     right: 10,
     backgroundColor: "rgba(0,0,0,0.65)",
     borderRadius: 20,
