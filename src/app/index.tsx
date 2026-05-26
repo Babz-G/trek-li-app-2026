@@ -11,7 +11,6 @@ import {
   View,
 } from "react-native";
 
-// ── Stardate Calculator ───────────────────────────────────────
 function getStardate(): string {
   const now = new Date();
   const year = now.getFullYear();
@@ -31,159 +30,162 @@ export default function HomeScreen() {
   const theme = useTheme();
 
   return (
-    <ScrollView
-      style={[styles.container, { backgroundColor: theme.background }]}
-      bounces={false}
-    >
+    <View style={[styles.container, { backgroundColor: theme.background }]}>
       <ScreenHeader />
-      <View style={styles.stardateRow}>
-        <Text
-          style={styles.stardateText}
-          accessibilityLabel={`Current stardate: ${stardate}`}
-        >
-          🖖 Stardate {stardate}
-        </Text>
-        <Text style={[styles.sloganText, { color: theme.subtext }]}>
-          Boldly going where no con has gone before
-        </Text>
-      </View>
-
-      <View
-        style={[
-          styles.infoCard,
-          { backgroundColor: theme.card, borderColor: "#f652a0" },
-        ]}
-      >
-        <View
-          style={styles.infoRow}
-          accessible={true}
-          accessibilityLabel="Convention dates: June 12 through 14, 2026"
-        >
-          <MaterialCommunityIcons name="calendar" size={20} color="#f652a0" />
-          <Text style={[styles.infoText, { color: theme.text }]}>
-            June 12 – 14, 2026
+      <ScrollView bounces={false}>
+        <View style={styles.stardateRow}>
+          <Text
+            style={styles.stardateText}
+            accessibilityLabel={`Current stardate: ${stardate}`}
+          >
+            🖖 Stardate {stardate}
+          </Text>
+          <Text style={[styles.sloganText, { color: theme.subtext }]}>
+            Boldly going where no con has gone before
           </Text>
         </View>
+
         <View
-          style={[styles.infoDivider, { backgroundColor: theme.divider }]}
-        />
-        <View
-          style={styles.infoRow}
-          accessible={true}
-          accessibilityLabel="Venue: Hyatt Regency Long Island, 1717 Motor Pkwy, Hauppauge, NY"
+          style={[
+            styles.infoCard,
+            { backgroundColor: theme.card, borderColor: "#f652a0" },
+          ]}
         >
-          <MaterialCommunityIcons name="map-marker" size={20} color="#f652a0" />
-          <View>
+          <View
+            style={styles.infoRow}
+            accessible={true}
+            accessibilityLabel="Convention dates: June 12 through 14, 2026"
+          >
+            <MaterialCommunityIcons name="calendar" size={20} color="#f652a0" />
             <Text style={[styles.infoText, { color: theme.text }]}>
-              Hyatt Regency Long Island
-            </Text>
-            <Text style={[styles.infoSubText, { color: theme.subtext }]}>
-              1717 Motor Pkwy, Hauppauge, NY
+              June 12 – 14, 2026
             </Text>
           </View>
-        </View>
-      </View>
-
-      <TouchableOpacity
-        style={styles.ticketBtn}
-        onPress={() =>
-          Linking.openURL("http://treklongislandtickets.square.site/")
-        }
-        activeOpacity={0.8}
-        accessibilityLabel="Purchase tickets for Trek Long Island"
-        accessibilityRole="button"
-        accessibilityHint="Opens the ticket purchasing website"
-      >
-        <MaterialCommunityIcons name="ticket" size={22} color="#ffffff" />
-        <Text style={styles.ticketBtnText}>Purchase Tickets</Text>
-      </TouchableOpacity>
-
-      <View
-        style={[
-          styles.card,
-          { backgroundColor: theme.card, borderColor: "#f652a0" },
-        ]}
-      >
-        <View style={styles.cardHeader}>
-          <MaterialCommunityIcons
-            name="clock-outline"
-            size={18}
-            color="#009d9a"
+          <View
+            style={[styles.infoDivider, { backgroundColor: theme.divider }]}
           />
-          <Text style={styles.cardTitle}>Convention Hours</Text>
+          <View
+            style={styles.infoRow}
+            accessible={true}
+            accessibilityLabel="Venue: Hyatt Regency Long Island, 1717 Motor Pkwy, Hauppauge, NY"
+          >
+            <MaterialCommunityIcons
+              name="map-marker"
+              size={20}
+              color="#f652a0"
+            />
+            <View>
+              <Text style={[styles.infoText, { color: theme.text }]}>
+                Hyatt Regency Long Island
+              </Text>
+              <Text style={[styles.infoSubText, { color: theme.subtext }]}>
+                1717 Motor Pkwy, Hauppauge, NY
+              </Text>
+            </View>
+          </View>
         </View>
-        <View
-          style={[styles.hoursRow, { borderBottomColor: theme.divider }]}
-          accessible={true}
-          accessibilityLabel="Friday: 5:00 PM to 11:00 PM"
-        >
-          <Text style={styles.hoursDay}>Friday</Text>
-          <Text style={[styles.hoursTime, { color: theme.text }]}>
-            5:00 PM – 11:00 PM
-          </Text>
-        </View>
-        <View
-          style={[styles.hoursRow, { borderBottomColor: theme.divider }]}
-          accessible={true}
-          accessibilityLabel="Saturday: 10:00 AM to 12:00 AM"
-        >
-          <Text style={styles.hoursDay}>Saturday</Text>
-          <Text style={[styles.hoursTime, { color: theme.text }]}>
-            10:00 AM – 12:00 AM
-          </Text>
-        </View>
-        <View
-          style={[styles.hoursRow, { borderBottomColor: theme.divider }]}
-          accessible={true}
-          accessibilityLabel="Sunday: 10:00 AM to 6:00 PM"
-        >
-          <Text style={styles.hoursDay}>Sunday</Text>
-          <Text style={[styles.hoursTime, { color: theme.text }]}>
-            10:00 AM – 6:00 PM
-          </Text>
-        </View>
-      </View>
 
-      <View
-        style={[
-          styles.card,
-          { backgroundColor: theme.card, borderColor: "#f652a0" },
-        ]}
-      >
-        <View style={styles.cardHeader}>
-          <MaterialCommunityIcons
-            name="star-circle"
-            size={18}
-            color="#009d9a"
-          />
-          <Text style={styles.cardTitle}>App Sponsored By</Text>
-        </View>
         <TouchableOpacity
-          style={styles.sponsorRow}
-          onPress={() => Linking.openURL("https://thetransporterroom.net")}
-          activeOpacity={0.7}
-          accessibilityLabel="The Transporter Room Podcast"
-          accessibilityRole="link"
-          accessibilityHint="Opens The Transporter Room Podcast website"
+          style={styles.ticketBtn}
+          onPress={() =>
+            Linking.openURL("http://treklongislandtickets.square.site/")
+          }
+          activeOpacity={0.8}
+          accessibilityLabel="Purchase tickets for Trek Long Island"
+          accessibilityRole="button"
+          accessibilityHint="Opens the ticket purchasing website"
         >
-          <Image
-            source={require("@/assets/images/transporter-room-logo.jpeg")}
-            style={styles.sponsorLogo}
-            resizeMode="contain"
-            accessibilityLabel="The Transporter Room Podcast logo"
-            accessibilityRole="image"
-          />
-          <View style={styles.sponsorInfo}>
-            <Text style={[styles.sponsorName, { color: theme.text }]}>
-              The Transporter Room Podcast
-            </Text>
-            <Text style={styles.sponsorLink}>thetransporterroom.net ›</Text>
-          </View>
+          <MaterialCommunityIcons name="ticket" size={22} color="#ffffff" />
+          <Text style={styles.ticketBtnText}>Purchase Tickets</Text>
         </TouchableOpacity>
-      </View>
 
-      <View style={styles.bottomSpacer} />
-    </ScrollView>
+        <View
+          style={[
+            styles.card,
+            { backgroundColor: theme.card, borderColor: "#f652a0" },
+          ]}
+        >
+          <View style={styles.cardHeader}>
+            <MaterialCommunityIcons
+              name="clock-outline"
+              size={18}
+              color="#009d9a"
+            />
+            <Text style={styles.cardTitle}>Convention Hours</Text>
+          </View>
+          <View
+            style={[styles.hoursRow, { borderBottomColor: theme.divider }]}
+            accessible={true}
+            accessibilityLabel="Friday: 5:00 PM to 11:00 PM"
+          >
+            <Text style={styles.hoursDay}>Friday</Text>
+            <Text style={[styles.hoursTime, { color: theme.text }]}>
+              5:00 PM – 11:00 PM
+            </Text>
+          </View>
+          <View
+            style={[styles.hoursRow, { borderBottomColor: theme.divider }]}
+            accessible={true}
+            accessibilityLabel="Saturday: 10:00 AM to 12:00 AM"
+          >
+            <Text style={styles.hoursDay}>Saturday</Text>
+            <Text style={[styles.hoursTime, { color: theme.text }]}>
+              10:00 AM – 12:00 AM
+            </Text>
+          </View>
+          <View
+            style={[styles.hoursRow, { borderBottomColor: theme.divider }]}
+            accessible={true}
+            accessibilityLabel="Sunday: 10:00 AM to 6:00 PM"
+          >
+            <Text style={styles.hoursDay}>Sunday</Text>
+            <Text style={[styles.hoursTime, { color: theme.text }]}>
+              10:00 AM – 6:00 PM
+            </Text>
+          </View>
+        </View>
+
+        <View
+          style={[
+            styles.card,
+            { backgroundColor: theme.card, borderColor: "#f652a0" },
+          ]}
+        >
+          <View style={styles.cardHeader}>
+            <MaterialCommunityIcons
+              name="star-circle"
+              size={18}
+              color="#009d9a"
+            />
+            <Text style={styles.cardTitle}>App Sponsored By</Text>
+          </View>
+          <TouchableOpacity
+            style={styles.sponsorRow}
+            onPress={() => Linking.openURL("https://thetransporterroom.net")}
+            activeOpacity={0.7}
+            accessibilityLabel="The Transporter Room Podcast"
+            accessibilityRole="link"
+            accessibilityHint="Opens The Transporter Room Podcast website"
+          >
+            <Image
+              source={require("@/assets/images/transporter-room-logo.jpeg")}
+              style={styles.sponsorLogo}
+              resizeMode="contain"
+              accessibilityLabel="The Transporter Room Podcast logo"
+              accessibilityRole="image"
+            />
+            <View style={styles.sponsorInfo}>
+              <Text style={[styles.sponsorName, { color: theme.text }]}>
+                The Transporter Room Podcast
+              </Text>
+              <Text style={styles.sponsorLink}>thetransporterroom.net ›</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.bottomSpacer} />
+      </ScrollView>
+    </View>
   );
 }
 
