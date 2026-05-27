@@ -98,7 +98,7 @@ const CELEBRITY_GUESTS = [
   },
   {
     name: "Avaah Blackwell",
-    show: "DISCO/SNW/Starfleet Academy",
+    show: "DISCO/SNW/Starfleet Academy Actor/Stunts",
     imdb: "https://treklongisland.com/avaah-blackwell/",
     photo:
       "https://treklongisland.com/wp-content/uploads/2026/03/Head-shots-17.png",
@@ -149,14 +149,30 @@ const CELEBRITY_GUESTS = [
 
 const ARTISTS = [
   {
+    name: "Lolita Fatjo",
+    role: "Producer/Script Coordinator TNG, DS9, VOY",
+    imdb: "https://www.imdb.com/name/nm0268877/",
+    photo:
+      "https://treklongisland.com/wp-content/uploads/2026/05/Head-shots-45.png",
+  },
+  {
+    name: "David Zappone",
+    role: "President and Founder 455 Films Producer/Director",
+    imdb: "https://treklongisland.com/david-zappone/",
+    photo:
+      "https://treklongisland.com/wp-content/uploads/2026/05/Head-shots-46.png",
+  },
+  {
     name: "Tracy Martinson",
     role: "Electrical Engineer/Storyteller",
+    imdb: "https://treklongisland.com/tracy-martinson/",
     photo:
-      "https://treklongisland.com/wp-content/uploads/2026/03/Tracy-Martinson-headshot.jpg",
+      "https://treklongisland.com/wp-content/uploads/2026/05/Head-shots-47.png",
   },
   {
     name: "Jake Black",
     role: "Writer/Producer/Author",
+    imdb: "https://treklongisland.com/jake-black/",
     photo:
       "https://treklongisland.com/wp-content/uploads/2026/03/Head-shots-26.png",
   },
@@ -166,45 +182,60 @@ const AUTHORS = [
   {
     name: "Derek Tyler Attico",
     role: "Author, Screenwriter",
+    imdb: "https://www.derekattico.com/",
     photo:
       "https://treklongisland.com/wp-content/uploads/2026/03/Head-shots-21.png",
   },
   {
     name: "Keith R.A. DeCandido",
-    role: "Author",
+    role: "Author (a lot)",
+    imdb: "http://decandido.net/",
     photo:
       "https://treklongisland.com/wp-content/uploads/2026/03/Head-shots-22.png",
   },
   {
     name: "Michael Jan Friedman",
     role: "Author",
+    imdb: "https://memory-alpha.fandom.com/wiki/Michael_Jan_Friedman",
     photo: "https://treklongisland.com/wp-content/uploads/2025/03/12.png",
   },
   {
     name: "Christopher D. Abbott",
     role: "Author",
+    imdb: "https://cdanabbott.wordpress.com/",
     photo:
       "https://treklongisland.com/wp-content/uploads/2026/03/Head-shots-24.png",
   },
   {
     name: "Glenn Greenberg",
     role: "Author",
+    imdb: "https://memory-alpha.fandom.com/wiki/Glenn_Greenberg",
     photo: "https://treklongisland.com/wp-content/uploads/2025/03/8.png",
   },
   {
     name: "Robb Pearlman",
     role: "Author",
+    imdb: "https://www.robbpearlman.com/",
     photo:
       "https://treklongisland.com/wp-content/uploads/2026/05/Head-shots-42.png",
   },
   {
+    name: "Jake Black",
+    role: "Author",
+    imdb: "https://treklongisland.com/jake-black/",
+    photo:
+      "https://treklongisland.com/wp-content/uploads/2026/03/Head-shots-26.png",
+  },
+  {
     name: "Glenn Hauman",
     role: "Author",
+    imdb: "https://memory-alpha.fandom.com/wiki/Glenn_Hauman",
     photo: "https://treklongisland.com/wp-content/uploads/2025/03/2.png",
   },
   {
     name: "Aaron Rosenberg",
     role: "Author",
+    imdb: "https://memory-alpha.fandom.com/wiki/Aaron_Rosenberg",
     photo: "https://treklongisland.com/wp-content/uploads/2025/03/5.png",
   },
   {
@@ -215,10 +246,125 @@ const AUTHORS = [
   },
 ];
 
+const IDIC_TRACK = [
+  {
+    name: "Jesse James Keitel",
+    role: "Strange New Worlds/Queer as Folk",
+    imdb: "https://www.imdb.com/name/nm5740850/",
+    photo:
+      "https://treklongisland.com/wp-content/uploads/2026/01/Head-shots-8.png",
+  },
+  {
+    name: "Tracee Cocco",
+    role: "TNG/DS9/Voyager • Cohost",
+    imdb: "https://www.imdb.com/name/nm1006740/",
+    photo:
+      "https://treklongisland.com/wp-content/uploads/2026/01/Head-shots-9.png",
+  },
+  {
+    name: "Jackie Cox",
+    role: "Starfleet Academy/RuPaul's Drag Race • Sunday Only",
+    imdb: "https://www.imdb.com/name/nm3269931/",
+    photo:
+      "https://treklongisland.com/wp-content/uploads/2026/03/Head-shots-27.png",
+  },
+  {
+    name: "Paul Adams",
+    role: "Diversity & Inclusion Manager, Producer • Urban Adventure Companies/Buddies Spa DEI",
+    photo:
+      "https://treklongisland.com/wp-content/uploads/2026/01/Head-shots-11.png",
+  },
+  {
+    name: "Heather Wood",
+    role: "Drag Professional • Diversity Advocate • To Proudly Go CEO",
+    photo:
+      "https://treklongisland.com/wp-content/uploads/2026/01/Head-shots-13.png",
+  },
+  {
+    name: "Logan Stone, D'manda Martini, Jessica Crouse",
+    role: "2 Drag Queens, a Lesbian, and a Baby Podcast Hosts",
+    photo:
+      "https://treklongisland.com/wp-content/uploads/2026/01/Head-shots-12.png",
+  },
+  {
+    name: "Matthew Jennings",
+    role: "1701 A Blerd Story • Actor, Producer, Writer, & Diversity Advocate",
+    photo:
+      "https://treklongisland.com/wp-content/uploads/2026/03/Head-shots-25.png",
+  },
+  {
+    name: "Beau Daciuos",
+    role: "Disability Advocate • Drag King Professional",
+    photo:
+      "https://treklongisland.com/wp-content/uploads/2026/01/Head-shots-14.png",
+  },
+  {
+    name: "Conor Heights",
+    role: "Artist & Activist",
+    photo:
+      "https://treklongisland.com/wp-content/uploads/2026/01/Head-shots-15.png",
+  },
+  {
+    name: "Adeena Mignogna",
+    role: "Author, Producer, Advocate • BIG Sci-Podcast Co-Host",
+    photo:
+      "https://treklongisland.com/wp-content/uploads/2026/01/Head-shots-16.png",
+  },
+  {
+    name: "César Manzano",
+    role: "Diversity Champion • Camino Academy LLC Founder",
+    photo:
+      "https://treklongisland.com/wp-content/uploads/2026/05/Head-shots-43.png",
+  },
+  {
+    name: "Damian Effler",
+    role: "Diversity Champion • Hailing Frequencies Open Co-Host",
+    photo:
+      "https://treklongisland.com/wp-content/uploads/2026/05/Head-shots-36.png",
+  },
+  {
+    name: "Aiyana-Mei Tom",
+    role: "Diversity Champion • Molecular Biologist",
+    photo:
+      "https://treklongisland.com/wp-content/uploads/2026/05/Head-shots-37.png",
+  },
+  {
+    name: "Janera Tiell Manno",
+    role: "Diversity Advocate • Star Trek Family",
+    photo:
+      "https://treklongisland.com/wp-content/uploads/2025/02/Untitled-236-x-300-px-18.png",
+  },
+  {
+    name: "Kris Otto",
+    role: "Buddies Spa CEO, Producer, & Artist",
+    photo:
+      "https://treklongisland.com/wp-content/uploads/2026/05/Head-shots-44.png",
+  },
+  {
+    name: "Leigh Ellen Mitchell",
+    role: "Diversity Champion • Parody Singer & Go Phlox Yourself Host",
+    photo:
+      "https://treklongisland.com/wp-content/uploads/2026/05/Head-shots-38.png",
+  },
+  {
+    name: "Chad Briggs",
+    role: "Diversity Advocate • Child and Adolescent Therapist",
+    photo:
+      "https://treklongisland.com/wp-content/uploads/2026/05/Head-shots-39.png",
+  },
+  {
+    name: "Dr. Brenda Dorsh",
+    role: "Pop Hero Coalition • Resiliency & Self Compassion Speaker",
+    photo:
+      "https://treklongisland.com/wp-content/uploads/2026/05/Head-shots-41.png",
+  },
+];
+
 const ENTERTAINMENT = [
   {
     name: "Lucy BlueSkies",
-    role: "Performance Artist / Drag Thing • Burlesque Show Sat.",
+    role: "Performance Artist / Drag Thing • Burlesque Show Sat. Evening",
+    imdb: "https://treklongisland.com/5427-2/",
     photo:
       "https://treklongisland.com/wp-content/uploads/2026/03/Head-shots-18.png",
   },
@@ -248,13 +394,13 @@ const ENTERTAINMENT = [
   },
   {
     name: "Cat Smith",
-    role: "Performance Artist / Musician • NY Cosplay Cabaret Friday",
+    role: "Performance Artist / Musician • NY Cosplay Cabaret Friday Evening",
     photo:
       "https://treklongisland.com/wp-content/uploads/2026/03/Head-shots-34.png",
   },
   {
     name: "Lawrence Neals",
-    role: "Performance Artist / Musician • NY Cosplay Cabaret Friday",
+    role: "Performance Artist / Musician • NY Cosplay Cabaret Friday Evening",
     photo:
       "https://treklongisland.com/wp-content/uploads/2026/03/Head-shots-33.png",
   },
@@ -348,12 +494,13 @@ export default function GuestsScreen() {
             photo={g.photo}
           />
         ))}
-        <SectionHeader title="🎨 Artists & Industry" />
+        <SectionHeader title="🎨 Artists & Industry Professionals" />
         {ARTISTS.map((g) => (
           <GuestCard
             key={g.name}
             name={g.name}
             subtitle={g.role}
+            imdb={g.imdb}
             photo={g.photo}
           />
         ))}
@@ -363,15 +510,27 @@ export default function GuestsScreen() {
             key={g.name}
             name={g.name}
             subtitle={g.role}
+            imdb={g.imdb}
             photo={g.photo}
           />
         ))}
-        <SectionHeader title="🎭 Entertainment" />
+        <SectionHeader title="🌈 IDIC Track Guests and Panelists" />
+        {IDIC_TRACK.map((g) => (
+          <GuestCard
+            key={g.name}
+            name={g.name}
+            subtitle={g.role}
+            imdb={g.imdb}
+            photo={g.photo}
+          />
+        ))}
+        <SectionHeader title="🎭 Entertainment Artists" />
         {ENTERTAINMENT.map((g) => (
           <GuestCard
             key={g.name}
             name={g.name}
             subtitle={g.role}
+            imdb={g.imdb}
             photo={g.photo}
           />
         ))}

@@ -2,30 +2,22 @@ import { useThemeContext } from "@/context/ThemeContext";
 import { useTheme } from "@/hooks/use-theme";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function ScreenHeader() {
   const theme = useTheme();
   const { isDark, toggleTheme } = useThemeContext();
-  const insets = useSafeAreaInsets();
 
   return (
-    <View style={[styles.wrapper, { marginTop: -insets.top }]}>
+    <View style={styles.wrapper}>
       <Image
         source={require("@/assets/images/welcome-to-risa-banner.png")}
-        style={[
-          styles.banner,
-          {
-            backgroundColor: theme.background,
-            height: 215 + insets.top,
-          },
-        ]}
+        style={[styles.banner, { backgroundColor: theme.background }]}
         resizeMode="contain"
         accessibilityLabel="Welcome to Risa, Trek Long Island 2026 banner"
         accessibilityRole="image"
       />
       <TouchableOpacity
-        style={[styles.pill, { top: insets.top + 10 }]}
+        style={styles.pill}
         onPress={toggleTheme}
         accessibilityLabel={
           isDark ? "Switch to light mode" : "Switch to dark mode"
@@ -35,10 +27,10 @@ export default function ScreenHeader() {
         <MaterialCommunityIcons
           name={isDark ? "weather-sunny" : "weather-night"}
           size={15}
-          color={isDark ? "#f3ba48" : "#3f64f0"}
+          color={isDark ? "#f3ba48" : "#63fb64"}
         />
         <Text
-          style={[styles.pillText, { color: isDark ? "#f3ba48" : "#3f64f0" }]}
+          style={[styles.pillText, { color: isDark ? "#f3ba48" : "#63fb64" }]}
         >
           {isDark ? "Light" : "Dark"}
         </Text>
@@ -53,11 +45,13 @@ const styles = StyleSheet.create({
   },
   banner: {
     width: "100%",
+    height: 215,
   },
   pill: {
     position: "absolute",
+    bottom: 10,
     right: 10,
-    backgroundColor: "rgba(0,0,0,0.65)",
+    backgroundColor: "#000000",
     borderRadius: 20,
     paddingVertical: 6,
     paddingHorizontal: 12,
