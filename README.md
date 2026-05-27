@@ -41,11 +41,13 @@ The app gives attendees everything they need in one place — the full schedule,
 
 ## 📱 App Preview
 
-> 🎬 Demo GIF coming soon!
+<div align="center">
 
-| Home        | Schedule    | My Schedule | Guests      | Info & Tix  |
-| ----------- | ----------- | ----------- | ----------- | ----------- |
-| Coming soon | Coming soon | Coming soon | Coming soon | Coming soon |
+|                            Home                             |                            Schedule                             |                            Guests                            |                           My Schedule                           |                           Info & Tix                            |
+| :---------------------------------------------------------: | :-------------------------------------------------------------: | :----------------------------------------------------------: | :-------------------------------------------------------------: | :-------------------------------------------------------------: |
+| <img src="docs/screenshots/home-portrait.png" width="140"/> | <img src="docs/screenshots/schedule-portrait.png" width="140"/> | <img src="docs/screenshots/guest-portrait.png" width="140"/> | <img src="docs/screenshots/conflict-portrait.png" width="140"/> | <img src="docs/screenshots/info_tix-portrait.png" width="140"/> |
+
+</div>
 
 ---
 
@@ -99,6 +101,8 @@ The app gives attendees everything they need in one place — the full schedule,
 trek-li-app-2026/
 ├── assets/
 │   └── images/          # Banner, sponsor logo, icons
+├── docs/
+│   └── screenshots/     # App preview screenshots
 ├── src/
 │   ├── app/             # Expo Router screens
 │   │   ├── index.tsx    # Home
