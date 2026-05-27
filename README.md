@@ -1,6 +1,6 @@
 # 🖖 Trek Long Island 2026 — Official Convention App
 
-> ⚠️ **Work in Progress!** Actively being developed and launching on the **App Store** and **Google Play** in June 2026.
+> ⚠️ Launching on the **App Store** and **Google Play** in June 2026.
 
 <div align="center">
 
@@ -168,6 +168,6 @@ npx expo start --web
 
 <div align="center">
 
-_Built with ❤️ and 🖖 for the Trek LI crew and convention attendees_
+_Built with 🖤 and 🖖 for the Trek LI crew and convention attendees_
 
 </div>
