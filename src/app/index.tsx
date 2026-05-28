@@ -153,6 +153,52 @@ export default function HomeScreen() {
         >
           <View style={styles.cardHeader}>
             <MaterialCommunityIcons
+              name="store-outline"
+              size={18}
+              color="#009d9a"
+            />
+            <Text style={styles.cardTitle}>Vendor & Autograph Hours</Text>
+          </View>
+          <View
+            style={[styles.hoursRow, { borderBottomColor: theme.divider }]}
+            accessible={true}
+            accessibilityLabel="Friday: 5:00 PM to 8:00 PM"
+          >
+            <Text style={styles.hoursDay}>Friday</Text>
+            <Text style={[styles.hoursTime, { color: theme.text }]}>
+              5:00 PM – 8:00 PM
+            </Text>
+          </View>
+          <View
+            style={[styles.hoursRow, { borderBottomColor: theme.divider }]}
+            accessible={true}
+            accessibilityLabel="Saturday: 10:00 AM to 6:00 PM"
+          >
+            <Text style={styles.hoursDay}>Saturday</Text>
+            <Text style={[styles.hoursTime, { color: theme.text }]}>
+              10:00 AM – 6:00 PM
+            </Text>
+          </View>
+          <View
+            style={[styles.hoursRow, { borderBottomColor: theme.divider }]}
+            accessible={true}
+            accessibilityLabel="Sunday: 10:00 AM to 5:00 PM"
+          >
+            <Text style={styles.hoursDay}>Sunday</Text>
+            <Text style={[styles.hoursTime, { color: theme.text }]}>
+              10:00 AM – 5:00 PM
+            </Text>
+          </View>
+        </View>
+
+        <View
+          style={[
+            styles.card,
+            { backgroundColor: theme.card, borderColor: "#f652a0" },
+          ]}
+        >
+          <View style={styles.cardHeader}>
+            <MaterialCommunityIcons
               name="star-circle"
               size={18}
               color="#009d9a"
