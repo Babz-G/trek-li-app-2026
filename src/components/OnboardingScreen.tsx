@@ -3,7 +3,9 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRef, useState } from "react";
 import {
   Dimensions,
-  FlatList,
+  NativeScrollEvent,
+  NativeSyntheticEvent,
+  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -42,12 +44,20 @@ type Props = {
 export default function OnboardingScreen({ onDone }: Props) {
   const theme = useTheme();
   const [activeIndex, setActiveIndex] = useState(0);
-  const flatListRef = useRef<FlatList>(null);
+  const scrollRef = useRef<ScrollView>(null);
 
   const handleNext = () => {
     if (activeIndex < SLIDES.length - 1) {
-      flatListRef.current?.scrollToIndex({ index: activeIndex + 1 });
-      setActiveIndex(activeIndex + 1);
+      const nextIndex = activeIndex + 1;
+      scrollRef.current?.scrollTo({ x: nextIndex * width, animated: true });
+      setActiveIndex(nextIndex);
+    }
+  };
+
+  const handleScroll = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
+    const index = Math.round(e.nativeEvent.contentOffset.x / width);
+    if (index !== activeIndex) {
+      setActiveIndex(index);
     }
   };
 
@@ -60,20 +70,18 @@ export default function OnboardingScreen({ onDone }: Props) {
 
   return (
     <View style={[styles.container, { backgroundColor: theme.background }]}>
-      <FlatList
-        ref={flatListRef}
-        data={SLIDES}
-        keyExtractor={(item) => item.id}
+      <ScrollView
+        ref={scrollRef}
         horizontal
         pagingEnabled
         showsHorizontalScrollIndicator={false}
-        scrollEnabled={true}
-        onMomentumScrollEnd={(e) => {
-          const index = Math.round(e.nativeEvent.contentOffset.x / width);
-          setActiveIndex(index);
-        }}
-        renderItem={({ item }) => (
-          <View style={[styles.slide, { width }]}>
+        onScroll={handleScroll}
+        scrollEventThrottle={16}
+        style={styles.scrollView}
+        contentContainerStyle={styles.scrollContent}
+      >
+        {SLIDES.map((item) => (
+          <View key={item.id} style={[styles.slide, { width }]}>
             <Text style={styles.emoji}>{item.emoji}</Text>
             <Text style={[styles.title, { color: theme.text }]}>
               {item.title}
@@ -82,8 +90,8 @@ export default function OnboardingScreen({ onDone }: Props) {
               {item.body}
             </Text>
           </View>
-        )}
-      />
+        ))}
+      </ScrollView>
 
       <View style={styles.footer}>
         <View style={styles.dots}>
@@ -136,8 +144,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  slide: {
+  scrollView: {
     flex: 1,
+  },
+  scrollContent: {
+    alignItems: "center",
+  },
+  slide: {
     alignItems: "center",
     justifyContent: "center",
     paddingHorizontal: 40,
