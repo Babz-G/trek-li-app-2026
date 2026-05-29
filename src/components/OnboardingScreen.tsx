@@ -34,6 +34,12 @@ const SLIDES = [
     title: "Info & Tickets.",
     body: "Purchase tickets to special ticketed events and photo ops. Find convention hours, vendor info, social links, and everything else you need for the weekend.",
   },
+  {
+    id: "5",
+    emoji: "📤",
+    title: "Spread the Trek Love.",
+    body: "Save an event and tap Share to let your besties know where you'll be because conventions are better with the whole crew!",
+  },
 ];
 
 export const ONBOARDING_KEY = "hasSeenOnboarding";
@@ -141,7 +147,7 @@ const styles = StyleSheet.create({
   slideContainer: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "center",
+    paddingTop: 80,
     paddingHorizontal: 40,
     gap: 24,
   },
