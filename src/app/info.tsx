@@ -19,7 +19,7 @@ const TICKETED_EVENTS = [
     soldOut: false,
   },
   {
-    title: "Slut Trek Burlesque Show 🔞",
+    title: "Slut Trek Burlesque Show",
     details: "Saturday June 13 • 8:30 PM • Windwatch • Ages 21+ ID Required",
     price: "$15",
     url: "https://treklongislandtickets.square.site/product/slut-trek-risa-burlesque-show-with-lucy-blueskies-and-crew-21-and-over-id-will-be-checked-saturday-evening/VALRBYUQYE22ZXUK2AYQ7F4D?cs=true&cst=custom",
@@ -42,7 +42,7 @@ const TICKETED_EVENTS = [
   {
     title: "Wine & Cheese Tasting with Jeffrey Combs",
     details: "Saturday June 13 • 4:00 PM • Windwatch",
-    // price: "$100",
+    price: "$100",
     url: "https://treklongislandtickets.square.site/product/wine-and-cheese-tasting-with-jeffery-combs/NV5PDEEY4ARO2JMM3PZMSJ43?cs=true&cst=custom",
     soldOut: true,
   },
@@ -88,6 +88,85 @@ const TICKETED_EVENTS = [
     price: "$25",
     url: "https://treklongislandtickets.square.site/product/hands-on-with-avaah-blackwell-stunt-action-workshop/RVSCCQU45E5EGAORQM6YNYSO?cs=true&cst=custom",
     soldOut: false,
+  },
+];
+
+const PHOTO_OPS = [
+  {
+    name: "Nana Visitor",
+    url: "https://treklongislandtickets.square.site/product/nana-visitor-photo-op/SEPZGOBIGZEFCVMEDQLRRNZQ?cs=true&cst=custom",
+  },
+  {
+    name: "Jeffrey Combs",
+    url: "https://treklongislandtickets.square.site/product/jeffrey-combs-photo-op/FTC5FVHIKVUCMZINWOGNJAX6?cs=true&cst=custom",
+  },
+  {
+    name: "Nicole de Boer",
+    url: "https://treklongislandtickets.square.site/product/nicole-de-boer-photo-op/YY42MN4FFGJSCPYWN3Q5FQXA?cs=true&cst=custom",
+  },
+  {
+    name: "Karim Diane",
+    url: "https://treklongislandtickets.square.site/product/karim-diane-photo-op/BISJKQAFMGQ3PRWNVYBX65MV?cs=true&cst=custom",
+  },
+  {
+    name: "Celia Rose Gooding",
+    url: "https://treklongislandtickets.square.site/product/celia-rose-gooding-photo-op/X2BLYDNAZEW7GNBSDYDIVAAD?cs=true&cst=custom",
+  },
+  {
+    name: "Dan Jeannotte",
+    url: "https://treklongislandtickets.square.site/product/dan-jeannotte-photo-op/QRIVA2MPTJRZZHIDTMCBR2AI?cs=true&cst=custom",
+  },
+  {
+    name: "Chris Myers",
+    url: "https://treklongislandtickets.square.site/product/chris-myers-photo-op/OY6ET4SO6AEPNETQADMG3GBL?cs=true&cst=custom",
+  },
+  {
+    name: "Jennifer Hetrick",
+    url: "https://treklongislandtickets.square.site/product/jennifer-hetrick-photo-op/YUSLTMBUVNGEOT3CHPCSM6WBN?cs=true&cst=custom",
+  },
+  {
+    name: "Stephanie Czajkowski",
+    url: "https://treklongislandtickets.square.site/product/stephanie-czajkowski-photo-op/FK6RRGBGFTB3WTJUMF3XU3GT?cs=true&cst=custom",
+  },
+  {
+    name: "Deirdre Imershein",
+    url: "https://treklongislandtickets.square.site/product/deirdre-imershein-photo-op/U5VQVNLYHDKCGWRSKNRL24PE?cs=true&cst=custom",
+  },
+  {
+    name: "Bonnie Gordon",
+    url: "https://treklongislandtickets.square.site/product/bonnie-gordon-photo-op/WHBAK2LNEAPRS6LNT3GTNOTT?cs=true&cst=custom",
+  },
+  {
+    name: "Avaah Blackwell",
+    url: "https://treklongislandtickets.square.site/product/avaah-blackwell-photo-op/Y6ARMVUVHPO2VJSFRJLLETU3?cs=true&cst=custom",
+  },
+  {
+    name: "Musetta Vander",
+    url: "https://treklongislandtickets.square.site/product/musetta-vander-photo-op/3ZZU5G4EBJYH26IEETD67E23?cs=true&cst=custom",
+  },
+  {
+    name: "Louise Sorel",
+    url: "https://treklongislandtickets.square.site/product/louise-sorel-photo-op/RGXG4YT73FZDDU5YQ4NJA62S?cs=true&cst=custom",
+  },
+  {
+    name: "Carolyn McCormick",
+    url: "https://treklongislandtickets.square.site/product/carolyn-mccormick-photo-op/4UTHEK4NHVDR3BHQSFMT5IUQ?cs=true&cst=custom",
+  },
+  {
+    name: "Sachi Parker",
+    url: "https://treklongislandtickets.square.site/product/sachi-parker-photo-op/KRRJRBTBTIPLJ2DRTHZ7KOMS?cs=true&cst=custom",
+  },
+  {
+    name: "DS9 Group Photo",
+    url: "https://treklongislandtickets.square.site/product/ds9-group/MN45S4SMENHKNNBP7OWYQR6R?cs=true&cst=custom",
+  },
+  {
+    name: "SNW Group Photo",
+    url: "https://treklongislandtickets.square.site/product/snw-group/HASNLZMWKR5KVCBFZLH5H54A?cs=true&cst=custom",
+  },
+  {
+    name: "Risa Group Photo",
+    url: "https://treklongislandtickets.square.site/product/risa-group/4PGDR23R4H5R77YXEZOJLQWR?cs=true&cst=custom",
   },
 ];
 
@@ -141,6 +220,33 @@ export default function InfoScreen() {
                 <Text style={styles.buttonOutlineText}>Get Tickets</Text>
               </TouchableOpacity>
             )}
+          </View>
+        ))}
+
+        <Text style={styles.sectionHeader} accessibilityRole="header">
+          📸 Photo Ops
+        </Text>
+        <Text style={[styles.photoOpsNote, { color: theme.subtext }]}>
+          Check the Photo Ops tab in Schedule for times. Show up a few minutes
+          early!
+        </Text>
+        {PHOTO_OPS.map((op, index) => (
+          <View
+            key={index}
+            style={[styles.photoOpCard, { backgroundColor: theme.card }]}
+          >
+            <Text style={[styles.photoOpName, { color: theme.text }]}>
+              {op.name}
+            </Text>
+            <TouchableOpacity
+              style={styles.buttonOutline}
+              onPress={() => Linking.openURL(op.url)}
+              accessibilityLabel={`Get tickets for photo op with ${op.name}`}
+              accessibilityRole="button"
+              accessibilityHint="Opens the ticketing website"
+            >
+              <Text style={styles.buttonOutlineText}>Get Tickets</Text>
+            </TouchableOpacity>
           </View>
         ))}
 
@@ -303,6 +409,12 @@ const styles = StyleSheet.create({
     marginTop: 24,
     marginBottom: 12,
   },
+  photoOpsNote: {
+    fontSize: 13,
+    fontFamily: "NotoSans_400Regular",
+    marginBottom: 12,
+    fontStyle: "italic",
+  },
   card: {
     borderRadius: 10,
     padding: 16,
@@ -310,6 +422,21 @@ const styles = StyleSheet.create({
     gap: 8,
     borderWidth: 1,
     borderColor: "#f652a0",
+  },
+  photoOpCard: {
+    borderRadius: 10,
+    padding: 12,
+    marginBottom: 8,
+    borderWidth: 1,
+    borderColor: "#f652a0",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  photoOpName: {
+    fontSize: 14,
+    fontFamily: "LeagueSpartan_700Bold",
+    flex: 1,
   },
   cardTitleRow: {
     flexDirection: "row",
