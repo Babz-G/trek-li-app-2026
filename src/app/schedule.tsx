@@ -23,39 +23,73 @@ const TAB_COLORS: Record<Tab, string> = {
   "Photo Ops": "#63fb64",
 };
 
+type DividerItem = { type: "divider"; id: string; label: string };
+type ListItem = ScheduleEvent | DividerItem;
+
 export default function ScheduleScreen() {
   const [activeTab, setActiveTab] = useState<Tab>("Friday");
   const { toggleSave, isSaved } = useSavedEvents();
   const theme = useTheme();
 
-  const filtered =
-    activeTab === "Photo Ops"
-      ? scheduleData.filter((e) => e.location === "Photo Studio")
-      : scheduleData.filter((e) => e.day === activeTab);
+  const getFilteredData = (): ListItem[] => {
+    if (activeTab !== "Photo Ops") {
+      return scheduleData.filter((e) => e.day === activeTab);
+    }
 
-  const renderEvent = ({ item }: { item: ScheduleEvent }) => {
-    const saved = isSaved(item.id);
+    const photoOps = scheduleData.filter((e) => e.location === "Photo Studio");
+    const result: ListItem[] = [];
+    let lastDay: string | null = null;
+
+    for (const event of photoOps) {
+      if (lastDay !== event.day) {
+        result.push({
+          type: "divider",
+          id: `divider-${event.day}`,
+          label: event.day,
+        });
+        lastDay = event.day;
+      }
+      result.push(event);
+    }
+
+    return result;
+  };
+
+  const filtered = getFilteredData();
+
+  const renderItem = ({ item }: { item: ListItem }) => {
+    if ("type" in item && item.type === "divider") {
+      return (
+        <View style={styles.dayDivider}>
+          <Text style={styles.dayDividerText}>{item.label}</Text>
+        </View>
+      );
+    }
+
+    const event = item as ScheduleEvent;
+    const saved = isSaved(event.id);
+
     return (
       <View style={[styles.card, { backgroundColor: theme.card }]}>
         <Text style={[styles.time, { color: TAB_COLORS[activeTab] }]}>
-          {item.time}
+          {event.time}
         </Text>
         <View style={styles.cardDetails}>
           <Text style={[styles.title, { color: theme.text }]}>
-            {item.title}
+            {event.title}
           </Text>
           <Text style={[styles.location, { color: theme.subtext }]}>
-            {item.location}
+            {event.location}
           </Text>
         </View>
         <TouchableOpacity
-          onPress={() => toggleSave(item.id)}
+          onPress={() => toggleSave(event.id)}
           style={styles.bookmarkButton}
           hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
           accessibilityLabel={
             saved
-              ? `Remove ${item.title} from my schedule`
-              : `Save ${item.title} to my schedule`
+              ? `Remove ${event.title} from my schedule`
+              : `Save ${event.title} to my schedule`
           }
           accessibilityRole="button"
         >
@@ -113,7 +147,7 @@ export default function ScheduleScreen() {
       <FlatList
         data={filtered}
         keyExtractor={(item) => item.id}
-        renderItem={renderEvent}
+        renderItem={renderItem}
         contentContainerStyle={styles.list}
       />
     </View>
@@ -191,5 +225,18 @@ const styles = StyleSheet.create({
   },
   bookmarkLabelSaved: {
     color: "#f652a0",
+  },
+  dayDivider: {
+    backgroundColor: "#63fb64",
+    borderRadius: 8,
+    paddingVertical: 6,
+    paddingHorizontal: 14,
+    marginBottom: 10,
+    alignSelf: "flex-start",
+  },
+  dayDividerText: {
+    color: "#000000",
+    fontSize: 13,
+    fontFamily: "LeagueSpartan_700Bold",
   },
 });

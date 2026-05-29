@@ -242,6 +242,13 @@ export const scheduleData: ScheduleEvent[] = [
     day: "Saturday",
   },
   {
+    id: "s18b",
+    time: "12:45 PM",
+    title: "Photo Op: Karim Diane",
+    location: "Photo Studio",
+    day: "Saturday",
+  },
+  {
     id: "s19",
     time: "1:00 PM",
     title:
@@ -280,21 +287,21 @@ export const scheduleData: ScheduleEvent[] = [
   {
     id: "s24",
     time: "1:15 PM",
-    title: "Photo Op: Nicole de Boer",
+    title: "Photo Op: Nana Visitor",
     location: "Photo Studio",
     day: "Saturday",
   },
   {
     id: "s25",
     time: "1:30 PM",
-    title: "Photo Op: Nana Visitor",
+    title: "Photo Op: Jeffrey Combs",
     location: "Photo Studio",
     day: "Saturday",
   },
   {
     id: "s26",
     time: "1:45 PM",
-    title: "Photo Op: Jeffrey Combs",
+    title: "Photo Op: Nicole de Boer",
     location: "Photo Studio",
     day: "Saturday",
   },
@@ -364,21 +371,21 @@ export const scheduleData: ScheduleEvent[] = [
   {
     id: "s36",
     time: "3:15 PM",
-    title: "Photo Op: Celia Rose Gooding",
+    title: "Photo Op: Dan Jeannotte",
     location: "Photo Studio",
     day: "Saturday",
   },
   {
     id: "s37",
     time: "3:30 PM",
-    title: "Photo Op: Dan Jeannotte",
+    title: "Photo Op: Chris Myers",
     location: "Photo Studio",
     day: "Saturday",
   },
   {
     id: "s38",
     time: "3:45 PM",
-    title: "Photo Op: Chris Myers",
+    title: "Photo Op: Celia Rose Gooding",
     location: "Photo Studio",
     day: "Saturday",
   },
@@ -696,7 +703,7 @@ export const scheduleData: ScheduleEvent[] = [
   {
     id: "su24",
     time: "1:45 PM",
-    title: "Photo Op: Louise Sorel",
+    title: "Photo Op: Louise Sorel and Musetta Vander (solo)",
     location: "Photo Studio",
     day: "Sunday",
   },
@@ -766,6 +773,13 @@ export const scheduleData: ScheduleEvent[] = [
   {
     id: "su34",
     time: "3:30 PM",
+    title: "Photo Op: Karim Diane",
+    location: "Photo Studio",
+    day: "Sunday",
+  },
+  {
+    id: "su34b",
+    time: "4:00 PM",
     title: "Photo Op: Karim Diane",
     location: "Photo Studio",
     day: "Sunday",
