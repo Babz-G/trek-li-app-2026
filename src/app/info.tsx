@@ -93,80 +93,137 @@ const TICKETED_EVENTS = [
 
 const PHOTO_OPS = [
   {
-    name: "Nana Visitor",
+    title: "Nana Visitor",
+    details: "Saturday 1:15 PM • Sunday 11:15 AM • Photo Studio",
+    price: "$50",
     url: "https://treklongislandtickets.square.site/product/nana-visitor-photo-op/SEPZGOBIGZEFCVMEDQLRRNZQ?cs=true&cst=custom",
+    soldOut: false,
   },
   {
-    name: "Jeffrey Combs",
+    title: "Jeffrey Combs",
+    details: "Saturday 1:30 PM • Sunday 11:30 AM • Photo Studio",
+    price: "$40",
     url: "https://treklongislandtickets.square.site/product/jeffrey-combs-photo-op/FTC5FVHIKVUCMZINWOGNJAX6?cs=true&cst=custom",
+    soldOut: false,
   },
   {
-    name: "Nicole de Boer",
+    title: "Nicole de Boer",
+    details: "Saturday 1:45 PM • Sunday 11:45 AM • Photo Studio",
+    price: "$40",
     url: "https://treklongislandtickets.square.site/product/nicole-de-boer-photo-op/YY42MN4FFGJSCPYWN3Q5FQXA?cs=true&cst=custom",
+    soldOut: false,
   },
   {
-    name: "Karim Diane",
+    title: "Karim Diane",
+    details: "Saturday 12:30 & 12:45 PM • Sunday 3:30 & 4:00 PM • Photo Studio",
+    price: "$40",
     url: "https://treklongislandtickets.square.site/product/karim-diane-photo-op/BISJKQAFMGQ3PRWNVYBX65MV?cs=true&cst=custom",
+    soldOut: false,
   },
   {
-    name: "Celia Rose Gooding",
+    title: "Celia Rose Gooding",
+    details: "Saturday 3:45 PM • Sunday 12:45 PM • Photo Studio",
+    price: "$50",
     url: "https://treklongislandtickets.square.site/product/celia-rose-gooding-photo-op/X2BLYDNAZEW7GNBSDYDIVAAD?cs=true&cst=custom",
+    soldOut: false,
   },
   {
-    name: "Dan Jeannotte",
+    title: "Dan Jeannotte",
+    details: "Saturday 3:15 PM • Sunday 12:30 PM • Photo Studio",
+    price: "$40",
     url: "https://treklongislandtickets.square.site/product/dan-jeannotte-photo-op/QRIVA2MPTJRZZHIDTMCBR2AI?cs=true&cst=custom",
+    soldOut: false,
   },
   {
-    name: "Chris Myers",
+    title: "Chris Myers",
+    details: "Saturday 3:30 PM • Sunday 12:15 PM • Photo Studio",
+    price: "$40",
     url: "https://treklongislandtickets.square.site/product/chris-myers-photo-op/OY6ET4SO6AEPNETQADMG3GBL?cs=true&cst=custom",
+    soldOut: false,
   },
   {
-    name: "Jennifer Hetrick",
+    title: "Jennifer Hetrick",
+    details: "Saturday 12:15 PM • Sunday 1:30 PM • Photo Studio",
+    price: "$30",
     url: "https://treklongislandtickets.square.site/product/jennifer-hetrick-photo-op/YUSLTMBUVNGEOT3CHPCSM6WBN?cs=true&cst=custom",
+    soldOut: false,
   },
   {
-    name: "Stephanie Czajkowski",
+    title: "Stephanie Czajkowski",
+    details: "Saturday 11:30 AM • Sunday 2:45 PM • Photo Studio",
+    price: "$30",
     url: "https://treklongislandtickets.square.site/product/stephanie-czajkowski-photo-op/FK6RRGBGFTB3WTJUMF3XU3GT?cs=true&cst=custom",
+    soldOut: false,
   },
   {
-    name: "Deirdre Imershein",
+    title: "Deirdre Imershein",
+    details: "Saturday 12:00 PM • Sunday 1:15 PM • Photo Studio",
+    price: "$30",
     url: "https://treklongislandtickets.square.site/product/deirdre-imershein-photo-op/U5VQVNLYHDKCGWRSKNRL24PE?cs=true&cst=custom",
+    soldOut: false,
   },
   {
-    name: "Bonnie Gordon",
+    title: "Bonnie Gordon",
+    details: "Saturday 2:45 PM • Sunday 2:30 PM • Photo Studio",
+    price: "$30",
     url: "https://treklongislandtickets.square.site/product/bonnie-gordon-photo-op/WHBAK2LNEAPRS6LNT3GTNOTT?cs=true&cst=custom",
+    soldOut: false,
   },
   {
-    name: "Avaah Blackwell",
+    title: "Avaah Blackwell",
+    details: "Saturday 2:30 PM • Sunday 3:15 PM • Photo Studio",
+    price: "$40",
     url: "https://treklongislandtickets.square.site/product/avaah-blackwell-photo-op/Y6ARMVUVHPO2VJSFRJLLETU3?cs=true&cst=custom",
+    soldOut: false,
   },
   {
-    name: "Musetta Vander",
+    title: "Musetta Vander",
+    details: "Saturday 4:00 PM • Photo Studio",
+    price: "$30",
     url: "https://treklongislandtickets.square.site/product/musetta-vander-photo-op/3ZZU5G4EBJYH26IEETD67E23?cs=true&cst=custom",
+    soldOut: false,
   },
   {
-    name: "Louise Sorel",
+    title: "Louise Sorel",
+    details: "Saturday 4:15 PM • Sunday 1:45 PM • Photo Studio",
+    price: "$30",
     url: "https://treklongislandtickets.square.site/product/louise-sorel-photo-op/RGXG4YT73FZDDU5YQ4NJA62S?cs=true&cst=custom",
+    soldOut: false,
   },
   {
-    name: "Carolyn McCormick",
+    title: "Carolyn McCormick",
+    details: "Saturday 4:30 PM • Sunday 3:00 PM • Photo Studio",
+    price: "$30",
     url: "https://treklongislandtickets.square.site/product/carolyn-mccormick-photo-op/4UTHEK4NHVDR3BHQSFMT5IUQ?cs=true&cst=custom",
+    soldOut: false,
   },
   {
-    name: "Sachi Parker",
+    title: "Sachi Parker",
+    details: "Saturday 4:45 PM • Photo Studio",
+    price: "$30",
     url: "https://treklongislandtickets.square.site/product/sachi-parker-photo-op/KRRJRBTBTIPLJ2DRTHZ7KOMS?cs=true&cst=custom",
+    soldOut: false,
   },
   {
-    name: "DS9 Group Photo",
+    title: "DS9 Group Photo",
+    details: "Saturday 1:00 PM • Sunday 11:00 AM • Photo Studio",
+    price: "$90",
     url: "https://treklongislandtickets.square.site/product/ds9-group/MN45S4SMENHKNNBP7OWYQR6R?cs=true&cst=custom",
+    soldOut: false,
   },
   {
-    name: "SNW Group Photo",
+    title: "SNW Group Photo",
+    details: "Saturday 3:00 PM • Sunday 12:00 PM • Photo Studio",
+    price: "$60",
     url: "https://treklongislandtickets.square.site/product/snw-group/HASNLZMWKR5KVCBFZLH5H54A?cs=true&cst=custom",
+    soldOut: false,
   },
   {
-    name: "Risa Group Photo",
+    title: "Risa Group Photo",
+    details: "Saturday 11:45 AM • Sunday 1:00 PM • Photo Studio",
+    price: "$40",
     url: "https://treklongislandtickets.square.site/product/risa-group/4PGDR23R4H5R77YXEZOJLQWR?cs=true&cst=custom",
+    soldOut: false,
   },
 ];
 
@@ -227,26 +284,43 @@ export default function InfoScreen() {
           📸 Photo Ops
         </Text>
         <Text style={[styles.photoOpsNote, { color: theme.subtext }]}>
-          Check the Photo Ops tab in Schedule for times. Show up a few minutes
-          early!
+          Show up a few minutes early! Check the Schedule tab for exact times.
         </Text>
         {PHOTO_OPS.map((op, index) => (
           <View
             key={index}
-            style={[styles.photoOpCard, { backgroundColor: theme.card }]}
+            style={[styles.card, { backgroundColor: theme.card }]}
           >
-            <Text style={[styles.photoOpName, { color: theme.text }]}>
-              {op.name}
+            <View style={styles.cardTitleRow}>
+              <Text style={[styles.cardTitle, { color: theme.text, flex: 1 }]}>
+                {op.title}
+              </Text>
+              {op.soldOut && (
+                <Text style={styles.soldOut} accessibilityLabel="Sold out">
+                  SOLD OUT
+                </Text>
+              )}
+            </View>
+            <Text style={[styles.cardText, { color: theme.subtext }]}>
+              {op.details}
             </Text>
-            <TouchableOpacity
-              style={styles.buttonOutline}
-              onPress={() => Linking.openURL(op.url)}
-              accessibilityLabel={`Get tickets for photo op with ${op.name}`}
-              accessibilityRole="button"
-              accessibilityHint="Opens the ticketing website"
+            <Text
+              style={styles.price}
+              accessibilityLabel={`Price: ${op.price}`}
             >
-              <Text style={styles.buttonOutlineText}>Get Tickets</Text>
-            </TouchableOpacity>
+              {op.price}
+            </Text>
+            {op.url && !op.soldOut && (
+              <TouchableOpacity
+                style={styles.buttonOutline}
+                onPress={() => Linking.openURL(op.url)}
+                accessibilityLabel={`Get tickets for photo op with ${op.title}`}
+                accessibilityRole="button"
+                accessibilityHint="Opens the ticketing website"
+              >
+                <Text style={styles.buttonOutlineText}>Get Tickets</Text>
+              </TouchableOpacity>
+            )}
           </View>
         ))}
 
@@ -395,19 +469,19 @@ export default function InfoScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  content: {
-    paddingHorizontal: 16,
-    paddingBottom: 30,
-  },
+  container: { flex: 1 },
+  content: { paddingHorizontal: 16, paddingBottom: 30 },
   sectionHeader: {
-    color: "#f652a0",
-    fontSize: 18,
+    color: "#000000",
+    fontSize: 14,
     fontFamily: "LeagueSpartan_700Bold",
     marginTop: 24,
     marginBottom: 12,
+    backgroundColor: "#f652a0",
+    alignSelf: "flex-start",
+    paddingVertical: 5,
+    paddingHorizontal: 12,
+    borderRadius: 8,
   },
   photoOpsNote: {
     fontSize: 13,
@@ -422,21 +496,6 @@ const styles = StyleSheet.create({
     gap: 8,
     borderWidth: 1,
     borderColor: "#f652a0",
-  },
-  photoOpCard: {
-    borderRadius: 10,
-    padding: 12,
-    marginBottom: 8,
-    borderWidth: 1,
-    borderColor: "#f652a0",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
-  photoOpName: {
-    fontSize: 14,
-    fontFamily: "LeagueSpartan_700Bold",
-    flex: 1,
   },
   cardTitleRow: {
     flexDirection: "row",
