@@ -19,14 +19,20 @@ const SLIDES = [
   {
     id: "2",
     emoji: "📅",
-    title: "Build Your Schedule.",
-    body: "Save events directly to your device. Get automatic warnings when two events overlap so you never double-book yourself.",
+    title: "Schedule & My Schedule.",
+    body: "Browse the full convention schedule and save events you want to attend. View your personal lineup in the My Schedule tab. You'll get an automatic warning if two events overlap.",
   },
   {
     id: "3",
-    emoji: "📱",
-    title: "Works Offline.",
-    body: "Your saved schedule, guest info, and event details are available even without a wifi connection. Your data stays on your device.",
+    emoji: "⭐",
+    title: "Guests.",
+    body: "Browse celebrity guests, artists and industry professionals, authors, IDIC track guests and panelists, and entertainment artists all in one place.",
+  },
+  {
+    id: "4",
+    emoji: "🎟️",
+    title: "Info & Tickets.",
+    body: "Purchase tickets to special ticketed events and photo ops. Find convention hours, vendor info, social links, and everything else you need for the weekend.",
   },
 ];
 
