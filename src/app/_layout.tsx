@@ -1,3 +1,6 @@
+import OnboardingScreen, {
+  ONBOARDING_KEY,
+} from "@/components/OnboardingScreen";
 import { SavedEventsProvider } from "@/context/SavedEventsContext";
 import { ThemeProvider, useThemeContext } from "@/context/ThemeContext";
 import {
@@ -19,9 +22,10 @@ import {
   useFonts as useNotoSans,
 } from "@expo-google-fonts/noto-sans";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Tabs } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -106,17 +110,34 @@ export default function RootLayout() {
     LeagueSpartan_400Regular,
     LeagueSpartan_700Bold,
   });
+  const [hasSeenOnboarding, setHasSeenOnboarding] = useState<boolean | null>(
+    null
+  );
 
   const fontsLoaded =
     bangersLoaded && candalLoaded && notoLoaded && spartanLoaded;
 
   useEffect(() => {
-    if (fontsLoaded) {
+    AsyncStorage.getItem(ONBOARDING_KEY).then((value) => {
+      setHasSeenOnboarding(false); // temporary: force onboarding for testing
+    });
+  }, []);
+
+  useEffect(() => {
+    if (fontsLoaded && hasSeenOnboarding !== null) {
       SplashScreen.hideAsync();
     }
-  }, [fontsLoaded]);
+  }, [fontsLoaded, hasSeenOnboarding]);
 
-  if (!fontsLoaded) return null;
+  if (!fontsLoaded || hasSeenOnboarding === null) return null;
+
+  if (!hasSeenOnboarding) {
+    return (
+      <ThemeProvider>
+        <OnboardingScreen onDone={() => setHasSeenOnboarding(true)} />
+      </ThemeProvider>
+    );
+  }
 
   return (
     <ThemeProvider>
