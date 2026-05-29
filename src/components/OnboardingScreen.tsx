@@ -1,18 +1,13 @@
 import { useTheme } from "@/hooks/use-theme";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import {
-  Dimensions,
-  NativeScrollEvent,
-  NativeSyntheticEvent,
-  ScrollView,
+  GestureResponderEvent,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from "react-native";
-
-const { width } = Dimensions.get("window");
 
 const SLIDES = [
   {
@@ -44,20 +39,17 @@ type Props = {
 export default function OnboardingScreen({ onDone }: Props) {
   const theme = useTheme();
   const [activeIndex, setActiveIndex] = useState(0);
-  const scrollRef = useRef<ScrollView>(null);
+  const [touchStartX, setTouchStartX] = useState(0);
 
   const handleNext = () => {
     if (activeIndex < SLIDES.length - 1) {
-      const nextIndex = activeIndex + 1;
-      scrollRef.current?.scrollTo({ x: nextIndex * width, animated: true });
-      setActiveIndex(nextIndex);
+      setActiveIndex(activeIndex + 1);
     }
   };
 
-  const handleScroll = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
-    const index = Math.round(e.nativeEvent.contentOffset.x / width);
-    if (index !== activeIndex) {
-      setActiveIndex(index);
+  const handleBack = () => {
+    if (activeIndex > 0) {
+      setActiveIndex(activeIndex - 1);
     }
   };
 
@@ -66,32 +58,32 @@ export default function OnboardingScreen({ onDone }: Props) {
     onDone();
   };
 
+  const handleTouchStart = (e: GestureResponderEvent) => {
+    setTouchStartX(e.nativeEvent.pageX);
+  };
+
+  const handleTouchEnd = (e: GestureResponderEvent) => {
+    const diff = touchStartX - e.nativeEvent.pageX;
+    if (diff > 50) handleNext();
+    if (diff < -50) handleBack();
+  };
+
   const isLast = activeIndex === SLIDES.length - 1;
+  const slide = SLIDES[activeIndex];
 
   return (
-    <View style={[styles.container, { backgroundColor: theme.background }]}>
-      <ScrollView
-        ref={scrollRef}
-        horizontal
-        pagingEnabled
-        showsHorizontalScrollIndicator={false}
-        onScroll={handleScroll}
-        scrollEventThrottle={16}
-        style={styles.scrollView}
-        contentContainerStyle={styles.scrollContent}
-      >
-        {SLIDES.map((item) => (
-          <View key={item.id} style={[styles.slide, { width }]}>
-            <Text style={styles.emoji}>{item.emoji}</Text>
-            <Text style={[styles.title, { color: theme.text }]}>
-              {item.title}
-            </Text>
-            <Text style={[styles.body, { color: theme.subtext }]}>
-              {item.body}
-            </Text>
-          </View>
-        ))}
-      </ScrollView>
+    <View
+      style={[styles.container, { backgroundColor: theme.background }]}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
+      <View style={styles.slideContainer}>
+        <Text style={styles.emoji}>{slide.emoji}</Text>
+        <Text style={[styles.title, { color: theme.text }]}>{slide.title}</Text>
+        <Text style={[styles.body, { color: theme.subtext }]}>
+          {slide.body}
+        </Text>
+      </View>
 
       <View style={styles.footer}>
         <View style={styles.dots}>
@@ -106,35 +98,30 @@ export default function OnboardingScreen({ onDone }: Props) {
           ))}
         </View>
 
-        {isLast ? (
-          <TouchableOpacity
-            style={styles.button}
-            onPress={handleGetStarted}
-            accessibilityLabel="Get started with the app"
-            accessibilityRole="button"
-          >
-            <Text style={styles.buttonText}>Get Started</Text>
-          </TouchableOpacity>
-        ) : (
-          <TouchableOpacity
-            style={styles.button}
-            onPress={handleNext}
-            accessibilityLabel="Next slide"
-            accessibilityRole="button"
-          >
-            <Text style={styles.buttonText}>Next</Text>
-          </TouchableOpacity>
-        )}
+        <TouchableOpacity
+          style={styles.button}
+          onPress={isLast ? handleGetStarted : handleNext}
+          accessibilityLabel={
+            isLast ? "Get started with the app" : "Next slide"
+          }
+          accessibilityRole="button"
+        >
+          <Text style={styles.buttonText}>
+            {isLast ? "Get Started" : "Next"}
+          </Text>
+        </TouchableOpacity>
 
-        {!isLast && (
-          <TouchableOpacity
-            onPress={handleGetStarted}
-            accessibilityLabel="Skip onboarding"
-            accessibilityRole="button"
-          >
-            <Text style={[styles.skip, { color: theme.subtext }]}>Skip</Text>
-          </TouchableOpacity>
-        )}
+        <View style={styles.skipContainer}>
+          {!isLast && (
+            <TouchableOpacity
+              onPress={handleGetStarted}
+              accessibilityLabel="Skip onboarding"
+              accessibilityRole="button"
+            >
+              <Text style={[styles.skip, { color: theme.subtext }]}>Skip</Text>
+            </TouchableOpacity>
+          )}
+        </View>
       </View>
     </View>
   );
@@ -143,14 +130,10 @@ export default function OnboardingScreen({ onDone }: Props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingTop: 80,
   },
-  scrollView: {
+  slideContainer: {
     flex: 1,
-  },
-  scrollContent: {
-    alignItems: "center",
-  },
-  slide: {
     alignItems: "center",
     justifyContent: "center",
     paddingHorizontal: 40,
@@ -204,6 +187,11 @@ const styles = StyleSheet.create({
     color: "#ffffff",
     fontSize: 17,
     fontFamily: "LeagueSpartan_700Bold",
+  },
+  skipContainer: {
+    height: 20,
+    justifyContent: "center",
+    alignItems: "center",
   },
   skip: {
     fontSize: 14,
