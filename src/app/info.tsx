@@ -335,7 +335,7 @@ export default function InfoScreen() {
             1717 Motor Pkwy, Hauppauge, NY
           </Text>
           <TouchableOpacity
-            style={styles.button}
+            style={styles.buttonOutline}
             onPress={() =>
               Linking.openURL(
                 "https://maps.apple.com/?address=1717+Motor+Pkwy,+Hauppauge,+NY"
@@ -345,7 +345,7 @@ export default function InfoScreen() {
             accessibilityRole="button"
             accessibilityHint="Opens Maps app"
           >
-            <Text style={styles.buttonText}>Get Directions</Text>
+            <Text style={styles.buttonOutlineText}>Get Directions</Text>
           </TouchableOpacity>
         </View>
 
@@ -357,7 +357,7 @@ export default function InfoScreen() {
             Purchase tickets for general admission and special ticketed events.
           </Text>
           <TouchableOpacity
-            style={styles.button}
+            style={styles.buttonOutline}
             onPress={() =>
               Linking.openURL("http://treklongislandtickets.square.site/")
             }
@@ -365,7 +365,7 @@ export default function InfoScreen() {
             accessibilityRole="button"
             accessibilityHint="Opens the ticket purchasing website"
           >
-            <Text style={styles.buttonText}>Purchase Tickets</Text>
+            <Text style={styles.buttonOutlineText}>Purchase Tickets</Text>
           </TouchableOpacity>
         </View>
 
@@ -377,7 +377,7 @@ export default function InfoScreen() {
             Get your official Trek Long Island merchandise!
           </Text>
           <TouchableOpacity
-            style={styles.button}
+            style={styles.buttonOutline}
             onPress={() =>
               Linking.openURL("https://www.etsy.com/shop/TrekLongIsland")
             }
@@ -385,7 +385,7 @@ export default function InfoScreen() {
             accessibilityRole="link"
             accessibilityHint="Opens Etsy shop"
           >
-            <Text style={styles.buttonText}>Shop on Etsy</Text>
+            <Text style={styles.buttonOutlineText}>Shop on Etsy</Text>
           </TouchableOpacity>
         </View>
 
@@ -531,19 +531,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 6,
     paddingVertical: 2,
     borderRadius: 4,
-  },
-  button: {
-    backgroundColor: "#f652a0",
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 20,
-    alignSelf: "flex-start",
-    marginTop: 4,
-  },
-  buttonText: {
-    color: "#ffffff",
-    fontFamily: "LeagueSpartan_700Bold",
-    fontSize: 14,
   },
   buttonOutline: {
     borderWidth: 1.5,

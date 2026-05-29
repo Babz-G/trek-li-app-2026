@@ -5,6 +5,7 @@ import { useSavedEvents } from "@/hooks/useSavedEvents";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import {
   FlatList,
+  Share,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -18,6 +19,12 @@ const DAY_COLORS: Record<string, string> = {
 };
 
 const DAY_ORDER = ["Friday", "Saturday", "Sunday"];
+
+const DAY_DATES: Record<string, string> = {
+  Friday: "June 12",
+  Saturday: "June 13",
+  Sunday: "June 14",
+};
 
 export default function MyScheduleScreen() {
   const { savedIds, toggleSave } = useSavedEvents();
@@ -37,6 +44,21 @@ export default function MyScheduleScreen() {
       }
     }
   }
+
+  const handleShare = async (
+    title: string,
+    time: string,
+    day: string,
+    location: string
+  ) => {
+    try {
+      await Share.share({
+        message: `I'm attending "${title}" at Trek Long Island 2026!\n${DAY_DATES[day]}, ${time} • ${location}\nJune 12-14 at the Hyatt Regency Long Island, Hauppauge NY\n\nGet the app: https://trek-li-app-2026.netlify.app`,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   if (savedEvents.length === 0) {
     return (
@@ -101,13 +123,7 @@ export default function MyScheduleScreen() {
                     { backgroundColor: theme.card },
                     hasConflict && styles.cardConflict,
                   ]}
-                  accessible={true}
-                  accessibilityLabel={
-                    `${event.time}, ${event.title}, ${event.location}` +
-                    (hasConflict
-                      ? ", warning: time conflict with another saved event"
-                      : "")
-                  }
+                  accessible={false}
                 >
                   <Text style={[styles.time, { color: DAY_COLORS[event.day] }]}>
                     {event.time}
@@ -131,25 +147,53 @@ export default function MyScheduleScreen() {
                       </View>
                     )}
                   </View>
-                  <TouchableOpacity
-                    onPress={() => toggleSave(event.id)}
-                    style={styles.unsaveButton}
-                    hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-                    accessibilityLabel={`Remove ${event.title} from my schedule`}
-                    accessibilityRole="button"
-                  >
-                    <MaterialCommunityIcons
-                      name="bookmark-remove"
-                      size={22}
-                      color={theme.subtext}
-                      accessibilityElementsHidden={true}
-                    />
-                    <Text
-                      style={[styles.unsaveLabel, { color: theme.subtext }]}
+                  <View style={styles.actions}>
+                    <TouchableOpacity
+                      onPress={() =>
+                        handleShare(
+                          event.title,
+                          event.time,
+                          event.day,
+                          event.location
+                        )
+                      }
+                      style={styles.actionButton}
+                      hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                      accessibilityLabel={`Share ${event.title}`}
+                      accessibilityRole="button"
                     >
-                      Remove
-                    </Text>
-                  </TouchableOpacity>
+                      <MaterialCommunityIcons
+                        name="share-variant"
+                        size={22}
+                        color={theme.subtext}
+                        accessibilityElementsHidden={true}
+                      />
+                      <Text
+                        style={[styles.actionLabel, { color: theme.subtext }]}
+                      >
+                        Share
+                      </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      onPress={() => toggleSave(event.id)}
+                      style={styles.actionButton}
+                      hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                      accessibilityLabel={`Remove ${event.title} from my schedule`}
+                      accessibilityRole="button"
+                    >
+                      <MaterialCommunityIcons
+                        name="bookmark-remove"
+                        size={22}
+                        color={theme.subtext}
+                        accessibilityElementsHidden={true}
+                      />
+                      <Text
+                        style={[styles.actionLabel, { color: theme.subtext }]}
+                      >
+                        Remove
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
                 </View>
               );
             })}
@@ -234,11 +278,16 @@ const styles = StyleSheet.create({
     fontSize: 11,
     fontFamily: "NotoSans_400Regular",
   },
-  unsaveButton: {
+  actions: {
+    flexDirection: "column",
+    alignItems: "center",
+    gap: 8,
+  },
+  actionButton: {
     alignItems: "center",
     gap: 2,
   },
-  unsaveLabel: {
+  actionLabel: {
     fontSize: 9,
     fontFamily: "NotoSans_400Regular",
   },
