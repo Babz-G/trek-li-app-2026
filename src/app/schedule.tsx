@@ -6,21 +6,15 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useState } from "react";
 import {
   FlatList,
-  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from "react-native";
 
-const TABS = [
-  "Friday",
-  "Saturday",
-  "Sunday",
-  "Photo Ops",
-  "Gaming",
-  "Kids",
-] as const;
+const ROW1_TABS = ["Friday", "Saturday", "Sunday"] as const;
+const ROW2_TABS = ["Photo Ops", "Gaming", "Kids"] as const;
+const TABS = [...ROW1_TABS, ...ROW2_TABS] as const;
 type Tab = (typeof TABS)[number];
 
 const TAB_COLORS: Record<Tab, string> = {
@@ -35,6 +29,21 @@ const TAB_COLORS: Record<Tab, string> = {
 type ExtendedEvent = ScheduleEvent & {
   isDivider?: boolean;
   dividerLabel?: string;
+  isBlurb?: boolean;
+  blurbText?: string;
+};
+
+const GAMING_BLURB =
+  "Stop by the Gaming Room at 7pm Friday, 10am Saturday, and 10am Sunday to sign up daily for games.";
+
+const parseTime = (time: string): number => {
+  if (!time) return 0;
+  const [rawTime, period] = time.split(" ");
+  const [hours, minutes] = rawTime.split(":").map(Number);
+  let total = hours * 60 + (minutes || 0);
+  if (period === "PM" && hours !== 12) total += 720;
+  if (period === "AM" && hours === 12) total -= 720;
+  return total;
 };
 
 export default function ScheduleScreen() {
@@ -70,6 +79,15 @@ export default function ScheduleScreen() {
     if (activeTab === "Gaming") {
       const gaming = scheduleData.filter((e) => e.category === "gaming");
       const result: ExtendedEvent[] = [];
+      result.push({
+        id: "gaming-blurb",
+        time: "",
+        title: "",
+        location: "",
+        day: "Friday",
+        isBlurb: true,
+        blurbText: GAMING_BLURB,
+      });
       let lastDay: string | null = null;
       for (const event of gaming) {
         if (lastDay !== event.day) {
@@ -111,18 +129,23 @@ export default function ScheduleScreen() {
       return result;
     }
 
-    // Friday, Saturday, Sunday -- show everything for that day chronologically
-    return scheduleData.filter((e) => e.day === activeTab);
+    // Friday, Saturday, Sunday -- everything sorted by time
+    return [...scheduleData]
+      .filter((e) => e.day === activeTab)
+      .sort((a, b) => parseTime(a.time) - parseTime(b.time));
   };
 
   const filtered = getFilteredData();
 
-  const activeColor =
-    activeTab === "Photo Ops" || activeTab === "Gaming" || activeTab === "Kids"
-      ? TAB_COLORS[activeTab]
-      : TAB_COLORS[activeTab];
-
   const renderEvent = ({ item }: { item: ExtendedEvent }) => {
+    if (item.isBlurb) {
+      return (
+        <View style={styles.blurb}>
+          <Text style={styles.blurbText}>{item.blurbText}</Text>
+        </View>
+      );
+    }
+
     if (item.isDivider) {
       return (
         <View
@@ -137,11 +160,11 @@ export default function ScheduleScreen() {
     }
 
     const saved = isSaved(item.id);
-    const timeColor = TAB_COLORS[activeTab];
-
     return (
       <View style={[styles.card, { backgroundColor: theme.card }]}>
-        <Text style={[styles.time, { color: timeColor }]}>{item.time}</Text>
+        <Text style={[styles.time, { color: TAB_COLORS[activeTab] }]}>
+          {item.time}
+        </Text>
         <View style={styles.cardDetails}>
           <Text style={[styles.title, { color: theme.text }]}>
             {item.title}
@@ -149,6 +172,11 @@ export default function ScheduleScreen() {
           <Text style={[styles.location, { color: theme.subtext }]}>
             {item.location}
           </Text>
+          {item.description && (
+            <Text style={[styles.description, { color: theme.subtext }]}>
+              {item.description}
+            </Text>
+          )}
         </View>
         <TouchableOpacity
           onPress={() => toggleSave(item.id)}
@@ -179,37 +207,61 @@ export default function ScheduleScreen() {
   return (
     <View style={[styles.container, { backgroundColor: theme.background }]}>
       <ScreenHeader />
-      <View style={styles.tabWrapper}>
-        <ScrollView
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.tabRow}
-        >
-          {TABS.map((tab) => (
-            <TouchableOpacity
-              key={tab}
+
+      {/* Row 1: Fri / Sat / Sun */}
+      <View style={styles.tabRow}>
+        {ROW1_TABS.map((tab) => (
+          <TouchableOpacity
+            key={tab}
+            style={[
+              styles.tab,
+              { borderColor: TAB_COLORS[tab] },
+              activeTab === tab && { backgroundColor: TAB_COLORS[tab] },
+            ]}
+            onPress={() => setActiveTab(tab)}
+            accessibilityLabel={`${tab} schedule`}
+            accessibilityRole="tab"
+            accessibilityState={{ selected: activeTab === tab }}
+          >
+            <Text
               style={[
-                styles.tab,
-                { borderColor: TAB_COLORS[tab] },
-                activeTab === tab && { backgroundColor: TAB_COLORS[tab] },
+                styles.tabText,
+                { color: TAB_COLORS[tab] },
+                activeTab === tab && styles.tabTextActive,
               ]}
-              onPress={() => setActiveTab(tab)}
-              accessibilityLabel={`${tab} schedule`}
-              accessibilityRole="tab"
-              accessibilityState={{ selected: activeTab === tab }}
             >
-              <Text
-                style={[
-                  styles.tabText,
-                  { color: TAB_COLORS[tab] },
-                  activeTab === tab && styles.tabTextActive,
-                ]}
-              >
-                {tab}
-              </Text>
-            </TouchableOpacity>
-          ))}
-        </ScrollView>
+              {tab}
+            </Text>
+          </TouchableOpacity>
+        ))}
+      </View>
+
+      {/* Row 2: Photo Ops / Gaming / Kids */}
+      <View style={styles.tabRow}>
+        {ROW2_TABS.map((tab) => (
+          <TouchableOpacity
+            key={tab}
+            style={[
+              styles.tab,
+              { borderColor: TAB_COLORS[tab] },
+              activeTab === tab && { backgroundColor: TAB_COLORS[tab] },
+            ]}
+            onPress={() => setActiveTab(tab)}
+            accessibilityLabel={`${tab} schedule`}
+            accessibilityRole="tab"
+            accessibilityState={{ selected: activeTab === tab }}
+          >
+            <Text
+              style={[
+                styles.tabText,
+                { color: TAB_COLORS[tab] },
+                activeTab === tab && styles.tabTextActive,
+              ]}
+            >
+              {tab}
+            </Text>
+          </TouchableOpacity>
+        ))}
       </View>
 
       <FlatList
@@ -224,16 +276,12 @@ export default function ScheduleScreen() {
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
-  tabWrapper: {
-    height: 56,
-    justifyContent: "center",
-    marginBottom: 8,
-  },
   tabRow: {
     flexDirection: "row",
+    justifyContent: "center",
     gap: 8,
     paddingHorizontal: 12,
-    alignItems: "center",
+    paddingVertical: 6,
   },
   tab: {
     paddingVertical: 8,
@@ -254,7 +302,7 @@ const styles = StyleSheet.create({
   },
   card: {
     flexDirection: "row",
-    alignItems: "center",
+    alignItems: "flex-start",
     borderRadius: 10,
     padding: 12,
     marginBottom: 10,
@@ -278,6 +326,12 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontFamily: "NotoSans_400Regular",
   },
+  description: {
+    fontSize: 12,
+    fontFamily: "NotoSans_400Regular",
+    fontStyle: "italic",
+    marginTop: 4,
+  },
   bookmarkButton: {
     alignItems: "center",
     gap: 2,
@@ -299,5 +353,16 @@ const styles = StyleSheet.create({
     color: "#000000",
     fontSize: 13,
     fontFamily: "LeagueSpartan_700Bold",
+  },
+  blurb: {
+    backgroundColor: "#f3ba48",
+    borderRadius: 8,
+    padding: 12,
+    marginBottom: 14,
+  },
+  blurbText: {
+    color: "#000000",
+    fontSize: 13,
+    fontFamily: "NotoSans_400Regular",
   },
 });

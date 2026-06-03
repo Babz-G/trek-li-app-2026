@@ -5,6 +5,7 @@ export type ScheduleEvent = {
   location: string;
   day: "Friday" | "Saturday" | "Sunday";
   category?: "gaming" | "kids";
+  description?: string;
 };
 
 export const scheduleData: ScheduleEvent[] = [
@@ -36,6 +37,14 @@ export const scheduleData: ScheduleEvent[] = [
     title: "What it's like to be a Starfleet Cadet",
     location: "Panel D",
     day: "Friday",
+  },
+  {
+    id: "fg1",
+    time: "6:00 PM",
+    title: "Star Trek Adventures with Strange New Pod",
+    location: "Gaming Room",
+    day: "Friday",
+    category: "gaming",
   },
   {
     id: "f5",
@@ -75,8 +84,8 @@ export const scheduleData: ScheduleEvent[] = [
   {
     id: "f10",
     time: "8:00 PM",
-    title: "GAMING: Away Mission (Dread)",
-    location: "Trustees Board Room",
+    title: "Away Mission (Dread)",
+    location: "Gaming Room",
     day: "Friday",
     category: "gaming",
   },
@@ -117,17 +126,16 @@ export const scheduleData: ScheduleEvent[] = [
     day: "Friday",
   },
 
-  // FRIDAY GAMING
-  {
-    id: "fg1",
-    time: "6:00 PM",
-    title: "Star Trek Adventures with Strange New Pod",
-    location: "Gaming Room",
-    day: "Friday",
-    category: "gaming",
-  },
-
   // SATURDAY
+  {
+    id: "sk1",
+    time: "9:00 AM",
+    title: "Sign In: Meet Moxie!",
+    location: "Kids Room",
+    day: "Saturday",
+    category: "kids",
+    description: "Sign in for upcoming programming and meet Moxie the robot!",
+  },
   {
     id: "s1",
     time: "9:00 AM",
@@ -164,6 +172,23 @@ export const scheduleData: ScheduleEvent[] = [
     day: "Saturday",
   },
   {
+    id: "sk2",
+    time: "10:00 AM",
+    title: "LEGOS",
+    location: "Kids Room",
+    day: "Saturday",
+    category: "kids",
+    description: "Practice your engineering skills with LEGOS.",
+  },
+  {
+    id: "sg1",
+    time: "10:30 AM",
+    title: "Moonshine (Glorious Fate)",
+    location: "Gaming Room",
+    day: "Saturday",
+    category: "gaming",
+  },
+  {
     id: "s6",
     time: "11:00 AM",
     title: "A Trip to Risa with Deirdre Imershein and Jennifer Hetrick",
@@ -190,6 +215,16 @@ export const scheduleData: ScheduleEvent[] = [
     title: "Stunt Action Workshop with Avaah Blackwell (Ticketed)",
     location: "Windwatch",
     day: "Saturday",
+  },
+  {
+    id: "sk3",
+    time: "11:00 AM",
+    title: "Hailing All Frequencies: Comm Badge Creation",
+    location: "Kids Room",
+    day: "Saturday",
+    category: "kids",
+    description:
+      "Create your very own comm badge and become a Starfleet Cadet!",
   },
   {
     id: "s10",
@@ -262,6 +297,16 @@ export const scheduleData: ScheduleEvent[] = [
     day: "Saturday",
   },
   {
+    id: "sk4",
+    time: "12:00 PM",
+    title: "Tiny Robot Training: Ozobot Time!",
+    location: "Kids Room",
+    day: "Saturday",
+    category: "kids",
+    description:
+      "Ozobots follow lines and drawings you create -- a fun intro to coding!",
+  },
+  {
     id: "s19",
     time: "1:00 PM",
     title:
@@ -319,6 +364,15 @@ export const scheduleData: ScheduleEvent[] = [
     day: "Saturday",
   },
   {
+    id: "sk5",
+    time: "1:00 PM",
+    title: "Coloring The Galaxy",
+    location: "Kids Room",
+    day: "Saturday",
+    category: "kids",
+    description: "Relax and color your favorite Star Trek scenes.",
+  },
+  {
     id: "s27",
     time: "2:00 PM",
     title: "Finally Made it to Risa! Karim Diane with Matthew Jennings",
@@ -338,6 +392,15 @@ export const scheduleData: ScheduleEvent[] = [
     title: "Glass Etching with Nicole de Boer (Ticketed)",
     location: "Windwatch",
     day: "Saturday",
+  },
+  {
+    id: "sk6",
+    time: "2:00 PM",
+    title: "Mythical Adventures with Mr. Eric",
+    location: "Kids Room",
+    day: "Saturday",
+    category: "kids",
+    description: "Join librarian Mr. Eric for fun role-playing adventures!",
   },
   {
     id: "s30",
@@ -380,6 +443,14 @@ export const scheduleData: ScheduleEvent[] = [
     title: "SNW Group",
     location: "Photo Studio",
     day: "Saturday",
+  },
+  {
+    id: "sg2",
+    time: "3:00 PM",
+    title: "Kobayashi Maru (Dread)",
+    location: "Gaming Room",
+    day: "Saturday",
+    category: "gaming",
   },
   {
     id: "s36",
@@ -452,6 +523,16 @@ export const scheduleData: ScheduleEvent[] = [
     day: "Saturday",
   },
   {
+    id: "sk7",
+    time: "4:00 PM",
+    title: "Drop-In Retro Video Games",
+    location: "Kids Room",
+    day: "Saturday",
+    category: "kids",
+    description:
+      "Join Mr. Eric and Mr. Tim for retro arcade games -- the family room becomes an arcade!",
+  },
+  {
     id: "s46",
     time: "5:00 PM",
     title: "Toys Panel",
@@ -515,6 +596,14 @@ export const scheduleData: ScheduleEvent[] = [
     day: "Saturday",
   },
   {
+    id: "sg3",
+    time: "8:00 PM",
+    title: "Away Mission (Dread)",
+    location: "Gaming Room",
+    day: "Saturday",
+    category: "gaming",
+  },
+  {
     id: "s55",
     time: "8:30 PM",
     title: "Slut Trek Burlesque Show - 21+ (Ticketed)",
@@ -550,91 +639,16 @@ export const scheduleData: ScheduleEvent[] = [
     day: "Saturday",
   },
 
-  // SATURDAY GAMING
+  // SUNDAY
   {
-    id: "sg1",
-    time: "10:30 AM",
-    title: "Moonshine (Glorious Fate)",
-    location: "Gaming Room",
-    day: "Saturday",
-    category: "gaming",
-  },
-  {
-    id: "sg2",
-    time: "3:00 PM",
-    title: "Kobayashi Maru (Dread)",
-    location: "Gaming Room",
-    day: "Saturday",
-    category: "gaming",
-  },
-  {
-    id: "sg3",
-    time: "8:00 PM",
-    title: "Away Mission (Dread)",
-    location: "Gaming Room",
-    day: "Saturday",
-    category: "gaming",
-  },
-
-  // SATURDAY KIDS
-  {
-    id: "sk1",
+    id: "suk1",
     time: "9:00 AM",
     title: "Sign In: Meet Moxie!",
     location: "Kids Room",
-    day: "Saturday",
+    day: "Sunday",
     category: "kids",
+    description: "Sign in for upcoming programming and meet Moxie the robot!",
   },
-  {
-    id: "sk2",
-    time: "10:00 AM",
-    title: "LEGOS",
-    location: "Kids Room",
-    day: "Saturday",
-    category: "kids",
-  },
-  {
-    id: "sk3",
-    time: "11:00 AM",
-    title: "Hailing All Frequencies: Comm Badge Creation",
-    location: "Kids Room",
-    day: "Saturday",
-    category: "kids",
-  },
-  {
-    id: "sk4",
-    time: "12:00 PM",
-    title: "Tiny Robot Training: Ozobot Time!",
-    location: "Kids Room",
-    day: "Saturday",
-    category: "kids",
-  },
-  {
-    id: "sk5",
-    time: "1:00 PM",
-    title: "Coloring The Galaxy",
-    location: "Kids Room",
-    day: "Saturday",
-    category: "kids",
-  },
-  {
-    id: "sk6",
-    time: "2:00 PM",
-    title: "Mythical Adventures with Mr. Eric",
-    location: "Kids Room",
-    day: "Saturday",
-    category: "kids",
-  },
-  {
-    id: "sk7",
-    time: "4:00 PM",
-    title: "Drop-In Retro Video Games",
-    location: "Kids Room",
-    day: "Saturday",
-    category: "kids",
-  },
-
-  // SUNDAY
   {
     id: "su1",
     time: "9:00 AM",
@@ -663,6 +677,23 @@ export const scheduleData: ScheduleEvent[] = [
     title: "Once upon a Trek",
     location: "Panel D",
     day: "Sunday",
+  },
+  {
+    id: "suk2",
+    time: "10:00 AM",
+    title: "LEGOS",
+    location: "Kids Room",
+    day: "Sunday",
+    category: "kids",
+    description: "Practice your engineering skills with LEGOS.",
+  },
+  {
+    id: "sug1",
+    time: "10:30 AM",
+    title: "Kobayashi Maru (Dread)",
+    location: "Gaming Room",
+    day: "Sunday",
+    category: "gaming",
   },
   {
     id: "su5",
@@ -763,6 +794,15 @@ export const scheduleData: ScheduleEvent[] = [
     day: "Sunday",
   },
   {
+    id: "suk3",
+    time: "12:00 PM",
+    title: "Coloring The Galaxy",
+    location: "Kids Room",
+    day: "Sunday",
+    category: "kids",
+    description: "Relax and color your favorite Star Trek scenes.",
+  },
+  {
     id: "su19",
     time: "1:00 PM",
     title: "Combs Across the Galaxy with Jeffrey Combs",
@@ -805,6 +845,15 @@ export const scheduleData: ScheduleEvent[] = [
     day: "Sunday",
   },
   {
+    id: "suk4",
+    time: "1:00 PM",
+    title: "Comic Book Creation",
+    location: "Kids Room",
+    day: "Sunday",
+    category: "kids",
+    description: "Learn how to create your own comics!",
+  },
+  {
     id: "su25",
     time: "2:00 PM",
     title: "Spots, Symbionts, and Starfleet with Nicole de Boer",
@@ -826,11 +875,28 @@ export const scheduleData: ScheduleEvent[] = [
     day: "Sunday",
   },
   {
+    id: "suk5",
+    time: "2:00 PM",
+    title: "They're Multiplying! DIY Tribbles",
+    location: "Kids Room",
+    day: "Sunday",
+    category: "kids",
+    description: "Create your very own fluffy tribble!",
+  },
+  {
     id: "su28",
     time: "2:30 PM",
     title: "Bonnie Gordon",
     location: "Photo Studio",
     day: "Sunday",
+  },
+  {
+    id: "sug2",
+    time: "2:30 PM",
+    title: "Sky Pirate (Glorious Fate)",
+    location: "Gaming Room",
+    day: "Sunday",
+    category: "gaming",
   },
   {
     id: "su29",
@@ -861,6 +927,16 @@ export const scheduleData: ScheduleEvent[] = [
     day: "Sunday",
   },
   {
+    id: "suk6",
+    time: "3:00 PM",
+    title: "Liquid Nitrogen Discovery with Crazy Science NYC",
+    location: "Kids Room",
+    day: "Sunday",
+    category: "kids",
+    description:
+      "All ages welcome! Freeze a rose, spin a ping-pong ball, and more with Crazy Science NYC.",
+  },
+  {
     id: "su33",
     time: "3:15 PM",
     title: "Avaah Blackwell",
@@ -889,6 +965,16 @@ export const scheduleData: ScheduleEvent[] = [
     day: "Sunday",
   },
   {
+    id: "suk7",
+    time: "4:00 PM",
+    title: "4th Annual Tribble Tossing",
+    location: "Kids Room",
+    day: "Sunday",
+    category: "kids",
+    description:
+      "How far can you toss a tribble? Join the fun -- tribbles provided!",
+  },
+  {
     id: "su36",
     time: "5:00 PM",
     title: "All-Quadrants Auction (continued)",
@@ -901,81 +987,5 @@ export const scheduleData: ScheduleEvent[] = [
     title: "Until We Beam Again! Trek Long Island Farewell",
     location: "Main Stage",
     day: "Sunday",
-  },
-
-  // SUNDAY GAMING
-  {
-    id: "sug1",
-    time: "10:30 AM",
-    title: "Kobayashi Maru (Dread)",
-    location: "Gaming Room",
-    day: "Sunday",
-    category: "gaming",
-  },
-  {
-    id: "sug2",
-    time: "2:30 PM",
-    title: "Sky Pirate (Glorious Fate)",
-    location: "Gaming Room",
-    day: "Sunday",
-    category: "gaming",
-  },
-
-  // SUNDAY KIDS
-  {
-    id: "suk1",
-    time: "9:00 AM",
-    title: "Sign In: Meet Moxie!",
-    location: "Kids Room",
-    day: "Sunday",
-    category: "kids",
-  },
-  {
-    id: "suk2",
-    time: "10:00 AM",
-    title: "LEGOS",
-    location: "Kids Room",
-    day: "Sunday",
-    category: "kids",
-  },
-  {
-    id: "suk3",
-    time: "12:00 PM",
-    title: "Coloring The Galaxy",
-    location: "Kids Room",
-    day: "Sunday",
-    category: "kids",
-  },
-  {
-    id: "suk4",
-    time: "1:00 PM",
-    title: "Comic Book Creation",
-    location: "Kids Room",
-    day: "Sunday",
-    category: "kids",
-  },
-  {
-    id: "suk5",
-    time: "2:00 PM",
-    title: "They're Multiplying! DIY Tribbles",
-    location: "Kids Room",
-    day: "Sunday",
-    category: "kids",
-  },
-  {
-    id: "suk6",
-    time: "3:00 PM",
-    title: "Liquid Nitrogen Discovery with Crazy Science NYC",
-    location: "Kids Room",
-    day: "Sunday",
-    category: "kids",
-  },
-  {
-    id: "suk7",
-    time: "4:00 PM",
-    title: "4th Annual Tribble Tossing",
-    location: "Kids Room",
-    day: "Sunday",
-    category: "kids",
   },
 ];
