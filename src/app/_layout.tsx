@@ -119,7 +119,7 @@ export default function RootLayout() {
 
   useEffect(() => {
     AsyncStorage.getItem(ONBOARDING_KEY).then((value) => {
-      setHasSeenOnboarding(value === "true");
+      setHasSeenOnboarding(false);
     });
   }, []);
 

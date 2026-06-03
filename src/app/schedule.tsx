@@ -13,7 +13,14 @@ import {
   View,
 } from "react-native";
 
-const TABS = ["Friday", "Saturday", "Sunday", "Photo Ops"] as const;
+const TABS = [
+  "Friday",
+  "Saturday",
+  "Sunday",
+  "Photo Ops",
+  "Gaming",
+  "Kids",
+] as const;
 type Tab = (typeof TABS)[number];
 
 const TAB_COLORS: Record<Tab, string> = {
@@ -21,6 +28,8 @@ const TAB_COLORS: Record<Tab, string> = {
   Saturday: "#009d9a",
   Sunday: "#3f64f0",
   "Photo Ops": "#63fb64",
+  Gaming: "#f3ba48",
+  Kids: "#ff8c42",
 };
 
 type ExtendedEvent = ScheduleEvent & {
@@ -34,50 +43,105 @@ export default function ScheduleScreen() {
   const theme = useTheme();
 
   const getFilteredData = (): ExtendedEvent[] => {
-    if (activeTab !== "Photo Ops") {
-      return scheduleData.filter((e) => e.day === activeTab);
-    }
-
-    const photoOps = scheduleData.filter((e) => e.location === "Photo Studio");
-    const result: ExtendedEvent[] = [];
-    let lastDay: string | null = null;
-
-    for (const event of photoOps) {
-      if (lastDay !== event.day) {
-        result.push({
-          id: `divider-${event.day}`,
-          time: "",
-          title: event.day,
-          location: "divider",
-          day: event.day,
-          isDivider: true,
-          dividerLabel: event.day,
-        });
-        lastDay = event.day;
+    if (activeTab === "Photo Ops") {
+      const photoOps = scheduleData.filter(
+        (e) => e.location === "Photo Studio"
+      );
+      const result: ExtendedEvent[] = [];
+      let lastDay: string | null = null;
+      for (const event of photoOps) {
+        if (lastDay !== event.day) {
+          result.push({
+            id: `divider-${event.day}`,
+            time: "",
+            title: event.day,
+            location: "divider",
+            day: event.day,
+            isDivider: true,
+            dividerLabel: event.day,
+          });
+          lastDay = event.day;
+        }
+        result.push(event);
       }
-      result.push(event);
+      return result;
     }
 
-    return result;
+    if (activeTab === "Gaming") {
+      const gaming = scheduleData.filter((e) => e.category === "gaming");
+      const result: ExtendedEvent[] = [];
+      let lastDay: string | null = null;
+      for (const event of gaming) {
+        if (lastDay !== event.day) {
+          result.push({
+            id: `divider-gaming-${event.day}`,
+            time: "",
+            title: event.day,
+            location: "divider",
+            day: event.day,
+            isDivider: true,
+            dividerLabel: event.day,
+          });
+          lastDay = event.day;
+        }
+        result.push(event);
+      }
+      return result;
+    }
+
+    if (activeTab === "Kids") {
+      const kids = scheduleData.filter((e) => e.category === "kids");
+      const result: ExtendedEvent[] = [];
+      let lastDay: string | null = null;
+      for (const event of kids) {
+        if (lastDay !== event.day) {
+          result.push({
+            id: `divider-kids-${event.day}`,
+            time: "",
+            title: event.day,
+            location: "divider",
+            day: event.day,
+            isDivider: true,
+            dividerLabel: event.day,
+          });
+          lastDay = event.day;
+        }
+        result.push(event);
+      }
+      return result;
+    }
+
+    // Friday, Saturday, Sunday -- show everything for that day chronologically
+    return scheduleData.filter((e) => e.day === activeTab);
   };
 
   const filtered = getFilteredData();
 
+  const activeColor =
+    activeTab === "Photo Ops" || activeTab === "Gaming" || activeTab === "Kids"
+      ? TAB_COLORS[activeTab]
+      : TAB_COLORS[activeTab];
+
   const renderEvent = ({ item }: { item: ExtendedEvent }) => {
     if (item.isDivider) {
       return (
-        <View style={styles.dayDivider}>
+        <View
+          style={[
+            styles.dayDivider,
+            { backgroundColor: TAB_COLORS[activeTab] },
+          ]}
+        >
           <Text style={styles.dayDividerText}>{item.dividerLabel}</Text>
         </View>
       );
     }
 
     const saved = isSaved(item.id);
+    const timeColor = TAB_COLORS[activeTab];
+
     return (
       <View style={[styles.card, { backgroundColor: theme.card }]}>
-        <Text style={[styles.time, { color: TAB_COLORS[activeTab] }]}>
-          {item.time}
-        </Text>
+        <Text style={[styles.time, { color: timeColor }]}>{item.time}</Text>
         <View style={styles.cardDetails}>
           <Text style={[styles.title, { color: theme.text }]}>
             {item.title}
@@ -159,9 +223,7 @@ export default function ScheduleScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
+  container: { flex: 1 },
   tabWrapper: {
     height: 56,
     justifyContent: "center",
@@ -206,9 +268,7 @@ const styles = StyleSheet.create({
     width: 70,
     paddingTop: 2,
   },
-  cardDetails: {
-    flex: 1,
-  },
+  cardDetails: { flex: 1 },
   title: {
     fontSize: 14,
     fontFamily: "LeagueSpartan_700Bold",
@@ -227,11 +287,8 @@ const styles = StyleSheet.create({
     color: "#555555",
     fontFamily: "NotoSans_400Regular",
   },
-  bookmarkLabelSaved: {
-    color: "#f652a0",
-  },
+  bookmarkLabelSaved: { color: "#f652a0" },
   dayDivider: {
-    backgroundColor: "#63fb64",
     borderRadius: 8,
     paddingVertical: 6,
     paddingHorizontal: 14,
