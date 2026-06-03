@@ -31,7 +31,7 @@ const SLIDES = [
   {
     id: "4",
     emoji: "🎟️",
-    title: "Info & Tickets.",
+    title: "Photos & Events.",
     body: "Purchase tickets to special ticketed events and photo ops. Find convention hours, vendor info, social links, and everything else you need for the weekend.",
   },
   {

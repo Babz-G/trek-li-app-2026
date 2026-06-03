@@ -26,7 +26,7 @@ export default function AppTabs() {
             <TabButton>Guests</TabButton>
           </TabTrigger>
           <TabTrigger name="info" href="/info" asChild>
-            <TabButton>Info</TabButton>
+            <TabButton>Photos & Events</TabButton>
           </TabTrigger>
         </View>
       </TabList>

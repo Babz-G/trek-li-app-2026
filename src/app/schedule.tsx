@@ -36,6 +36,9 @@ type ExtendedEvent = ScheduleEvent & {
 const GAMING_BLURB =
   "Stop by the Gaming Room at 7pm Friday, 10am Saturday, and 10am Sunday to sign up daily for games.";
 
+const KIDS_BLURB =
+  "Children may not be left unattended at any time. Trek LI staff are not responsible for supervising children. Programming is intended for children within the designated age range. Some activities have participant limits and require advance registration.";
+
 const parseTime = (time: string): number => {
   if (!time) return 0;
   const [rawTime, period] = time.split(" ");
@@ -110,6 +113,15 @@ export default function ScheduleScreen() {
     if (activeTab === "Kids") {
       const kids = scheduleData.filter((e) => e.category === "kids");
       const result: ExtendedEvent[] = [];
+      result.push({
+        id: "kids-blurb",
+        time: "",
+        title: "",
+        location: "",
+        day: "Saturday",
+        isBlurb: true,
+        blurbText: KIDS_BLURB,
+      });
       let lastDay: string | null = null;
       for (const event of kids) {
         if (lastDay !== event.day) {
@@ -129,7 +141,6 @@ export default function ScheduleScreen() {
       return result;
     }
 
-    // Friday, Saturday, Sunday -- everything sorted by time
     return [...scheduleData]
       .filter((e) => e.day === activeTab)
       .sort((a, b) => parseTime(a.time) - parseTime(b.time));
@@ -355,14 +366,14 @@ const styles = StyleSheet.create({
     fontFamily: "LeagueSpartan_700Bold",
   },
   blurb: {
-    backgroundColor: "#f3ba48",
-    borderRadius: 8,
-    padding: 12,
     marginBottom: 14,
+    paddingHorizontal: 4,
   },
   blurbText: {
-    color: "#000000",
-    fontSize: 13,
+    color: "#888888",
+    fontSize: 12,
     fontFamily: "NotoSans_400Regular",
+    fontStyle: "italic",
+    lineHeight: 20,
   },
 });

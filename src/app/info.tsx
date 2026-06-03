@@ -244,6 +244,17 @@ export default function InfoScreen() {
             key={index}
             style={[styles.card, { backgroundColor: theme.card }]}
           >
+            {event.url && !event.soldOut && (
+              <TouchableOpacity
+                style={styles.buttonOutline}
+                onPress={() => Linking.openURL(event.url!)}
+                accessibilityLabel={`Get tickets for ${event.title}`}
+                accessibilityRole="button"
+                accessibilityHint="Opens the ticketing website"
+              >
+                <Text style={styles.buttonOutlineText}>Get Tickets</Text>
+              </TouchableOpacity>
+            )}
             <View style={styles.cardTitleRow}>
               <Text style={[styles.cardTitle, { color: theme.text, flex: 1 }]}>
                 {event.title}
@@ -266,17 +277,6 @@ export default function InfoScreen() {
                 {event.price}
               </Text>
             ) : null}
-            {event.url && !event.soldOut && (
-              <TouchableOpacity
-                style={styles.buttonOutline}
-                onPress={() => Linking.openURL(event.url!)}
-                accessibilityLabel={`Get tickets for ${event.title}`}
-                accessibilityRole="button"
-                accessibilityHint="Opens the ticketing website"
-              >
-                <Text style={styles.buttonOutlineText}>Get Tickets</Text>
-              </TouchableOpacity>
-            )}
           </View>
         ))}
 
@@ -291,6 +291,17 @@ export default function InfoScreen() {
             key={index}
             style={[styles.card, { backgroundColor: theme.card }]}
           >
+            {op.url && !op.soldOut && (
+              <TouchableOpacity
+                style={styles.buttonOutline}
+                onPress={() => Linking.openURL(op.url)}
+                accessibilityLabel={`Get tickets for photo op with ${op.title}`}
+                accessibilityRole="button"
+                accessibilityHint="Opens the ticketing website"
+              >
+                <Text style={styles.buttonOutlineText}>Get Tickets</Text>
+              </TouchableOpacity>
+            )}
             <View style={styles.cardTitleRow}>
               <Text style={[styles.cardTitle, { color: theme.text, flex: 1 }]}>
                 {op.title}
@@ -310,17 +321,6 @@ export default function InfoScreen() {
             >
               {op.price}
             </Text>
-            {op.url && !op.soldOut && (
-              <TouchableOpacity
-                style={styles.buttonOutline}
-                onPress={() => Linking.openURL(op.url)}
-                accessibilityLabel={`Get tickets for photo op with ${op.title}`}
-                accessibilityRole="button"
-                accessibilityHint="Opens the ticketing website"
-              >
-                <Text style={styles.buttonOutlineText}>Get Tickets</Text>
-              </TouchableOpacity>
-            )}
           </View>
         ))}
 
@@ -540,6 +540,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     alignSelf: "flex-start",
     marginTop: 4,
+    marginBottom: 8,
   },
   buttonOutlineText: {
     color: "#f652a0",

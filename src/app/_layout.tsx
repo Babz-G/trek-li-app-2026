@@ -88,7 +88,7 @@ function TabsLayout() {
       <Tabs.Screen
         name="info"
         options={{
-          title: "Info & Tix",
+          title: "Photos & Events",
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons
               name="information"
