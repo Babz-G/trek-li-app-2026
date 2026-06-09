@@ -418,7 +418,9 @@ export default function InfoScreen() {
           🎭 Special Ticketed Events
         </Text>
 
-        <Text style={styles.dayHeader}>Saturday • June 13</Text>
+        <View style={styles.dayHeaderContainer}>
+          <Text style={styles.dayHeader}>Saturday • June 13</Text>
+        </View>
         {TICKETED_SATURDAY.map((event, index) => (
           <EventCard
             key={`tsat-${index}`}
@@ -428,7 +430,9 @@ export default function InfoScreen() {
           />
         ))}
 
-        <Text style={styles.dayHeader}>Sunday • June 14</Text>
+        <View style={styles.dayHeaderContainer}>
+          <Text style={styles.dayHeader}>Sunday • June 14</Text>
+        </View>
         {TICKETED_SUNDAY.map((event, index) => (
           <EventCard
             key={`tsun-${index}`}
@@ -446,7 +450,9 @@ export default function InfoScreen() {
           Show up a few minutes early! Check the Schedule tab for exact times.
         </Text>
 
-        <Text style={styles.dayHeader}>Saturday • June 13</Text>
+        <View style={styles.dayHeaderContainer}>
+          <Text style={styles.dayHeader}>Saturday • June 13</Text>
+        </View>
         {PHOTO_OPS_SATURDAY.map((op, index) => (
           <EventCard
             key={`psat-${index}`}
@@ -456,7 +462,9 @@ export default function InfoScreen() {
           />
         ))}
 
-        <Text style={styles.dayHeader}>Sunday • June 14</Text>
+        <View style={styles.dayHeaderContainer}>
+          <Text style={styles.dayHeader}>Sunday • June 14</Text>
+        </View>
         {PHOTO_OPS_SUNDAY.map((op, index) => (
           <EventCard
             key={`psun-${index}`}
@@ -631,14 +639,26 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     borderRadius: 8,
   },
+  dayHeaderContainer: {
+    backgroundColor: "#009d9a",
+    borderRadius: 6,
+    marginTop: 16,
+    marginBottom: 16,
+    paddingTop: 10,
+    paddingBottom: 6,
+    paddingHorizontal: 16,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+  },
   dayHeader: {
-    color: "#f652a0",
+    color: "#ffffff",
     fontSize: 13,
     fontFamily: "LeagueSpartan_700Bold",
-    marginTop: 14,
-    marginBottom: 8,
     textTransform: "uppercase",
     letterSpacing: 1,
+    textAlign: "center",
+    includeFontPadding: false,
   },
   photoOpsNote: {
     fontSize: 13,

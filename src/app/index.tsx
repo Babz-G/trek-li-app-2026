@@ -54,7 +54,6 @@ function parseEventDateTime(day: string, time: string): Date | null {
 function getConventionStats(savedIds: Set<string>) {
   const savedEvents = scheduleData.filter((e) => savedIds.has(e.id));
 
-  // conflict detection: same day, overlapping times
   let conflictCount = 0;
   const eventsByDay: Record<string, typeof scheduleData> = {};
   for (const e of savedEvents) {
@@ -72,7 +71,6 @@ function getConventionStats(savedIds: Set<string>) {
     }
   }
 
-  // next upcoming saved event
   const now = new Date();
   const upcoming = savedEvents
     .map((e) => ({ event: e, dt: parseEventDateTime(e.day, e.time) }))
@@ -106,7 +104,7 @@ export default function HomeScreen() {
           </Text>
         </View>
 
-        {/* My Convention Dashboard */}
+        {/* My Mission Log Dashboard */}
         <View
           style={[
             styles.card,
@@ -119,7 +117,7 @@ export default function HomeScreen() {
               size={18}
               color="#009d9a"
             />
-            <Text style={styles.cardTitle}>My Convention</Text>
+            <Text style={styles.cardTitle}>My Mission Log</Text>
           </View>
 
           <View style={styles.dashRow}>
@@ -382,9 +380,7 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
+  container: { flex: 1 },
   stardateRow: {
     alignItems: "center",
     paddingVertical: 10,
@@ -462,9 +458,7 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     gap: 12,
   },
-  infoDivider: {
-    height: 1,
-  },
+  infoDivider: { height: 1 },
   infoText: {
     fontSize: 15,
     fontFamily: "LeagueSpartan_700Bold",
@@ -541,9 +535,7 @@ const styles = StyleSheet.create({
     height: 56,
     borderRadius: 28,
   },
-  sponsorInfo: {
-    flex: 1,
-  },
+  sponsorInfo: { flex: 1 },
   sponsorName: {
     fontSize: 14,
     fontFamily: "LeagueSpartan_700Bold",
@@ -554,7 +546,5 @@ const styles = StyleSheet.create({
     fontSize: 13,
     fontFamily: "NotoSans_400Regular",
   },
-  bottomSpacer: {
-    height: 32,
-  },
+  bottomSpacer: { height: 32 },
 });
