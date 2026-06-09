@@ -9,7 +9,7 @@ export type ScheduleEvent = {
 };
 
 export const scheduleData: ScheduleEvent[] = [
-  // FRIDAY
+  // ==================== FRIDAY ====================
   {
     id: "f1",
     time: "5:00 PM",
@@ -20,7 +20,7 @@ export const scheduleData: ScheduleEvent[] = [
   {
     id: "f2",
     time: "6:00 PM",
-    title: "Welcome to Trek Long Island 2026!",
+    title: "Khan The Musical – A Glimpse of the Musical with Cast",
     location: "Main Stage",
     day: "Friday",
   },
@@ -41,15 +41,15 @@ export const scheduleData: ScheduleEvent[] = [
   {
     id: "fg1",
     time: "6:00 PM",
-    title: "Star Trek Adventures with Strange New Pod",
-    location: "Gaming Room",
+    title: "Star Trek Adventures Game Session",
+    location: "Trustees Board Room",
     day: "Friday",
     category: "gaming",
   },
   {
     id: "f5",
     time: "7:00 PM",
-    title: "Khan The Musical - A Glimpse with Cast",
+    title: "Khan The Musical – A Glimpse of the Musical with Cast (Continued)",
     location: "Main Stage",
     day: "Friday",
   },
@@ -68,32 +68,61 @@ export const scheduleData: ScheduleEvent[] = [
     day: "Friday",
   },
   {
+    id: "fg1b",
+    time: "7:00 PM",
+    title: "Star Trek Adventures Game Session (Continued)",
+    location: "Trustees Board Room",
+    day: "Friday",
+    category: "gaming",
+  },
+  {
     id: "f8",
     time: "8:00 PM",
-    title: "Khan The Musical (continued)",
+    title: "Khan The Musical – A Glimpse of the Musical with Cast (Continued)",
     location: "Main Stage",
+    day: "Friday",
+  },
+  {
+    id: "f8b",
+    time: "8:00 PM",
+    title: "Behind the Legacy: Lolita Fatjo & David Zappone's Star Trek Story",
+    location: "Panel C",
     day: "Friday",
   },
   {
     id: "f9",
     time: "8:00 PM",
-    title: "Building a World in Writing",
+    title: "Building a World in Literature",
     location: "Panel D",
     day: "Friday",
   },
   {
     id: "f10",
     time: "8:00 PM",
-    title: "Away Mission (Dread)",
-    location: "Gaming Room",
+    title: "GAMING: Away Mission (Dread)",
+    location: "Trustees Board Room",
     day: "Friday",
     category: "gaming",
   },
   {
     id: "f11",
     time: "9:00 PM",
-    title: "Cosplay Cabaret",
+    title: "Cosplay Cabaret (9:30 Start Time!)",
     location: "Main Stage",
+    day: "Friday",
+  },
+  {
+    id: "f11b",
+    time: "9:00 PM",
+    title: "DS9: Turning 33!",
+    location: "Panel C",
+    day: "Friday",
+  },
+  {
+    id: "f11c",
+    time: "9:00 PM",
+    title: "Khan!!! The Musical Meet and Greet and Signing",
+    location: "Panel D",
     day: "Friday",
   },
   {
@@ -112,11 +141,41 @@ export const scheduleData: ScheduleEvent[] = [
     day: "Friday",
   },
   {
+    id: "f13b",
+    time: "10:00 PM",
+    title: "DS9: Turning 33! (continued)",
+    location: "Panel C",
+    day: "Friday",
+  },
+  {
+    id: "f13c",
+    time: "10:00 PM",
+    title: "GAMING: Away Mission (Dread) Continued",
+    location: "Trustees Board Room",
+    day: "Friday",
+    category: "gaming",
+  },
+  {
     id: "f14",
     time: "10:30 PM",
     title: "Subspace Karaoke",
     location: "Main Stage",
     day: "Friday",
+  },
+  {
+    id: "f14b",
+    time: "10:30 PM",
+    title: "DS9: Turning 33! (continued)",
+    location: "Panel C",
+    day: "Friday",
+  },
+  {
+    id: "f14c",
+    time: "10:30 PM",
+    title: "GAMING: Away Mission (Dread) Continued",
+    location: "Trustees Board Room",
+    day: "Friday",
+    category: "gaming",
   },
   {
     id: "f15",
@@ -125,8 +184,16 @@ export const scheduleData: ScheduleEvent[] = [
     location: "Main Stage",
     day: "Friday",
   },
+  {
+    id: "f15b",
+    time: "11:00 PM",
+    title: "GAMING: Away Mission (Dread) Continued",
+    location: "Trustees Board Room",
+    day: "Friday",
+    category: "gaming",
+  },
 
-  // SATURDAY
+  // ==================== SATURDAY ====================
   {
     id: "sk1",
     time: "9:00 AM",
@@ -160,7 +227,7 @@ export const scheduleData: ScheduleEvent[] = [
   {
     id: "s4",
     time: "10:00 AM",
-    title: "DS9: Turning 33!",
+    title: "Science: Could Star Trek Ecosystems Actually Work?",
     location: "Panel C",
     day: "Saturday",
   },
@@ -183,8 +250,8 @@ export const scheduleData: ScheduleEvent[] = [
   {
     id: "sg1",
     time: "10:30 AM",
-    title: "Moonshine (Glorious Fate)",
-    location: "Gaming Room",
+    title: "GAMING: Moonshine (Glorious Fate)",
+    location: "Trustees Board Room",
     day: "Saturday",
     category: "gaming",
   },
@@ -207,6 +274,13 @@ export const scheduleData: ScheduleEvent[] = [
     time: "11:00 AM",
     title: "Where Are All The Trek Fans?",
     location: "Panel C",
+    day: "Saturday",
+  },
+  {
+    id: "s8b",
+    time: "11:00 AM",
+    title: "Black Voices in Science Fiction with Syfy Sistas",
+    location: "Panel D",
     day: "Saturday",
   },
   {
@@ -250,7 +324,7 @@ export const scheduleData: ScheduleEvent[] = [
   {
     id: "s13",
     time: "12:00 PM",
-    title: "Boldly Going where Anyone Can Go: Accessibility Panel",
+    title: "Boldly Going Where Anyone Can Go: Accessibility Panel",
     location: "Panel B",
     day: "Saturday",
   },
@@ -262,9 +336,16 @@ export const scheduleData: ScheduleEvent[] = [
     day: "Saturday",
   },
   {
+    id: "s14b",
+    time: "12:00 PM",
+    title: "Derek Tyler Attico: The Fundamentals of Storytelling",
+    location: "Panel D",
+    day: "Saturday",
+  },
+  {
     id: "s15",
     time: "12:00 PM",
-    title: "Starfleet Fusion Flow with Stephanie Czajkowski (Ticketed)",
+    title: "Star Fleet Fusion Flow with Stephanie Czajkowski (Ticketed)",
     location: "Windwatch",
     day: "Saturday",
   },
@@ -290,13 +371,6 @@ export const scheduleData: ScheduleEvent[] = [
     day: "Saturday",
   },
   {
-    id: "s18b",
-    time: "12:45 PM",
-    title: "Karim Diane",
-    location: "Photo Studio",
-    day: "Saturday",
-  },
-  {
     id: "sk4",
     time: "12:00 PM",
     title: "Tiny Robot Training: Ozobot Time!",
@@ -310,7 +384,7 @@ export const scheduleData: ScheduleEvent[] = [
     id: "s19",
     time: "1:00 PM",
     title:
-      "Beyond the Bridge: Strange New Worlds - Celia Rose Gooding, Dan Jeannotte, Chris Myers",
+      "Beyond the Bridge: Strange New Worlds – Celia Rose Gooding, Dan Jeannotte, Chris Myers",
     location: "Main Stage",
     day: "Saturday",
   },
@@ -329,9 +403,17 @@ export const scheduleData: ScheduleEvent[] = [
     day: "Saturday",
   },
   {
+    id: "s21b",
+    time: "1:00 PM",
+    title:
+      '"Is NASA REALLY Important To The Rest of Us?" w/ Oren W. Whyche-Shaw',
+    location: "Panel D",
+    day: "Saturday",
+  },
+  {
     id: "s22",
     time: "1:00 PM",
-    title: "Golden Key: Qigong with Musetta Vander (Ticketed)",
+    title: "Golden Key: Qigong Healing Method with Musetta Vander (Ticketed)",
     location: "Windwatch",
     day: "Saturday",
   },
@@ -375,7 +457,7 @@ export const scheduleData: ScheduleEvent[] = [
   {
     id: "s27",
     time: "2:00 PM",
-    title: "Finally Made it to Risa! Karim Diane with Matthew Jennings",
+    title: "Karim Diané: Starfleet Academy Report Card",
     location: "Main Stage",
     day: "Saturday",
   },
@@ -384,6 +466,13 @@ export const scheduleData: ScheduleEvent[] = [
     time: "2:00 PM",
     title: "Queer Representation in Media with D'Manda Martini",
     location: "Panel B",
+    day: "Saturday",
+  },
+  {
+    id: "s28b",
+    time: "2:00 PM",
+    title: "Writing Across the Multiverse with Jake Black",
+    location: "Panel C",
     day: "Saturday",
   },
   {
@@ -438,6 +527,13 @@ export const scheduleData: ScheduleEvent[] = [
     day: "Saturday",
   },
   {
+    id: "s34b",
+    time: "3:00 PM",
+    title: "Science: Star Trek Aliens vs Earth's Weirdest Animals",
+    location: "Panel D",
+    day: "Saturday",
+  },
+  {
     id: "s35",
     time: "3:00 PM",
     title: "SNW Group",
@@ -447,8 +543,8 @@ export const scheduleData: ScheduleEvent[] = [
   {
     id: "sg2",
     time: "3:00 PM",
-    title: "Kobayashi Maru (Dread)",
-    location: "Gaming Room",
+    title: "GAMING: Kobayashi Maru (Dread)",
+    location: "Trustees Board Room",
     day: "Saturday",
     category: "gaming",
   },
@@ -485,6 +581,21 @@ export const scheduleData: ScheduleEvent[] = [
     time: "4:00 PM",
     title: "Tracy Martinson Spotlight",
     location: "Panel B",
+    day: "Saturday",
+  },
+  {
+    id: "s40b",
+    time: "4:00 PM",
+    title:
+      'Science: "We Are Bringing Them With Us – Seeding the Human Microbiome" with Dr. Paul Lawrence',
+    location: "Panel C",
+    day: "Saturday",
+  },
+  {
+    id: "s40c",
+    time: "4:00 PM",
+    title: "Cosplay Masquerade Registration",
+    location: "Panel D",
     day: "Saturday",
   },
   {
@@ -535,7 +646,7 @@ export const scheduleData: ScheduleEvent[] = [
   {
     id: "s46",
     time: "5:00 PM",
-    title: "Toys Panel",
+    title: "Articulating The Final Frontier: Star Trek Toys & Collectibles",
     location: "Main Stage",
     day: "Saturday",
   },
@@ -547,9 +658,23 @@ export const scheduleData: ScheduleEvent[] = [
     day: "Saturday",
   },
   {
+    id: "s47b",
+    time: "5:00 PM",
+    title: 'Science: "Solar Sailing in Real Life" w/ Sheila Jenné',
+    location: "Panel C",
+    day: "Saturday",
+  },
+  {
+    id: "s47c",
+    time: "5:00 PM",
+    title: "Sherlock Holmes and the Case of the Missing Authors!",
+    location: "Panel D",
+    day: "Saturday",
+  },
+  {
     id: "s48",
     time: "6:00 PM",
-    title: "The RedShirts: Musical Improv Show",
+    title: "Main Stage Programming (TBA)",
     location: "Main Stage",
     day: "Saturday",
   },
@@ -558,6 +683,13 @@ export const scheduleData: ScheduleEvent[] = [
     time: "6:00 PM",
     title: "Beam Me Up, Sulu Viewing and Discussion",
     location: "Panel B",
+    day: "Saturday",
+  },
+  {
+    id: "s49b",
+    time: "6:00 PM",
+    title: "What Star Trek Gets Right About Humanity",
+    location: "Panel C",
     day: "Saturday",
   },
   {
@@ -575,6 +707,13 @@ export const scheduleData: ScheduleEvent[] = [
     day: "Saturday",
   },
   {
+    id: "s51b",
+    time: "7:00 PM",
+    title: "30 Minute Break",
+    location: "Main Stage",
+    day: "Saturday",
+  },
+  {
     id: "s52",
     time: "7:30 PM",
     title: "Live Proud and Prosper Drag Show with To Proudly Go",
@@ -589,6 +728,13 @@ export const scheduleData: ScheduleEvent[] = [
     day: "Saturday",
   },
   {
+    id: "s53b",
+    time: "8:00 PM",
+    title: "GAMING: Star Trek Werewolf with Trek Untold",
+    location: "Panel C",
+    day: "Saturday",
+  },
+  {
     id: "s54",
     time: "8:00 PM",
     title: "Classic Trek 60th Anniversary",
@@ -598,15 +744,15 @@ export const scheduleData: ScheduleEvent[] = [
   {
     id: "sg3",
     time: "8:00 PM",
-    title: "Away Mission (Dread)",
-    location: "Gaming Room",
+    title: "GAMING: Away Mission (Dread)",
+    location: "Trustees Board Room",
     day: "Saturday",
     category: "gaming",
   },
   {
     id: "s55",
     time: "8:30 PM",
-    title: "Slut Trek Burlesque Show - 21+ (Ticketed)",
+    title: "Slut Trek Burlesque Show – 21+ (Ticketed)",
     location: "Windwatch",
     day: "Saturday",
   },
@@ -625,10 +771,38 @@ export const scheduleData: ScheduleEvent[] = [
     day: "Saturday",
   },
   {
+    id: "s57b",
+    time: "9:00 PM",
+    title: "Terror from Space on the Small Screen",
+    location: "Panel C",
+    day: "Saturday",
+  },
+  {
+    id: "s57c",
+    time: "9:00 PM",
+    title: "Night Tribbles Social (until 12am)",
+    location: "Panel D",
+    day: "Saturday",
+  },
+  {
     id: "s58",
     time: "10:00 PM",
     title: "Warped Drive Comedy Show",
     location: "Main Stage",
+    day: "Saturday",
+  },
+  {
+    id: "s58b",
+    time: "10:00 PM",
+    title: "1701: A Blerd Story Screening & What's Next with Matt Jennings",
+    location: "Panel B",
+    day: "Saturday",
+  },
+  {
+    id: "s58c",
+    time: "10:00 PM",
+    title: "Night Tribbles Social (continued)",
+    location: "Panel D",
     day: "Saturday",
   },
   {
@@ -639,7 +813,7 @@ export const scheduleData: ScheduleEvent[] = [
     day: "Saturday",
   },
 
-  // SUNDAY
+  // ==================== SUNDAY ====================
   {
     id: "suk1",
     time: "9:00 AM",
@@ -657,10 +831,17 @@ export const scheduleData: ScheduleEvent[] = [
     day: "Sunday",
   },
   {
+    id: "su0",
+    time: "10:00 AM",
+    title: "Ask Me/Us Anything: How Did We Get Here?",
+    location: "Main Stage",
+    day: "Sunday",
+  },
+  {
     id: "su2",
     time: "10:00 AM",
     title:
-      "Changing the Game: Trans Talent in Film and TV with Jesse James Keitel",
+      "Changing the Game: Trans Talent in Film and TV with Jesse James Keitel and Dawn Ennis",
     location: "Panel B",
     day: "Sunday",
   },
@@ -674,7 +855,7 @@ export const scheduleData: ScheduleEvent[] = [
   {
     id: "su4",
     time: "10:00 AM",
-    title: "Once upon a Trek",
+    title: "Once Upon a Trek",
     location: "Panel D",
     day: "Sunday",
   },
@@ -690,15 +871,15 @@ export const scheduleData: ScheduleEvent[] = [
   {
     id: "sug1",
     time: "10:30 AM",
-    title: "Kobayashi Maru (Dread)",
-    location: "Gaming Room",
+    title: "GAMING: Kobayashi Maru (Dread)",
+    location: "Trustees Board Room",
     day: "Sunday",
     category: "gaming",
   },
   {
     id: "su5",
     time: "11:00 AM",
-    title: "Becoming Uhura with Celia Rose Gooding",
+    title: "A Joyful Conversation with Celia Rose Gooding",
     location: "Main Stage",
     day: "Sunday",
   },
@@ -714,6 +895,14 @@ export const scheduleData: ScheduleEvent[] = [
     time: "11:00 AM",
     title: "Chaos, Curiosity, and Vash with Jennifer Hetrick",
     location: "Panel C",
+    day: "Sunday",
+  },
+  {
+    id: "su7b",
+    time: "11:00 AM",
+    title:
+      'Science: "Interstellar Visitors: Two Comets and an Asteroid (Sorry, No Spaceships)" with Dr. Inge Heyer',
+    location: "Panel D",
     day: "Sunday",
   },
   {
@@ -747,8 +936,16 @@ export const scheduleData: ScheduleEvent[] = [
   {
     id: "su12",
     time: "12:00 PM",
-    title: "Stories from the Promenade with Nana Visitor",
+    title: "Nana Visitor Opens A Channel to the Women of Star Trek",
     location: "Main Stage",
+    day: "Sunday",
+  },
+  {
+    id: "su12b",
+    time: "12:00 PM",
+    title:
+      "Pop Hero Coalition: Comic Book Lights, Camera, Identity: Never Alone with Dr. Brenda Dorsch",
+    location: "Panel B",
     day: "Sunday",
   },
   {
@@ -756,6 +953,13 @@ export const scheduleData: ScheduleEvent[] = [
     time: "12:00 PM",
     title: "Mind Melds and Missions with Stephanie Czajkowski",
     location: "Panel C",
+    day: "Sunday",
+  },
+  {
+    id: "su13b",
+    time: "12:00 PM",
+    title: "Words in Pictures",
+    location: "Panel D",
     day: "Sunday",
   },
   {
@@ -805,15 +1009,30 @@ export const scheduleData: ScheduleEvent[] = [
   {
     id: "su19",
     time: "1:00 PM",
-    title: "Combs Across the Galaxy with Jeffrey Combs",
+    title: "Would the Real Jeffrey Combs Please Stand Up?",
     location: "Main Stage",
+    day: "Sunday",
+  },
+  {
+    id: "su19b",
+    time: "1:00 PM",
+    title:
+      "Allyship & Equity Across Communities of Color with Karim Diane and Chris Myers",
+    location: "Panel B",
     day: "Sunday",
   },
   {
     id: "su20",
     time: "1:00 PM",
-    title: "Red Alert: Stunt Work Ahead with Avaah Blackwell",
+    title: "Star Trek Stunts and Wrecks with Avaah Blackwell",
     location: "Panel C",
+    day: "Sunday",
+  },
+  {
+    id: "su20b",
+    time: "1:00 PM",
+    title: "Star Trek Enterprise: What if There Was a Fifth Season and Beyond?",
+    location: "Panel D",
     day: "Sunday",
   },
   {
@@ -840,7 +1059,7 @@ export const scheduleData: ScheduleEvent[] = [
   {
     id: "su24",
     time: "1:45 PM",
-    title: "Louise Sorel and Musetta Vander (solo)",
+    title: "Louise Sorel / Musetta Vander",
     location: "Photo Studio",
     day: "Sunday",
   },
@@ -868,9 +1087,24 @@ export const scheduleData: ScheduleEvent[] = [
     day: "Sunday",
   },
   {
+    id: "su26b",
+    time: "2:00 PM",
+    title:
+      "Makeup Man Preview and Voyager Documentary Update with Lolita Fatjo and David Zappone",
+    location: "Panel C",
+    day: "Sunday",
+  },
+  {
+    id: "su26c",
+    time: "2:00 PM",
+    title: '"Strange New Worlds, Strange New Life"',
+    location: "Panel D",
+    day: "Sunday",
+  },
+  {
     id: "su27",
     time: "2:00 PM",
-    title: "The Art of Resistance with Nana Visitor (Ticketed - SOLD OUT)",
+    title: "The Art of Resistance with Nana Visitor (Ticketed – SOLD OUT)",
     location: "Windwatch",
     day: "Sunday",
   },
@@ -886,15 +1120,15 @@ export const scheduleData: ScheduleEvent[] = [
   {
     id: "su28",
     time: "2:30 PM",
-    title: "Bonnie Gordon",
+    title: "Bonnie Gordon / Sachi Parker",
     location: "Photo Studio",
     day: "Sunday",
   },
   {
     id: "sug2",
     time: "2:30 PM",
-    title: "Sky Pirate (Glorious Fate)",
-    location: "Gaming Room",
+    title: "GAMING: Sky Pirate (Glorious Fate)",
+    location: "Trustees Board Room",
     day: "Sunday",
     category: "gaming",
   },
@@ -913,10 +1147,26 @@ export const scheduleData: ScheduleEvent[] = [
     day: "Sunday",
   },
   {
+    id: "su30b",
+    time: "3:00 PM",
+    title:
+      "Proudly Going Forward Closing with Tracee Cocco, Jesse James Keitel, Jackie Cox, and more",
+    location: "Panel B",
+    day: "Sunday",
+  },
+  {
     id: "su31",
     time: "3:00 PM",
-    title: "What Star Trek Gets Right About Humanity",
+    title:
+      "Life Elsewhere: Biosignatures, Ocean Worlds, Mars, and the Fermi Paradox",
     location: "Panel C",
+    day: "Sunday",
+  },
+  {
+    id: "su31b",
+    time: "3:00 PM",
+    title: "Star Trek United: Hail to the Chief!",
+    location: "Panel D",
     day: "Sunday",
   },
   {
@@ -951,18 +1201,19 @@ export const scheduleData: ScheduleEvent[] = [
     day: "Sunday",
   },
   {
-    id: "su34b",
-    time: "4:00 PM",
-    title: "Karim Diane",
-    location: "Photo Studio",
-    day: "Sunday",
-  },
-  {
     id: "su35",
     time: "4:00 PM",
     title: "All-Quadrants Auction to Benefit PanCAN",
     location: "Main Stage",
     day: "Sunday",
+  },
+  {
+    id: "sug3",
+    time: "4:00 PM",
+    title: "GAMING: Sky Pirate (Glorious Fate) – Continued",
+    location: "Trustees Board Room",
+    day: "Sunday",
+    category: "gaming",
   },
   {
     id: "suk7",
@@ -987,5 +1238,6 @@ export const scheduleData: ScheduleEvent[] = [
     title: "Until We Beam Again! Trek Long Island Farewell",
     location: "Main Stage",
     day: "Sunday",
+    description: "Directly after the auction.",
   },
 ];
