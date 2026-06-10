@@ -27,7 +27,7 @@ export default function ScreenHeader() {
             height: 215 + insets.top,
           },
         ]}
-        resizeMode="contain"
+        resizeMode="cover"
         accessibilityLabel="Welcome to Risa, Trek Long Island 2026 banner"
         accessibilityRole="image"
       />

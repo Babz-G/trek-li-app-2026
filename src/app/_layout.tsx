@@ -38,8 +38,7 @@ function TabsLayout() {
         headerShown: false,
         tabBarStyle: {
           backgroundColor: isDark ? "#000000" : "#ffffff",
-          // borderTopColor: "#f652a0",
-          // borderTopWidth: 1,
+          borderTopWidth: 0,
         },
         tabBarActiveTintColor: "#f652a0",
         tabBarInactiveTintColor: isDark ? "#888888" : "#3f7590",
