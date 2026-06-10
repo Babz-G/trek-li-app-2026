@@ -1,4 +1,4 @@
-import PageHeader from "@/components/PageHeader";
+import ScreenHeader from "@/components/ScreenHeader";
 import { scheduleData } from "@/data/scheduleData";
 import { useTheme } from "@/hooks/use-theme";
 import { useSavedEvents } from "@/hooks/useSavedEvents";
@@ -45,18 +45,6 @@ export default function MyScheduleScreen() {
     }
   }
 
-  const conflictCount = conflictingIds.size / 2;
-  const subtitle =
-    savedEvents.length === 0
-      ? "No events saved yet"
-      : `${savedEvents.length} event${
-          savedEvents.length !== 1 ? "s" : ""
-        } saved${
-          conflictCount > 0
-            ? ` · ${conflictCount} conflict${conflictCount !== 1 ? "s" : ""}`
-            : ""
-        }`;
-
   const handleShare = async (
     title: string,
     time: string,
@@ -75,7 +63,7 @@ export default function MyScheduleScreen() {
   if (savedEvents.length === 0) {
     return (
       <View style={[styles.container, { backgroundColor: theme.background }]}>
-        <PageHeader title="My Mission Log" subtitle={subtitle} />
+        <ScreenHeader />
         <View
           style={styles.emptyContainer}
           accessible={true}
@@ -112,7 +100,7 @@ export default function MyScheduleScreen() {
 
   return (
     <View style={[styles.container, { backgroundColor: theme.background }]}>
-      <PageHeader title="My Mission Log" subtitle={subtitle} />
+      <ScreenHeader />
       <FlatList
         data={sections}
         keyExtractor={([day]) => day}
@@ -261,11 +249,7 @@ const styles = StyleSheet.create({
     paddingTop: 2,
   },
   cardDetails: { flex: 1 },
-  title: {
-    fontSize: 14,
-    fontFamily: "LeagueSpartan_700Bold",
-    marginBottom: 4,
-  },
+  title: { fontSize: 14, fontFamily: "LeagueSpartan_700Bold", marginBottom: 4 },
   location: { fontSize: 12, fontFamily: "NotoSans_400Regular" },
   conflictRow: {
     flexDirection: "row",

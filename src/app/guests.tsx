@@ -1,4 +1,4 @@
-import PageHeader from "@/components/PageHeader";
+import ScreenHeader from "@/components/ScreenHeader";
 import { useTheme } from "@/hooks/use-theme";
 import { useState } from "react";
 import {
@@ -427,7 +427,6 @@ function GuestCard({
 }) {
   const [hovered, setHovered] = useState(false);
   const theme = useTheme();
-
   return (
     <Pressable
       onPress={() => imdb && Linking.openURL(imdb)}
@@ -477,15 +476,11 @@ function GuestCard({
 
 export default function GuestsScreen() {
   const theme = useTheme();
-
   return (
     <ScrollView
       style={[styles.container, { backgroundColor: theme.background }]}
     >
-      <PageHeader
-        title="Celebrity Guests"
-        subtitle="Actors · Authors · Artists · Panels"
-      />
+      <ScreenHeader />
       <View style={styles.content}>
         <SectionHeader title="⭐ Celebrity Guests" />
         {CELEBRITY_GUESTS.map((g) => (

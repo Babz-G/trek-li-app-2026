@@ -1,4 +1,4 @@
-import PageHeader from "@/components/PageHeader";
+import ScreenHeader from "@/components/ScreenHeader";
 import { scheduleData, ScheduleEvent } from "@/data/scheduleData";
 import { useTheme } from "@/hooks/use-theme";
 import { useSavedEvents } from "@/hooks/useSavedEvents";
@@ -6,21 +6,15 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useState } from "react";
 import {
   FlatList,
-  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from "react-native";
 
-const TABS = [
-  "Friday",
-  "Saturday",
-  "Sunday",
-  "Photo Ops",
-  "Gaming",
-  "Kids",
-] as const;
+const ROW1_TABS = ["Friday", "Saturday", "Sunday"] as const;
+const ROW2_TABS = ["Photo Ops", "Gaming", "Kids"] as const;
+const TABS = [...ROW1_TABS, ...ROW2_TABS] as const;
 type Tab = (typeof TABS)[number];
 
 const TAB_COLORS: Record<Tab, string> = {
@@ -223,17 +217,11 @@ export default function ScheduleScreen() {
 
   return (
     <View style={[styles.container, { backgroundColor: theme.background }]}>
-      <PageHeader
-        title="Schedule"
-        subtitle="Friday · Saturday · Sunday · Photo Ops · Gaming · Kids"
-      />
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={styles.tabRow}
-        style={styles.tabScroll}
-      >
-        {TABS.map((tab) => (
+      <ScreenHeader />
+
+      {/* Row 1: Fri / Sat / Sun */}
+      <View style={styles.tabRow}>
+        {ROW1_TABS.map((tab) => (
           <TouchableOpacity
             key={tab}
             style={[
@@ -257,7 +245,36 @@ export default function ScheduleScreen() {
             </Text>
           </TouchableOpacity>
         ))}
-      </ScrollView>
+      </View>
+
+      {/* Row 2: Photo Ops / Gaming / Kids */}
+      <View style={styles.tabRow}>
+        {ROW2_TABS.map((tab) => (
+          <TouchableOpacity
+            key={tab}
+            style={[
+              styles.tab,
+              { borderColor: TAB_COLORS[tab] },
+              activeTab === tab && { backgroundColor: TAB_COLORS[tab] },
+            ]}
+            onPress={() => setActiveTab(tab)}
+            accessibilityLabel={`${tab} schedule`}
+            accessibilityRole="tab"
+            accessibilityState={{ selected: activeTab === tab }}
+          >
+            <Text
+              style={[
+                styles.tabText,
+                { color: TAB_COLORS[tab] },
+                activeTab === tab && styles.tabTextActive,
+              ]}
+            >
+              {tab}
+            </Text>
+          </TouchableOpacity>
+        ))}
+      </View>
+
       <FlatList
         data={filtered}
         keyExtractor={(item) => item.id}
@@ -270,12 +287,12 @@ export default function ScheduleScreen() {
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
-  tabScroll: { flexGrow: 0 },
   tabRow: {
     flexDirection: "row",
+    justifyContent: "center",
     gap: 8,
     paddingHorizontal: 12,
-    paddingVertical: 8,
+    paddingVertical: 6,
   },
   tab: {
     paddingVertical: 8,
@@ -287,8 +304,13 @@ const styles = StyleSheet.create({
     fontSize: 13,
     fontFamily: "LeagueSpartan_700Bold",
   },
-  tabTextActive: { color: "#000000" },
-  list: { paddingHorizontal: 16, paddingBottom: 20 },
+  tabTextActive: {
+    color: "#000000",
+  },
+  list: {
+    paddingHorizontal: 16,
+    paddingBottom: 20,
+  },
   card: {
     flexDirection: "row",
     alignItems: "flex-start",
@@ -311,14 +333,20 @@ const styles = StyleSheet.create({
     fontFamily: "LeagueSpartan_700Bold",
     marginBottom: 4,
   },
-  location: { fontSize: 12, fontFamily: "NotoSans_400Regular" },
+  location: {
+    fontSize: 12,
+    fontFamily: "NotoSans_400Regular",
+  },
   description: {
     fontSize: 12,
     fontFamily: "NotoSans_400Regular",
     fontStyle: "italic",
     marginTop: 4,
   },
-  bookmarkButton: { alignItems: "center", gap: 2 },
+  bookmarkButton: {
+    alignItems: "center",
+    gap: 2,
+  },
   bookmarkLabel: {
     fontSize: 9,
     color: "#555555",
@@ -337,7 +365,10 @@ const styles = StyleSheet.create({
     fontSize: 13,
     fontFamily: "LeagueSpartan_700Bold",
   },
-  blurb: { marginBottom: 14, paddingHorizontal: 4 },
+  blurb: {
+    marginBottom: 14,
+    paddingHorizontal: 4,
+  },
   blurbText: {
     color: "#888888",
     fontSize: 12,
