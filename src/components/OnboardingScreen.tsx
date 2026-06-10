@@ -21,7 +21,7 @@ const SLIDES = [
   {
     id: "2",
     emoji: null,
-    iconName: "calendar-star",
+    iconName: "rocket-launch",
     title: "Schedule & My Schedule.",
     body: "Browse the full convention schedule and save events you want to attend. View your personal lineup in the My Schedule tab. You'll get an automatic warning if two events overlap.",
   },
@@ -42,7 +42,7 @@ const SLIDES = [
   {
     id: "5",
     emoji: null,
-    iconName: "bullhorn",
+    iconName: "account-group",
     title: "Spread the Trek Love.",
     body: "Save an event and tap Share to let your besties know where you'll be because conventions are better with the whole crew!",
   },

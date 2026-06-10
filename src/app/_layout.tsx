@@ -49,7 +49,11 @@ function TabsLayout() {
         options={{
           title: "Home",
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="rocket" color={color} size={size} />
+            <MaterialCommunityIcons
+              name="rocket-launch"
+              color={color}
+              size={size}
+            />
           ),
         }}
       />
@@ -58,11 +62,7 @@ function TabsLayout() {
         options={{
           title: "Schedule",
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons
-              name="calendar-star"
-              color={color}
-              size={size}
-            />
+            <MaterialCommunityIcons name="ufo" color={color} size={size} />
           ),
         }}
       />
@@ -72,7 +72,7 @@ function TabsLayout() {
           title: "My Schedule",
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons
-              name="bookmark-check"
+              name="moon-waning-crescent"
               color={color}
               size={size}
             />
