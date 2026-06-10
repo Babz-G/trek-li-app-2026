@@ -20,11 +20,11 @@ export default function ScreenHeader() {
       ]}
     >
       <Image
-        source={require("@/assets/images/welcome-to-risa-banner.png")}
+        source={require("@/assets/images/1170-400-banner.png")}
         style={[
           styles.banner,
           {
-            height: 120 + insets.top,
+            height: 130 + insets.top,
           },
         ]}
         resizeMode="cover"
