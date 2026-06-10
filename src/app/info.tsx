@@ -1,4 +1,4 @@
-import PageHeader from "@/components/PageHeader";
+import ScreenHeader from "@/components/ScreenHeader";
 import { useTheme } from "@/hooks/use-theme";
 import {
   Linking,
@@ -406,10 +406,7 @@ export default function InfoScreen() {
     <ScrollView
       style={[styles.container, { backgroundColor: theme.background }]}
     >
-      <PageHeader
-        title="Photos & Events"
-        subtitle="Photo ops · Ticketed events · Convention info"
-      />
+      <ScreenHeader />
       <View style={styles.content}>
         {/* TICKETED EVENTS */}
         <Text style={styles.sectionHeader} accessibilityRole="header">
