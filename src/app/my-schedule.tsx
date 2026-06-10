@@ -1,4 +1,4 @@
-import ScreenHeader from "@/components/ScreenHeader";
+import PageHeader from "@/components/PageHeader";
 import { scheduleData } from "@/data/scheduleData";
 import { useTheme } from "@/hooks/use-theme";
 import { useSavedEvents } from "@/hooks/useSavedEvents";
@@ -45,6 +45,18 @@ export default function MyScheduleScreen() {
     }
   }
 
+  const conflictCount = conflictingIds.size / 2;
+  const subtitle =
+    savedEvents.length === 0
+      ? "No events saved yet"
+      : `${savedEvents.length} event${
+          savedEvents.length !== 1 ? "s" : ""
+        } saved${
+          conflictCount > 0
+            ? ` · ${conflictCount} conflict${conflictCount !== 1 ? "s" : ""}`
+            : ""
+        }`;
+
   const handleShare = async (
     title: string,
     time: string,
@@ -63,7 +75,7 @@ export default function MyScheduleScreen() {
   if (savedEvents.length === 0) {
     return (
       <View style={[styles.container, { backgroundColor: theme.background }]}>
-        <ScreenHeader />
+        <PageHeader title="My Mission Log" subtitle={subtitle} />
         <View
           style={styles.emptyContainer}
           accessible={true}
@@ -100,7 +112,7 @@ export default function MyScheduleScreen() {
 
   return (
     <View style={[styles.container, { backgroundColor: theme.background }]}>
-      <ScreenHeader />
+      <PageHeader title="My Mission Log" subtitle={subtitle} />
       <FlatList
         data={sections}
         keyExtractor={([day]) => day}
@@ -205,9 +217,7 @@ export default function MyScheduleScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
+  container: { flex: 1 },
   emptyContainer: {
     flex: 1,
     justifyContent: "center",
@@ -226,10 +236,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     lineHeight: 22,
   },
-  list: {
-    paddingHorizontal: 16,
-    paddingBottom: 20,
-  },
+  list: { paddingHorizontal: 16, paddingBottom: 20 },
   dayHeader: {
     fontSize: 18,
     fontFamily: "LeagueSpartan_700Bold",
@@ -246,27 +253,20 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#f652a0",
   },
-  cardConflict: {
-    borderColor: "#ff9500",
-  },
+  cardConflict: { borderColor: "#ff9500" },
   time: {
     fontSize: 13,
     fontFamily: "LeagueSpartan_700Bold",
     width: 70,
     paddingTop: 2,
   },
-  cardDetails: {
-    flex: 1,
-  },
+  cardDetails: { flex: 1 },
   title: {
     fontSize: 14,
     fontFamily: "LeagueSpartan_700Bold",
     marginBottom: 4,
   },
-  location: {
-    fontSize: 12,
-    fontFamily: "NotoSans_400Regular",
-  },
+  location: { fontSize: 12, fontFamily: "NotoSans_400Regular" },
   conflictRow: {
     flexDirection: "row",
     alignItems: "center",
@@ -278,17 +278,7 @@ const styles = StyleSheet.create({
     fontSize: 11,
     fontFamily: "NotoSans_400Regular",
   },
-  actions: {
-    flexDirection: "column",
-    alignItems: "center",
-    gap: 8,
-  },
-  actionButton: {
-    alignItems: "center",
-    gap: 2,
-  },
-  actionLabel: {
-    fontSize: 9,
-    fontFamily: "NotoSans_400Regular",
-  },
+  actions: { flexDirection: "column", alignItems: "center", gap: 8 },
+  actionButton: { alignItems: "center", gap: 2 },
+  actionLabel: { fontSize: 9, fontFamily: "NotoSans_400Regular" },
 });

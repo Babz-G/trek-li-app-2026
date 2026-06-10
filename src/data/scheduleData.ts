@@ -1425,7 +1425,7 @@ export const scheduleData: ScheduleEvent[] = [
   {
     id: "su33",
     time: "1:45 PM",
-    title: "Louise Sorel / Musetta Vander",
+    title: "Musetta Vander",
     location: "Photo Studio",
     day: "Sunday",
   },
@@ -1566,6 +1566,13 @@ export const scheduleData: ScheduleEvent[] = [
   {
     id: "su47",
     time: "3:30 PM",
+    title: "Karim Diane",
+    location: "Photo Studio",
+    day: "Sunday",
+  },
+  {
+    id: "su47b",
+    time: "4:00 PM",
     title: "Karim Diane",
     location: "Photo Studio",
     day: "Sunday",

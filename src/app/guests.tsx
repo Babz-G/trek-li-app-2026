@@ -1,4 +1,4 @@
-import ScreenHeader from "@/components/ScreenHeader";
+import PageHeader from "@/components/PageHeader";
 import { useTheme } from "@/hooks/use-theme";
 import { useState } from "react";
 import {
@@ -482,7 +482,10 @@ export default function GuestsScreen() {
     <ScrollView
       style={[styles.container, { backgroundColor: theme.background }]}
     >
-      <ScreenHeader />
+      <PageHeader
+        title="Celebrity Guests"
+        subtitle="Actors · Authors · Artists · Panels"
+      />
       <View style={styles.content}>
         <SectionHeader title="⭐ Celebrity Guests" />
         {CELEBRITY_GUESTS.map((g) => (
@@ -540,13 +543,8 @@ export default function GuestsScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  content: {
-    paddingHorizontal: 16,
-    paddingBottom: 30,
-  },
+  container: { flex: 1 },
+  content: { paddingHorizontal: 16, paddingBottom: 30 },
   sectionHeader: {
     color: "#f652a0",
     fontSize: 18,
@@ -564,11 +562,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#f652a0",
   },
-  photo: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-  },
+  photo: { width: 50, height: 50, borderRadius: 25 },
   avatar: {
     width: 50,
     height: 50,
@@ -582,18 +576,9 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: "LeagueSpartan_700Bold",
   },
-  cardDetails: {
-    flex: 1,
-  },
-  name: {
-    fontSize: 15,
-    fontFamily: "LeagueSpartan_700Bold",
-    marginBottom: 2,
-  },
-  subtitle: {
-    fontSize: 13,
-    fontFamily: "NotoSans_400Regular",
-  },
+  cardDetails: { flex: 1 },
+  name: { fontSize: 15, fontFamily: "LeagueSpartan_700Bold", marginBottom: 2 },
+  subtitle: { fontSize: 13, fontFamily: "NotoSans_400Regular" },
   imdbLink: {
     color: "#f3ba48",
     fontSize: 12,

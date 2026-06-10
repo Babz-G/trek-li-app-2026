@@ -1,4 +1,4 @@
-import ScreenHeader from "@/components/ScreenHeader";
+import PageHeader from "@/components/PageHeader";
 import { useTheme } from "@/hooks/use-theme";
 import {
   Linking,
@@ -9,7 +9,6 @@ import {
   View,
 } from "react-native";
 
-// ─── SATURDAY TICKETED EVENTS (in time order) ───────────────────────────────
 const TICKETED_SATURDAY = [
   {
     title: "Qigong Healing Method with Musetta Vander",
@@ -72,7 +71,6 @@ const TICKETED_SATURDAY = [
   },
 ];
 
-// ─── SUNDAY TICKETED EVENTS (in time order) ─────────────────────────────────
 const TICKETED_SUNDAY = [
   {
     title: "Qigong Healing Method with Musetta Vander",
@@ -98,7 +96,6 @@ const TICKETED_SUNDAY = [
   },
 ];
 
-// ─── SATURDAY PHOTO OPS (in time order) ─────────────────────────────────────
 const PHOTO_OPS_SATURDAY = [
   {
     title: "Stephanie Czajkowski",
@@ -235,7 +232,6 @@ const PHOTO_OPS_SATURDAY = [
   },
 ];
 
-// ─── SUNDAY PHOTO OPS (in time order) ───────────────────────────────────────
 const PHOTO_OPS_SUNDAY = [
   {
     title: "DS9 Group Photo",
@@ -358,7 +354,6 @@ const PHOTO_OPS_SUNDAY = [
   },
 ];
 
-// ─── REUSABLE CARD COMPONENT ─────────────────────────────────────────────────
 function EventCard({
   item,
   theme,
@@ -411,13 +406,15 @@ export default function InfoScreen() {
     <ScrollView
       style={[styles.container, { backgroundColor: theme.background }]}
     >
-      <ScreenHeader />
+      <PageHeader
+        title="Photos & Events"
+        subtitle="Photo ops · Ticketed events · Convention info"
+      />
       <View style={styles.content}>
-        {/* ── TICKETED EVENTS ── */}
+        {/* TICKETED EVENTS */}
         <Text style={styles.sectionHeader} accessibilityRole="header">
           🎭 Special Ticketed Events
         </Text>
-
         <View style={styles.dayHeaderContainer}>
           <Text style={styles.dayHeader}>Saturday • June 13</Text>
         </View>
@@ -429,7 +426,6 @@ export default function InfoScreen() {
             accessibilityPrefix="ticketed event"
           />
         ))}
-
         <View style={styles.dayHeaderContainer}>
           <Text style={styles.dayHeader}>Sunday • June 14</Text>
         </View>
@@ -442,14 +438,13 @@ export default function InfoScreen() {
           />
         ))}
 
-        {/* ── PHOTO OPS ── */}
+        {/* PHOTO OPS */}
         <Text style={styles.sectionHeader} accessibilityRole="header">
           📸 Photo Ops
         </Text>
         <Text style={[styles.photoOpsNote, { color: theme.subtext }]}>
           Show up a few minutes early! Check the Schedule tab for exact times.
         </Text>
-
         <View style={styles.dayHeaderContainer}>
           <Text style={styles.dayHeader}>Saturday • June 13</Text>
         </View>
@@ -461,7 +456,6 @@ export default function InfoScreen() {
             accessibilityPrefix="photo op"
           />
         ))}
-
         <View style={styles.dayHeaderContainer}>
           <Text style={styles.dayHeader}>Sunday • June 14</Text>
         </View>
@@ -474,7 +468,7 @@ export default function InfoScreen() {
           />
         ))}
 
-        {/* ── VENUE ── */}
+        {/* VENUE */}
         <Text style={styles.sectionHeader} accessibilityRole="header">
           📍 Venue
         </Text>
@@ -500,7 +494,7 @@ export default function InfoScreen() {
           </TouchableOpacity>
         </View>
 
-        {/* ── GENERAL TICKETS ── */}
+        {/* GENERAL TICKETS */}
         <Text style={styles.sectionHeader} accessibilityRole="header">
           🎟️ General Tickets
         </Text>
@@ -521,7 +515,7 @@ export default function InfoScreen() {
           </TouchableOpacity>
         </View>
 
-        {/* ── SWAG ── */}
+        {/* SWAG */}
         <Text style={styles.sectionHeader} accessibilityRole="header">
           🛍️ Official Swag
         </Text>
@@ -542,7 +536,7 @@ export default function InfoScreen() {
           </TouchableOpacity>
         </View>
 
-        {/* ── FOLLOW US ── */}
+        {/* FOLLOW US */}
         <Text style={styles.sectionHeader} accessibilityRole="header">
           📱 Follow Us
         </Text>
@@ -591,7 +585,7 @@ export default function InfoScreen() {
           </TouchableOpacity>
         </View>
 
-        {/* ── CONTACT ── */}
+        {/* CONTACT */}
         <Text style={styles.sectionHeader} accessibilityRole="header">
           ✉️ Contact
         </Text>
@@ -605,7 +599,7 @@ export default function InfoScreen() {
           </TouchableOpacity>
         </View>
 
-        {/* ── WEBSITE ── */}
+        {/* WEBSITE */}
         <Text style={styles.sectionHeader} accessibilityRole="header">
           🌐 Website
         </Text>
@@ -674,20 +668,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#f652a0",
   },
-  cardTitleRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 8,
-  },
-  cardTitle: {
-    fontSize: 15,
-    fontFamily: "LeagueSpartan_700Bold",
-  },
-  cardText: {
-    fontSize: 14,
-    fontFamily: "NotoSans_400Regular",
-    lineHeight: 20,
-  },
+  cardTitleRow: { flexDirection: "row", alignItems: "center", gap: 8 },
+  cardTitle: { fontSize: 15, fontFamily: "LeagueSpartan_700Bold" },
+  cardText: { fontSize: 14, fontFamily: "NotoSans_400Regular", lineHeight: 20 },
   cardNote: {
     color: "#009d9a",
     fontSize: 13,
@@ -731,10 +714,7 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     borderBottomWidth: 1,
   },
-  socialText: {
-    fontSize: 15,
-    fontFamily: "LeagueSpartan_700Bold",
-  },
+  socialText: { fontSize: 15, fontFamily: "LeagueSpartan_700Bold" },
   socialLink: {
     color: "#f652a0",
     fontSize: 18,
