@@ -62,7 +62,11 @@ function TabsLayout() {
         options={{
           title: "Schedule",
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="ufo" color={color} size={size} />
+            <MaterialCommunityIcons
+              name="calendar-star"
+              color={color}
+              size={size}
+            />
           ),
         }}
       />
@@ -72,7 +76,7 @@ function TabsLayout() {
           title: "My Schedule",
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons
-              name="moon-waning-crescent"
+              name="bookmark-check"
               color={color}
               size={size}
             />

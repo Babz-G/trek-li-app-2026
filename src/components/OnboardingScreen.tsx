@@ -21,7 +21,7 @@ const SLIDES = [
   {
     id: "2",
     emoji: null,
-    iconName: "rocket-launch",
+    iconName: "calendar-star",
     title: "Schedule & My Schedule.",
     body: "Browse the full convention schedule and save events you want to attend. View your personal lineup in the My Schedule tab. You'll get an automatic warning if two events overlap.",
   },
@@ -96,15 +96,17 @@ export default function OnboardingScreen({ onDone }: Props) {
       onTouchEnd={handleTouchEnd}
     >
       <View style={styles.slideContainer}>
-        {slide.emoji ? (
-          <Text style={styles.emoji}>{slide.emoji}</Text>
-        ) : (
-          <MaterialCommunityIcons
-            name={slide.iconName as any}
-            size={80}
-            color="#f652a0"
-          />
-        )}
+        <View style={styles.iconContainer}>
+          {slide.emoji ? (
+            <Text style={styles.emoji}>{slide.emoji}</Text>
+          ) : (
+            <MaterialCommunityIcons
+              name={slide.iconName as any}
+              size={80}
+              color="#f652a0"
+            />
+          )}
+        </View>
         <Text style={[styles.title, { color: theme.text }]}>{slide.title}</Text>
         <Text style={[styles.body, { color: theme.subtext }]}>
           {slide.body}
@@ -161,12 +163,19 @@ const styles = StyleSheet.create({
   slideContainer: {
     flex: 1,
     alignItems: "center",
-    paddingTop: 80,
+    justifyContent: "center",
     paddingHorizontal: 40,
     gap: 24,
   },
+  iconContainer: {
+    width: 100,
+    height: 100,
+    alignItems: "center",
+    justifyContent: "center",
+  },
   emoji: {
     fontSize: 72,
+    lineHeight: 90,
   },
   title: {
     fontSize: 32,
