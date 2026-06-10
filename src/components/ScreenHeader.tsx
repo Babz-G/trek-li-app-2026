@@ -24,7 +24,7 @@ export default function ScreenHeader() {
         style={[
           styles.banner,
           {
-            height: 215 + insets.top,
+            height: 120 + insets.top,
           },
         ]}
         resizeMode="cover"
