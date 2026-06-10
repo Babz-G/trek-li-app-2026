@@ -37,7 +37,7 @@ function TabsLayout() {
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
-          backgroundColor: isDark ? "#000000" : "#ffffff",
+          backgroundColor: isDark ? "#222222" : "#dcdcdc",
           borderTopWidth: 0,
         },
         tabBarActiveTintColor: "#f652a0",
