@@ -1,4 +1,5 @@
 import { useTheme } from "@/hooks/use-theme";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useState } from "react";
 import {
@@ -13,30 +14,35 @@ const SLIDES = [
   {
     id: "1",
     emoji: "🖖",
+    iconName: null,
     title: "Welcome to Risa.",
     body: "Trek Long Island 2026 is your official companion app for Long Island's premier Star Trek convention, June 12-14 at the Hyatt Regency Long Island.",
   },
   {
     id: "2",
-    emoji: "📅",
+    emoji: null,
+    iconName: "calendar-star",
     title: "Schedule & My Schedule.",
     body: "Browse the full convention schedule and save events you want to attend. View your personal lineup in the My Schedule tab. You'll get an automatic warning if two events overlap.",
   },
   {
     id: "3",
-    emoji: "⭐",
+    emoji: null,
+    iconName: "alien",
     title: "Guests.",
     body: "Browse celebrity guests, artists and industry professionals, authors, IDIC track guests and panelists, and entertainment artists all in one place.",
   },
   {
     id: "4",
-    emoji: "🎟️",
+    emoji: null,
+    iconName: "camera",
     title: "Photos & Events.",
     body: "Purchase tickets to special ticketed events and photo ops. Find convention hours, vendor info, social links, and everything else you need for the weekend.",
   },
   {
     id: "5",
-    emoji: "📤",
+    emoji: null,
+    iconName: "bullhorn",
     title: "Spread the Trek Love.",
     body: "Save an event and tap Share to let your besties know where you'll be because conventions are better with the whole crew!",
   },
@@ -90,7 +96,15 @@ export default function OnboardingScreen({ onDone }: Props) {
       onTouchEnd={handleTouchEnd}
     >
       <View style={styles.slideContainer}>
-        <Text style={styles.emoji}>{slide.emoji}</Text>
+        {slide.emoji ? (
+          <Text style={styles.emoji}>{slide.emoji}</Text>
+        ) : (
+          <MaterialCommunityIcons
+            name={slide.iconName as any}
+            size={80}
+            color="#f652a0"
+          />
+        )}
         <Text style={[styles.title, { color: theme.text }]}>{slide.title}</Text>
         <Text style={[styles.body, { color: theme.subtext }]}>
           {slide.body}

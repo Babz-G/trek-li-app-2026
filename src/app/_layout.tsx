@@ -49,7 +49,7 @@ function TabsLayout() {
         options={{
           title: "Home",
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="home" color={color} size={size} />
+            <MaterialCommunityIcons name="rocket" color={color} size={size} />
           ),
         }}
       />
@@ -58,7 +58,11 @@ function TabsLayout() {
         options={{
           title: "Schedule",
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="calendar" color={color} size={size} />
+            <MaterialCommunityIcons
+              name="calendar-star"
+              color={color}
+              size={size}
+            />
           ),
         }}
       />
@@ -68,7 +72,7 @@ function TabsLayout() {
           title: "My Schedule",
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons
-              name="calendar-star"
+              name="bookmark-check"
               color={color}
               size={size}
             />
@@ -80,7 +84,7 @@ function TabsLayout() {
         options={{
           title: "Guests",
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="star" color={color} size={size} />
+            <MaterialCommunityIcons name="alien" color={color} size={size} />
           ),
         }}
       />
@@ -89,11 +93,7 @@ function TabsLayout() {
         options={{
           title: "Photos & Events",
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons
-              name="information"
-              color={color}
-              size={size}
-            />
+            <MaterialCommunityIcons name="camera" color={color} size={size} />
           ),
         }}
       />
