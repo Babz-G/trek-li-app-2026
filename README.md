@@ -1,29 +1,19 @@
 # 🖖 Trek Long Island 2026 — Official Convention App
 
-> ⚠️ Launching on the **App Store** and **Google Play** in June 2026.
-
-<div align="center">
-
-![Trek LI Banner](assets/images/welcome-to-risa-banner.png)
-
-### 📲 Download Coming Soon
+> App distribution currently pending.
 
 [![App Store](https://img.shields.io/badge/App_Store-0D96F6?style=for-the-badge&logo=app-store&logoColor=white)](#)
 [![Google Play](https://img.shields.io/badge/Google_Play-414141?style=for-the-badge&logo=google-play&logoColor=white)](#)
-
-_Links will go live when the app is approved — June 2026_
-
-</div>
 
 ---
 
 ## 📌 About This Project
 
-This is my **first commissioned, real world project**, built for an actual client and real convention attendees.
+This is my **first commissioned, real-world project**, built for an actual client and real convention attendees.
 
 **Trek Long Island** is Long Island's own Star Trek convention, running **June 12-14, 2026** at the Hyatt Regency Long Island. As a proud member of the [Trek LI crew](https://treklongisland.com/our-crew/), I was brought on to design and develop the official companion app for the event.
 
-The app gives attendees everything they need in one place — the full schedule, celebrity guest profiles, ticketed events, venue info, and more.
+The app gives attendees everything they need in one place: the full schedule, celebrity guest profiles, ticketed events, venue info, and more.
 
 ---
 
@@ -39,31 +29,24 @@ The app gives attendees everything they need in one place — the full schedule,
 
 ---
 
-## 📱 App Preview
-
-<div align="center">
-
-|                            Home                             |                            Schedule                             |                            Guests                            |                           My Schedule                           |                           Info & Tix                            |
-| :---------------------------------------------------------: | :-------------------------------------------------------------: | :----------------------------------------------------------: | :-------------------------------------------------------------: | :-------------------------------------------------------------: |
-| <img src="docs/screenshots/home-portrait.png" width="140"/> | <img src="docs/screenshots/schedule-portrait.png" width="140"/> | <img src="docs/screenshots/guest-portrait.png" width="140"/> | <img src="docs/screenshots/conflict-portrait.png" width="140"/> | <img src="docs/screenshots/info_tix-portrait.png" width="140"/> |
-
-</div>
-
----
-
 ## ✨ Features
 
-| Feature                             | Description                                                           |
-| ----------------------------------- | --------------------------------------------------------------------- |
-| 🗓️ Interactive Schedule             | Tabbed navigation across Friday, Saturday, Sunday and Photo Ops      |
-| 🌟 Celebrity Guests                 | Full guest grid with headshots, Star Trek series info and IMDb links |
-| 🎭 Artists, Authors & Entertainment | Dedicated sections for all non celebrity guests                       |
-| 📅 My Schedule                      | Bookmark events and get automatic time conflict warnings              |
-| 🎟️ Ticketed Events                  | All special events with prices and direct purchase links              |
-| 🏨 Venue & Contact                  | Address, hours, social links and department contacts                 |
-| ⭐ Stardate Calculator              | Live stardate displayed on the home screen                            |
-| 🌙 Light/Dark Mode                  | Dark by default, preference saved across sessions                     |           |
-| ♿ Accessibility                     | WCAG compliant labels on all interactive elements                     |
+| Feature | Description |
+| ------- | ----------- |
+| 🚀 Onboarding Flow | First-time users are guided through the app's key features on launch |
+| 🗓️ Interactive Schedule | Tabbed navigation across Friday, Saturday, Sunday, Photo Ops, Gaming, and Kids |
+| 🌟 Celebrity Guests | Full guest grid with headshots, Star Trek series info, and IMDb links |
+| 🎭 Artists, Authors & Entertainment | Dedicated sections for all non-celebrity guests |
+| 📅 My Mission Log | Bookmark events and get automatic time conflict warnings with persistent local storage |
+| 🔔 Event Reminders | Local push notifications for saved events via expo-notifications |
+| 📳 Haptic Feedback | Saving and removing events triggers native haptic feedback via expo-haptics |
+| 🎟️ Ticketed Events | All special events with prices and direct purchase links |
+| 📤 Share Events | Share saved events with friends directly from My Mission Log |
+| 🏨 Venue & Contact | Address, hours, social links, and department contacts |
+| ⭐ Stardate Calculator | Live stardate displayed on the Home screen |
+| 🌙 Light/Dark Mode | Dark by default, preference saved across sessions via AsyncStorage |
+| 📻 App Sponsor | The Transporter Room Podcast featured on the Home screen |
+| ♿ Accessibility | WCAG-compliant labels on all interactive elements |
 
 ---
 
@@ -89,6 +72,8 @@ The app gives attendees everything they need in one place — the full schedule,
 | State Management | React Context + AsyncStorage               |
 | Fonts            | League Spartan, Noto Sans, Bangers, Candal |
 | Icons            | MaterialCommunityIcons                     |
+| Notifications    | expo-notifications                         |
+| Haptics          | expo-haptics                               |
 | Build            | EAS Build                                  |
 | Distribution     | Apple App Store & Google Play              |
 
@@ -100,8 +85,6 @@ The app gives attendees everything they need in one place — the full schedule,
 trek-li-app-2026/
 ├── assets/
 │   └── images/          # Banner, sponsor logo, icons
-├── docs/
-│   └── screenshots/     # App preview screenshots
 ├── src/
 │   ├── app/             # Expo Router screens
 │   │   ├── index.tsx    # Home
@@ -110,7 +93,8 @@ trek-li-app-2026/
 │   │   ├── guests.tsx
 │   │   └── info.tsx
 │   ├── components/
-│   │   └── ScreenHeader.tsx  # Banner + light/dark toggle
+│   │   ├── ScreenHeader.tsx
+│   │   └── OnboardingScreen.tsx
 │   ├── context/
 │   │   ├── ThemeContext.tsx
 │   │   └── SavedEventsContext.tsx
@@ -140,13 +124,13 @@ npm install
 npx expo start --web
 ```
 
-> ⚠️ Expo Go is not supported with SDK 56. Use the web preview or an EAS development build.
+> Expo Go is not supported with SDK 56. Use the web preview or an EAS development build.
 
 ---
 
 ## 👩‍💻 Developer
 
-**Babz Gaynor**  
+**Babz Gaynor**
 🎨 Graphic Designer | Jr Full Stack Developer | Aspiring UX/UI Designer
 
 [![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Babz-G)
@@ -161,11 +145,8 @@ npx expo start --web
 - 📸 [Instagram](https://www.instagram.com/treklongisland/)
 - 📘 [Facebook](https://www.facebook.com/TrekLongIsland)
 - 🐘 [Mastodon](https://mastodon.world/@TrekLongIsland)
+- 🛍️ [Official Merch on Etsy](https://www.etsy.com/shop/TrekLongIsland)
 
 ---
 
-<div align="center">
-
 _Built with 🖤 and 🖖 for the Trek LI crew and convention attendees_
-
-</div>
