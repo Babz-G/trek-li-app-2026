@@ -20,7 +20,7 @@ export default function ScreenHeader() {
       ]}
     >
       <Image
-        source={require("@/assets/images/updated-banner.png")}
+        source={require("@/assets/images/black-banner.png")}
         style={[
           styles.banner,
           {
@@ -32,7 +32,7 @@ export default function ScreenHeader() {
         accessibilityRole="image"
       />
       <TouchableOpacity
-        style={[styles.pill, { top: insets.top + 8 }]}
+        style={styles.pill}
         onPress={toggleTheme}
         accessibilityLabel={
           isDark ? "Switch to light mode" : "Switch to dark mode"
@@ -63,6 +63,7 @@ const styles = StyleSheet.create({
   },
   pill: {
     position: "absolute",
+    bottom: 10,
     right: 10,
     backgroundColor: "#000000",
     borderRadius: 20,
