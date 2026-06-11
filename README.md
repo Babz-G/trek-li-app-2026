@@ -19,7 +19,7 @@ _Links will go live when the app is approved — June 2026_
 
 ## 📌 About This Project
 
-This is my **first commissioned, real-world project**, built for an actual client and real convention attendees.
+This is my **first commissioned, real world project**, built for an actual client and real convention attendees.
 
 **Trek Long Island** is Long Island's own Star Trek convention, running **June 12-14, 2026** at the Hyatt Regency Long Island. As a proud member of the [Trek LI crew](https://treklongisland.com/our-crew/), I was brought on to design and develop the official companion app for the event.
 
@@ -55,16 +55,15 @@ The app gives attendees everything they need in one place — the full schedule,
 
 | Feature                             | Description                                                           |
 | ----------------------------------- | --------------------------------------------------------------------- |
-| 🗓️ Interactive Schedule             | Tabbed navigation across Friday, Saturday, Sunday, and Photo Ops      |
-| 🌟 Celebrity Guests                 | Full guest grid with headshots, Star Trek series info, and IMDb links |
-| 🎭 Artists, Authors & Entertainment | Dedicated sections for all non-celebrity guests                       |
+| 🗓️ Interactive Schedule             | Tabbed navigation across Friday, Saturday, Sunday and Photo Ops      |
+| 🌟 Celebrity Guests                 | Full guest grid with headshots, Star Trek series info and IMDb links |
+| 🎭 Artists, Authors & Entertainment | Dedicated sections for all non celebrity guests                       |
 | 📅 My Schedule                      | Bookmark events and get automatic time conflict warnings              |
 | 🎟️ Ticketed Events                  | All special events with prices and direct purchase links              |
-| 🏨 Venue & Contact                  | Address, hours, social links, and department contacts                 |
+| 🏨 Venue & Contact                  | Address, hours, social links and department contacts                 |
 | ⭐ Stardate Calculator              | Live stardate displayed on the home screen                            |
-| 🌙 Light/Dark Mode                  | Dark by default, preference saved across sessions                     |
-| 📻 App Sponsor                      | The Transporter Room Podcast featured on the home screen              |
-| ♿ Accessibility                    | WCAG-compliant labels on all interactive elements                     |
+| 🌙 Light/Dark Mode                  | Dark by default, preference saved across sessions                     |           |
+| ♿ Accessibility                     | WCAG compliant labels on all interactive elements                     |
 
 ---
 
@@ -162,7 +161,6 @@ npx expo start --web
 - 📸 [Instagram](https://www.instagram.com/treklongisland/)
 - 📘 [Facebook](https://www.facebook.com/TrekLongIsland)
 - 🐘 [Mastodon](https://mastodon.world/@TrekLongIsland)
-- 🛍️ [Official Merch on Etsy](https://www.etsy.com/shop/TrekLongIsland)
 
 ---
 
