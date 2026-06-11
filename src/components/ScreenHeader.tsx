@@ -20,7 +20,7 @@ export default function ScreenHeader() {
       ]}
     >
       <Image
-        source={require("@/assets/images/1170-400-banner.png")}
+        source={require("@/assets/images/trek-li-banner.png")}
         style={[
           styles.banner,
           {
@@ -28,7 +28,7 @@ export default function ScreenHeader() {
           },
         ]}
         resizeMode="cover"
-        accessibilityLabel="Welcome to Risa, Trek Long Island 2026 banner"
+        accessibilityLabel="Trek Long Island 2026 banner"
         accessibilityRole="image"
       />
       <TouchableOpacity
