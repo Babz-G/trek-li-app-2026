@@ -20,11 +20,11 @@ export default function ScreenHeader() {
       ]}
     >
       <Image
-        source={require("@/assets/images/trek-li-banner.png")}
+        source={require("@/assets/images/updated-banner.png")}
         style={[
           styles.banner,
           {
-            height: 130 + insets.top,
+            height: 163 + insets.top,
           },
         ]}
         resizeMode="cover"
